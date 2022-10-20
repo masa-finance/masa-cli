@@ -11,6 +11,7 @@ import { create as identityCreate } from "./commands/identity/create";
 import { list as soulNameList } from "./commands/soul-name/list";
 import { create as soulNameCreate } from "./commands/soul-name/create";
 import { burn as soulNameBurn } from "./commands/soul-name/burn";
+import { config } from "./utils/storage";
 
 clear();
 console.log(
@@ -33,7 +34,7 @@ program
     await logout();
   });
 
-const identity = program.command("identity");
+const identity = program.command("identity").description("Identity commands");
 
 identity
   .command("create")
@@ -51,7 +52,7 @@ identity
     await identityShow();
   });
 
-const soulName = program.command("soul-name");
+const soulName = program.command("soul-name").description("Soul Name Commands");
 
 soulName
   .command("list")
@@ -75,6 +76,17 @@ soulName
   .description("Burns soul name that you own")
   .action(async (soulname: string) => {
     await soulNameBurn(soulname);
+  });
+
+const settings = program.command("settings").description("Set config settings");
+
+settings
+  .command("set")
+  .argument("<key>", "soulname to register")
+  .argument("<value>", "period of registration")
+  .description("Creates a new soul name")
+  .action(async (key: string, value: any) => {
+    config.set(key, value);
   });
 
 program.parse(process.argv);

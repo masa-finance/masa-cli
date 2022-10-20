@@ -37,14 +37,12 @@ export const show = async () => {
     }
 
     if (identityId) {
-      console.log(identityId.toNumber());
-
       const tokenUri = patchMetadataUrl(
         await identityContracts.SoulboundIdentityContract["tokenURI(uint256)"](
           identityId
         )
       );
-      console.log(tokenUri);
+      console.log("Identity Metadata URL", tokenUri);
 
       const cookie = config.get("cookie");
 
