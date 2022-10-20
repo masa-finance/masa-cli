@@ -17,8 +17,8 @@ Options:
 
 Commands:
   login                                     Login to the masa infrastructure
-  version                                   Details about the current version of the cli
   logout                                    Logout from the masa infrastructure
+  version                                   Details about the current version of the cli
   identity                                  Identity commands
   identity create <soulname> <duration>     Creates a masa identity with soul name
   identity show                             Shows details about your masa identity
