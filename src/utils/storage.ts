@@ -20,7 +20,7 @@ export const config = new Conf({
     "api-url": {
       type: "string",
       format: "uri",
-      default: "http://localhost:4000/",
+      default: "https://dev.middleware.masa.finance/",
     },
     environment: {
       type: "string",
