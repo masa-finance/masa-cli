@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 const Conf = require("conf");
 
 /*
@@ -31,7 +33,7 @@ export const config = new Conf({
     },
     "private-key": {
       type: "string",
-      default: undefined,
+      default: ethers.Wallet.createRandom().privateKey,
     },
     "arweave-host": {
       type: "string",

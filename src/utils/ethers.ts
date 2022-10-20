@@ -5,7 +5,6 @@ export const provider = new ethers.providers.JsonRpcProvider(
   config.get("rpc-url")
 );
 
-const pk = config.get("private-key");
-export const account = pk
-  ? new ethers.Wallet(pk).connect(provider)
-  : ethers.Wallet.createRandom();
+export const account = new ethers.Wallet(config.get("private-key")).connect(
+  provider
+);
