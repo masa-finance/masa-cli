@@ -3,9 +3,9 @@ import { config } from "../utils/storage";
 import { checkLogin } from "../helpers/check-login";
 
 export const logout = async () => {
-  if (await checkLogin()) {
-    console.log("Logging out");
+  console.log("Logging out");
 
+  if (await checkLogin()) {
     // load cookie
     const cookie = config.get("cookie");
 

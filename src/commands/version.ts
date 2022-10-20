@@ -5,10 +5,10 @@ import { config } from "../utils/storage";
 
 export const version = async () => {
   console.log(
-    `CLI: ${cliVersion} Contracts: ${contractsVersion} SDK: ${sdkVersion}`
+    `CLI: v${cliVersion} Contracts: v${contractsVersion} SDK: v${sdkVersion}`
   );
   console.log(
-    `Arweave: ${config.get("arweave-protocol")}://${config.get(
+    `Arweave Endpoint: ${config.get("arweave-protocol")}://${config.get(
       "arweave-host"
     )}:${config.get("arweave-port")}`
   );

@@ -6,11 +6,11 @@ import { getLoginTemplate } from "../helpers/get-logintemplate";
 import { unpackSessionId } from "../helpers/unpack-session-id";
 
 export const login = async () => {
+  console.log("Logging in");
+
   if (await checkLogin()) {
     console.log("Already logged in! Please logout before logging in again.");
   } else {
-    console.log("Logging in");
-
     // get challenge
     const getChallengeResponse = await middlewareClient
       .get(`/session/get-challenge`)
