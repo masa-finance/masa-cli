@@ -6,6 +6,7 @@ export const logout = async () => {
   if (await checkLogin()) {
     console.log("Logging out");
 
+    // load cookie
     const cookie = config.get("cookie");
 
     const logoutResponse = await middlewareClient
@@ -20,7 +21,7 @@ export const logout = async () => {
 
     if (logoutResponse) {
       const { data: logoutData } = logoutResponse;
-      console.log("Logout:", logoutData.status);
+      console.log(`Logout: ${logoutData.status}`);
     }
   } else {
     console.log("Not logged in please login first");

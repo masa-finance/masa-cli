@@ -62,17 +62,18 @@ export const list = async () => {
           metadata = JSON.parse(metadataResponse as string);
         } catch {}
 
-        console.log("\nToken:", parseInt(nameIndex) + 1);
-        console.log("Name:", tokenDetails.sbtName);
-        console.log("Token ID:", tokenId.toNumber());
-        console.log("Identity ID:", tokenDetails.identityId.toNumber());
-        console.log("Active:", tokenDetails.active);
-        console.log("Metadata Uri:", tokenUri);
-        if (metadata) console.log("Metadata", metadata);
+        console.log(`\nToken: ${parseInt(nameIndex) + 1}`);
+        console.log(`Name: ${tokenDetails.sbtName}`);
+        console.log(`Token ID: ${tokenId.toNumber()}`);
+        console.log(`Identity ID: ${tokenDetails.identityId.toNumber()}`);
+        console.log(`Active: ${tokenDetails.active}`);
+        console.log(`Metadata Uri: ${tokenUri}`);
+        if (metadata) console.log(`Metadata: ${metadata}`);
 
         console.log(
-          "Expiry Date:",
-          new Date(tokenDetails.expirationDate.toNumber() * 1000).toUTCString()
+          `Expiry Date: ${new Date(
+            tokenDetails.expirationDate.toNumber() * 1000
+          ).toUTCString()}`
         );
       }
     }

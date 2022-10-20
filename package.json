@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "tsc --watch",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "prettier": "prettier ./src --write"
   },
   "dependencies": {
     "@masa-finance/tools": "^0.9.1",

@@ -29,7 +29,7 @@ export const show = async () => {
           identityId
         )
       );
-      console.log("Identity Metadata URL", tokenUri);
+      console.log(`Identity Metadata URL: ${tokenUri}`);
 
       const cookie = config.get("cookie");
 
@@ -41,7 +41,7 @@ export const show = async () => {
       if (metadataResponse) {
         const { data: metadata } = metadataResponse;
 
-        console.log(metadata);
+        console.log(`Metadata: ${metadata}`);
       }
     }
   } else {

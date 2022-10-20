@@ -3,6 +3,7 @@ import { middlewareClient } from "../utils/rest";
 import { config } from "../utils/storage";
 import { checkLogin } from "../helpers/check-login";
 import { getLoginTemplate } from "../helpers/get-logintemplate";
+import { unpackSessionId } from "../helpers/unpack-session-id";
 
 export const login = async () => {
   if (await checkLogin()) {
@@ -29,11 +30,11 @@ export const login = async () => {
         challengeData.challenge,
         challengeData.expires
       );
-      console.log("Signer Address:", await account.getAddress());
+      console.log(`Signer Address: ${await account.getAddress()}`);
       console.log(`Signing '${msg}'`);
 
       const signature = await account.signMessage(msg);
-      console.log("signature", signature);
+      console.log(`Signature: ${signature}`);
 
       const body = {
         address: await account.getAddress(),
@@ -54,12 +55,10 @@ export const login = async () => {
         const { data: checkSignatureData } = checkSignatureResponse;
 
         console.log("\nLogged in as:");
-        console.log("User id:", checkSignatureData.id);
+        console.log(`User ID: ${checkSignatureData.id}`);
 
         if (cookies) {
-          const sid = cookies[0].split(";")[0].split("=")[1];
-
-          console.log("Session ID:", sid);
+          console.log(`Session ID: ${unpackSessionId(cookies)}`);
         }
       }
     }
