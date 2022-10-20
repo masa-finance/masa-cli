@@ -2,16 +2,7 @@ import { account } from "../utils/ethers";
 import { middlewareClient } from "../utils/rest";
 import { config } from "../utils/storage";
 import { checkLogin } from "../helpers/check-login";
-
-const getLoginTemplate = (
-  challenge: string,
-  expires: string
-) => `Welcome to 🌽Masa Finance!
-
-Login with your soulbound web3 identity to unleash the power of DeFi.
-
-Your signature is valid till: ${expires}.
-Challenge: ${challenge}`;
+import { getLoginTemplate } from "../helpers/get-logintemplate";
 
 export const login = async () => {
   if (await checkLogin()) {
@@ -61,12 +52,14 @@ export const login = async () => {
 
       if (checkSignatureResponse) {
         const { data: checkSignatureData } = checkSignatureResponse;
+
+        console.log("\nLogged in as:");
         console.log("User id:", checkSignatureData.id);
 
         if (cookies) {
           const sid = cookies[0].split(";")[0].split("=")[1];
 
-          console.log(sid);
+          console.log("Session ID:", sid);
         }
       }
     }
