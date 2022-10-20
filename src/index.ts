@@ -18,7 +18,7 @@ console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
-program.version(version).description("An example CLI for ordering pizza's");
+program.version(version).description("The Masa CLI");
 
 program
   .command("login")
@@ -84,7 +84,7 @@ settings
   .command("set")
   .argument("<key>", "soulname to register")
   .argument("<value>", "period of registration")
-  .description("Creates a new soul name")
+  .description("Changes setting <key> to <value>")
   .action(async (key: string, value: any) => {
     config.set(key, value);
   });
