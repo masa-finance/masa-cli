@@ -68,7 +68,8 @@ export const list = async () => {
         console.log(`Identity ID: ${tokenDetails.identityId.toNumber()}`);
         console.log(`Active: ${tokenDetails.active}`);
         console.log(`Metadata Uri: ${tokenUri}`);
-        if (metadata) console.log(`Metadata: ${metadata}`);
+        if (metadata)
+          console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
 
         console.log(
           `Expiry Date: ${new Date(

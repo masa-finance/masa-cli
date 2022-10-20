@@ -41,7 +41,7 @@ export const show = async () => {
       if (metadataResponse) {
         const { data: metadata } = metadataResponse;
 
-        console.log(`Metadata: ${metadata}`);
+        console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
       }
     }
   } else {
