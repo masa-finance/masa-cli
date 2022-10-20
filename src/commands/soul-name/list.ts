@@ -4,7 +4,12 @@ import { provider, account } from "../../utils/ethers";
 import Arweave from "arweave";
 import { config } from "../../utils/storage";
 
-const arweave = Arweave.init(config.get("arweave"));
+const arweave = Arweave.init({
+  host: config.get("arweave-host"),
+  port: config.get("arweave-port"),
+  protocol: config.get("arweave-protocol"),
+  logging: config.get("arweave-logging"),
+});
 
 export const list = async () => {
   if (await checkLogin()) {

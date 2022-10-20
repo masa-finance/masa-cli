@@ -33,26 +33,21 @@ export const config = new Conf({
       type: "string",
       default: undefined,
     },
-    arweave: {
-      type: "object",
-      properties: {
-        host: {
-          type: "string",
-          default: "arweave.net",
-        },
-        port: {
-          type: "number",
-          default: 443,
-        },
-        protocol: {
-          type: "string",
-          default: "https",
-        },
-        logging: {
-          type: "boolean",
-          default: false,
-        },
-      },
+    "arweave-host": {
+      type: "string",
+      default: "arweave.net",
+    },
+    "arweave-port": {
+      type: "number",
+      default: 443,
+    },
+    "arweave-protocol": {
+      type: "string",
+      default: "https",
+    },
+    "arweave-logging": {
+      type: "boolean",
+      default: false,
     },
   },
 });
