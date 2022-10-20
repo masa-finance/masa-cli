@@ -403,10 +403,10 @@
   dependencies:
     ethers "^5.6.9"
 
-"@masa-finance/tools@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@masa-finance/tools/-/tools-0.9.0.tgz#634cd0329ec6c5284f70ca6b0e96325089ac9e13"
-  integrity sha512-4etUy67gvncBD0VfXIxi51hhdH/qYfwFPrjW5CMdq3eLj+n079dOVQVAF4vd7+VE6Mu0fI8ek4tHVCDn3FC6kQ==
+"@masa-finance/tools@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/tools/-/tools-0.9.1.tgz#74798a6149a4d7c09a178dd13b238a8495932396"
+  integrity sha512-gs+LyRV3QsMLbswqXrfNppHP0VFgWROvyKhwL7g76YkyYAx9cm2l1qzRWm0pfBvWmDL2YxzYIIemrHa//vbL/w==
   dependencies:
     "@auth0/auth0-react" "^1.12.0"
     "@masa-finance/masa-contracts-identity" "0.3.0"
