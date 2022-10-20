@@ -3,3 +3,4 @@ dist/
 .env
 
 yarn-error.log
+masa-finance-masa-cli-*.tgz
