@@ -1,6 +1,7 @@
 # Masa CLI
 
-```text
+```bash
+$ masa --help
   __  __                            ____   _       ___ 
  |  \/  |   __ _   ___    __ _     / ___| | |     |_ _|
  | |\/| |  / _` | / __|  / _` |   | |     | |      | | 
@@ -37,3 +38,86 @@ Commands:
   settings                                  Set config settings
   help [command]                            display help for command
 ```
+
+To get help for a specific command use:
+
+```bash
+$ masa identity --help
+```
+
+to get help for the identity commands.
+
+## Usage / Installation
+
+### npx
+
+```bash
+$ npx @masa-finance/masa-cli@latest --version
+  __  __                            ____   _       ___
+ |  \/  |   __ _   ___    __ _     / ___| | |     |_ _|
+ | |\/| |  / _` | / __|  / _` |   | |     | |      | |
+ | |  | | | (_| | \__ \ | (_| |   | |___  | |___   | |
+ |_|  |_|  \__,_| |___/  \__,_|    \____| |_____| |___|
+
+CLI: v0.1.0 Contracts: v0.3.0 SDK: v0.9.1
+Arweave Endpoint: https://arweave.net:443
+RPC Endpoint: https://rpc.ankr.com/eth_goerli
+Masa Endpoint: https://dev.middleware.masa.finance/
+```
+
+### npm
+
+`npm install -g @masa-finance/masa-cli`
+
+```bash
+$ masa --version
+  __  __                            ____   _       ___
+ |  \/  |   __ _   ___    __ _     / ___| | |     |_ _|
+ | |\/| |  / _` | / __|  / _` |   | |     | |      | |
+ | |  | | | (_| | \__ \ | (_| |   | |___  | |___   | |
+ |_|  |_|  \__,_| |___/  \__,_|    \____| |_____| |___|
+
+CLI: v0.1.0 Contracts: v0.3.0 SDK: v0.9.1
+Arweave Endpoint: https://arweave.net:443
+RPC Endpoint: https://rpc.ankr.com/eth_goerli
+Masa Endpoint: https://dev.middleware.masa.finance/
+```
+
+### Yarn
+
+`yarn global add @masa-finance/masa-cli`
+
+```bash
+$ masa --version
+  __  __                            ____   _       ___
+ |  \/  |   __ _   ___    __ _     / ___| | |     |_ _|
+ | |\/| |  / _` | / __|  / _` |   | |     | |      | |
+ | |  | | | (_| | \__ \ | (_| |   | |___  | |___   | |
+ |_|  |_|  \__,_| |___/  \__,_|    \____| |_____| |___|
+
+CLI: v0.1.0 Contracts: v0.3.0 SDK: v0.9.1
+Arweave Endpoint: https://arweave.net:443
+RPC Endpoint: https://rpc.ankr.com/eth_goerli
+Masa Endpoint: https://dev.middleware.masa.finance/
+```
+
+## Configuration
+
+All the below fields can be set with:
+
+```bash
+$ masa settings set <key> <value>
+```
+
+| Key                | Type      | Description                                                                           | Default Value                             |
+|--------------------|-----------|---------------------------------------------------------------------------------------|-------------------------------------------|
+| cookie             | `string`  | Stores cookie value. Don't set this manually unless you know what you do!             |                                           |
+| api-url            | `string`  | The API Endpoint of the Masa Infrastructure for `dev`, `test`, `beta` and production. | "https://dev.middleware.masa.finance/"    | 
+| environment        | `string`  | The environment to use `dev`, `test`, `beta`, `production`.                           | "dev"                                     |
+| rpc-url            | `string`  | The RPC Endpoint to reach the Blockchain.                                             | "https://rpc.ankr.com/eth_goerli"         |
+| network            | `string`  | The network name ie. "goerli".                                                        | "goerli"                                  |
+| private-key        | `string`  | Your private key of the account to use in the cli.                                    | `ethers.Wallet.createRandom().privateKey` |
+| arweave-host       | `string`  | The arweave host to use for loading metadata.                                         | "arweave.net"                             |
+| arweave-port       | `number`  | The arweave port to use for loading metadata.                                         | 443                                       |
+| arweave-protocol   | `string`  | The arweave protocol to use for loading metadata.                                     | "https"                                   |
+| arweave-logging    | `boolean` | Turn arweave logging on or off.                                                       | false                                     |
