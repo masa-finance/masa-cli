@@ -173,8 +173,8 @@ program
 
   settings
     .command("set")
-    .argument("<key>", "soulname to register")
-    .argument("<value>", "period of registration")
+    .argument("<key>", "key to set")
+    .argument("<value>", "value to set to key")
     .description("Changes setting <key> to <value>")
     .action(async (key: string, value: any) => {
       config.set(key, value);
