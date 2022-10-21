@@ -18,16 +18,22 @@ Options:
 Commands:
   login                                     Login to the masa infrastructure
   logout                                    Logout from the masa infrastructure
-  version                                   Details about the current version of the cli
+  account                                   Shows information about your account
   identity                                  Identity commands
+  identity info                             Shows info about all Identities
   identity create <soulname> <duration>     Creates a masa identity with soul name
   identity show                             Shows details about your masa identity
   identity burn                             Burns your masa identity
   soul-name                                 Soul Name Commands
+  soul-name info                            Shows info about all Soul Names
   soul-name list                            Shows details about your soul names
   soul-name create <soulname> <duration>    Creates a new soul name
   soul-name burn <soulname>                 Burns soul name that you own
+  credit-report                             Credit Report Commands
+  credit-report info                        Shows info about all Credit Reports
+  credit-report list                        Shows details about your Credit Reports
+  credit-report create                      Creates a Credit Report
+  credit-report burn <Credit Report ID>     Burns a Credit Report
   settings                                  Set config settings
-  settings set <key> <value>                Changes setting <key> to <value>
   help [command]                            display help for command
 ```
