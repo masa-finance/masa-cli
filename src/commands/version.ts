@@ -3,7 +3,7 @@ import { version as sdkVersion } from "@masa-finance/tools/package.json";
 import { version as cliVersion } from "../../package.json";
 import { config } from "../utils/config";
 
-export const version = async () => {
+export const version = () => {
   console.log(
     `CLI: v${cliVersion} Contracts: v${contractsVersion} SDK: v${sdkVersion}`
   );

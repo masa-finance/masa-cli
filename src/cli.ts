@@ -28,7 +28,16 @@ console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
-program.version(cliVersion).description("The Masa CLI");
+program
+  .option("-v, --version", "output the version number", () => {
+    if (process.argv.indexOf("--version") > -1) {
+      version();
+    } else {
+      console.log(`v${cliVersion}`);
+    }
+    process.exit(0);
+  })
+  .description("The Masa CLI");
 
 program
   .command("login")
@@ -171,13 +180,6 @@ program
       config.set(key, value);
     });
 }
-
-program
-  .command("version")
-  .description("Details about the current version of the cli")
-  .action(async () => {
-    await version();
-  });
 
 program.parse(process.argv);
 
