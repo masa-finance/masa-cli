@@ -1,5 +1,5 @@
-import { middlewareClient } from "../utils/rest";
-import { config } from "../utils/storage";
+import { middlewareClient } from "../utils/client";
+import { config } from "../utils/config";
 import { checkLogin } from "../helpers/check-login";
 
 export const logout = async () => {
@@ -7,7 +7,7 @@ export const logout = async () => {
 
   if (await checkLogin()) {
     // load cookie
-    const cookie = config.get("cookie");
+    const cookie = config.get("cookie") as string;
 
     const logoutResponse = await middlewareClient
       .post(`/session/logout`, undefined, {

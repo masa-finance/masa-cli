@@ -1,24 +1,19 @@
 import { checkLogin } from "../../helpers/check-login";
-import { loadContracts } from "@masa-finance/tools";
-import { provider, account } from "../../utils/ethers";
-import { middlewareClient } from "../../utils/rest";
-import { config } from "../../utils/storage";
+import { account, loadIdentityContracts } from "../../utils/ethers";
+import { middlewareClient } from "../../utils/client";
+import { config } from "../../utils/config";
 import { patchMetadataUrl } from "../../helpers/patch-metadata";
 
 export const show = async () => {
   if (await checkLogin()) {
-    const identityContracts = await loadContracts({
-      provider,
-      network: "goerli",
-    });
+    const identityContracts = await loadIdentityContracts();
 
+    const address = await account.getAddress();
     let identityId;
 
     try {
       identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(
-          await account.getAddress()
-        );
+        await identityContracts.SoulboundIdentityContract.tokenOfOwner(address);
     } catch {
       console.log("No identity to show please create one");
     }
@@ -31,7 +26,7 @@ export const show = async () => {
       );
       console.log(`Identity Metadata URL: ${tokenUri}`);
 
-      const cookie = config.get("cookie");
+      const cookie = config.get("cookie") as string;
 
       const metadataResponse = await middlewareClient.get(tokenUri, {
         headers: {

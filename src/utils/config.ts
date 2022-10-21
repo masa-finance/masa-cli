@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
-
-const Conf = require("conf");
+import Conf from "conf";
 
 /*
 macOS: ~/Library/Preferences/.masa/config.json
@@ -30,6 +29,10 @@ export const config = new Conf({
       type: "string",
       format: "uri",
       default: "https://rpc.ankr.com/eth_goerli",
+    },
+    network: {
+      type: "string",
+      default: "goerli",
     },
     "private-key": {
       type: "string",

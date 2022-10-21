@@ -1,5 +1,5 @@
-import { config } from "../utils/storage";
-import { middlewareClient } from "../utils/rest";
+import { config } from "../utils/config";
+import { middlewareClient } from "../utils/client";
 import { account } from "../utils/ethers";
 import { unpackSessionId } from "./unpack-session-id";
 
@@ -7,7 +7,7 @@ export const checkLogin = async (): Promise<boolean> => {
   let loggedIn = false;
 
   // load cookie
-  const cookie = config.get("cookie");
+  const cookie = config.get("cookie") as string;
 
   // check login
   const checkResponse = await middlewareClient

@@ -1,8 +1,7 @@
 import { checkLogin } from "../../helpers/check-login";
-import { loadContracts } from "@masa-finance/tools";
-import { provider, account } from "../../utils/ethers";
-import { middlewareClient } from "../../utils/rest";
-import { config } from "../../utils/storage";
+import { account, loadIdentityContracts } from "../../utils/ethers";
+import { middlewareClient } from "../../utils/client";
+import { config } from "../../utils/config";
 import { ethers } from "ethers";
 
 export const create = async (soulName: string, duration: number) => {
@@ -11,10 +10,7 @@ export const create = async (soulName: string, duration: number) => {
       soulName = soulName.replace(".soul", "");
     }
 
-    const identityContracts = await loadContracts({
-      provider,
-      network: "goerli",
-    });
+    const identityContracts = await loadIdentityContracts();
 
     let identityId;
     try {
@@ -22,7 +18,9 @@ export const create = async (soulName: string, duration: number) => {
         await identityContracts.SoulboundIdentityContract.tokenOfOwner(
           await account.getAddress()
         );
-    } catch {}
+    } catch {
+      // ignore
+    }
 
     if (!identityId) {
       console.error("No identity! Create one first.");
@@ -30,7 +28,7 @@ export const create = async (soulName: string, duration: number) => {
     }
 
     if (!(await identityContracts.SoulNameContract.isAvailable(soulName))) {
-      const cookie = config.get("cookie");
+      const cookie = config.get("cookie") as string;
 
       console.log("Writing metadata");
       const storeMetadataResponse = await middlewareClient

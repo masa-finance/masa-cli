@@ -1,22 +1,10 @@
 import { checkLogin } from "../../helpers/check-login";
-import { loadContracts } from "@masa-finance/tools";
-import { provider, account } from "../../utils/ethers";
-import Arweave from "arweave";
-import { config } from "../../utils/storage";
-
-const arweave = Arweave.init({
-  host: config.get("arweave-host"),
-  port: config.get("arweave-port"),
-  protocol: config.get("arweave-protocol"),
-  logging: config.get("arweave-logging"),
-});
+import { account, loadIdentityContracts } from "../../utils/ethers";
+import { arweave } from "../../utils/arweave";
 
 export const list = async () => {
   if (await checkLogin()) {
-    const identityContracts = await loadContracts({
-      provider,
-      network: "goerli",
-    });
+    const identityContracts = await loadIdentityContracts();
 
     let identityId;
 
@@ -34,7 +22,7 @@ export const list = async () => {
         "getSoulNames(uint256)"
       ](identityId);
 
-      for (let nameIndex in soulNames) {
+      for (const nameIndex in soulNames) {
         const tokenDetails =
           await identityContracts.SoulNameContract.getTokenData(
             soulNames[nameIndex]
@@ -57,10 +45,12 @@ export const list = async () => {
               decode: true,
               string: true,
             })
-            .catch(() => {});
+            .catch();
 
           metadata = JSON.parse(metadataResponse as string);
-        } catch {}
+        } catch {
+          // ignore
+        }
 
         console.log(`\nToken: ${parseInt(nameIndex) + 1}`);
         console.log(`Name: ${tokenDetails.sbtName}`);
