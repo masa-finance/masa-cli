@@ -1,7 +1,7 @@
 import { account } from "../../utils/ethers";
-import { patchMetadataUrl } from "../../helpers/patch-metadata-url";
 import { masa } from "../../helpers/masa";
 import { getMetadata } from "../../helpers/sdk/helpers/client"
+import { patchMetadataUrl } from "../../helpers/sdk/helpers/patch-metadata-url"
 
 export const show = async (address?: string) => {
   if (await masa.session.checkLogin()) {
