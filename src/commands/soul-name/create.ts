@@ -1,55 +1,26 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
-import { middlewareClient } from "../../utils/client";
-import { config } from "../../utils/config";
+import { account } from "../../utils/ethers";
 import { ethers } from "ethers";
+import { masa } from "../../helpers/masa";
+import { metadataStore } from "../../helpers/sdk/helpers/client";
 
 export const create = async (soulName: string, duration: number) => {
-  if (await checkLogin()) {
+  if (await masa.session.checkLogin()) {
     if (soulName.endsWith(".soul")) {
       soulName = soulName.replace(".soul", "");
     }
 
-    const identityContracts = await loadIdentityContracts();
+    const address = await account.getAddress();
+    const identityId = await masa.identity.loadIdentity(address);
 
-    let identityId;
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(
-          await account.getAddress()
-        );
-    } catch {
-      // ignore
-    }
+    if (!identityId) return;
 
-    if (!identityId) {
-      console.error("No identity! Create one first.");
-      return;
-    }
+    const identityContracts = await masa.contracts.loadIdentityContracts();
 
     if (!(await identityContracts.SoulNameContract.isAvailable(soulName))) {
-      const cookie = config.get("cookie") as string;
-
       console.log("Writing metadata");
-      const storeMetadataResponse = await middlewareClient
-        .post(
-          `/storage/store`,
-          {
-            soulName: `${soulName}.soul`,
-          },
-          {
-            headers: {
-              cookie: [cookie],
-            },
-          }
-        )
-        .catch((err: any) => {
-          console.error(err.message);
-        });
+      const storeMetadataData = await metadataStore(soulName);
 
-      if (storeMetadataResponse) {
-        const { data: storeMetadataData } = storeMetadataResponse;
-
+      if (storeMetadataData) {
         const metadataUrl = `ar://${storeMetadataData.metadataTransaction.id}`;
         console.log(metadataUrl);
 

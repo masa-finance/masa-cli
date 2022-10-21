@@ -1,35 +1,21 @@
-import { checkLogin } from "../helpers/check-login";
-import {
-  account as acc,
-  loadIdentityContracts,
-  provider,
-} from "../utils/ethers";
+import { account as acc, provider } from "../utils/ethers";
 import { ethers } from "ethers";
 import { config } from "../utils/config";
 import { MASA__factory } from "@masa-finance/masa-contracts-identity";
 import { addresses } from "@masa-finance/tools";
+import { masa } from "../helpers/masa";
 
 export const account = async () => {
   const address = await acc.getAddress();
 
   // login status
-  const isLoggedIn = await checkLogin();
+  const isLoggedIn = await masa.session.checkLogin();
   console.log(`\nNetwork: ${config.get("network")}`);
 
   console.log(`Logged in: ${isLoggedIn}`);
 
-  const identityContracts = await loadIdentityContracts();
-
   // identity id
-  let identityId;
-
-  try {
-    identityId = await identityContracts.SoulboundIdentityContract.tokenOfOwner(
-      address
-    );
-  } catch {
-    console.log("No identity to show please create one");
-  }
+  const identityId = await masa.identity.loadIdentity(address);
 
   console.log(`Identity ID: ${identityId}`);
 

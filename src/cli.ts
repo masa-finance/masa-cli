@@ -81,9 +81,10 @@ program
 
   identity
     .command("show")
+    .option("-a, --address [address]", "Address override")
     .description("Shows details about your masa identity")
-    .action(async () => {
-      await identityShow();
+    .action(async ({ address }) => {
+      await identityShow(address);
     });
 
   identity
@@ -109,8 +110,9 @@ program
   soulName
     .command("list")
     .description("Shows details about your soul names")
-    .action(async () => {
-      await soulNameList();
+    .option("-a, --address [address]", "Address override")
+    .action(async ({ address }) => {
+      await soulNameList(address);
     });
 
   soulName
@@ -146,8 +148,9 @@ program
   creditReport
     .command("list")
     .description("Shows details about your Credit Reports")
-    .action(async () => {
-      await creditReportList();
+    .option("-a, --address [address]", "Address override")
+    .action(async ({ address }) => {
+      await creditReportList(address);
     });
 
   creditReport

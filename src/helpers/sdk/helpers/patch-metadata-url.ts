@@ -1,4 +1,4 @@
-import { config } from "../utils/config";
+import { config } from "../../../utils/config";
 
 export const patchMetadataUrl = (tokeUri: string) => {
   const apiUrl: string = config.get("api-url") as string;

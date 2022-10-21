@@ -1,43 +1,28 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
-import { middlewareClient } from "../../utils/client";
-import { config } from "../../utils/config";
-import { patchMetadataUrl } from "../../helpers/patch-metadata";
+import { account } from "../../utils/ethers";
+import { patchMetadataUrl } from "../../helpers/patch-metadata-url";
+import { masa } from "../../helpers/masa";
+import { getMetadata } from "../../helpers/sdk/helpers/client"
 
-export const show = async () => {
-  if (await checkLogin()) {
-    const identityContracts = await loadIdentityContracts();
+export const show = async (address?: string) => {
+  if (await masa.session.checkLogin()) {
+    const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    const address = await account.getAddress();
-    let identityId;
+    address = address || (await account.getAddress());
+    const identityId = await masa.identity.loadIdentity(address);
 
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(address);
-    } catch {
-      console.log("No identity to show please create one");
-    }
+    if (!identityId) return;
 
-    if (identityId) {
-      const tokenUri = patchMetadataUrl(
-        await identityContracts.SoulboundIdentityContract["tokenURI(uint256)"](
-          identityId
-        )
-      );
-      console.log(`Identity Metadata URL: ${tokenUri}`);
+    const tokenUri = patchMetadataUrl(
+      await identityContracts.SoulboundIdentityContract["tokenURI(uint256)"](
+        identityId
+      )
+    );
+    console.log(`Identity Metadata URL: ${tokenUri}`);
 
-      const cookie = config.get("cookie") as string;
+    const metadata = await getMetadata(tokenUri);
 
-      const metadataResponse = await middlewareClient.get(tokenUri, {
-        headers: {
-          cookie: [cookie],
-        },
-      });
-      if (metadataResponse) {
-        const { data: metadata } = metadataResponse;
-
-        console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
-      }
+    if (metadata) {
+      console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
     }
   } else {
     console.log("Not logged in please login first");

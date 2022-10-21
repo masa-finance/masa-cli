@@ -1,62 +1,44 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
-import { config } from "../../utils/config";
-import { patchMetadataUrl } from "../../helpers/patch-metadata";
-import { middlewareClient } from "../../utils/client";
+import { account } from "../../utils/ethers";
+import { patchMetadataUrl } from "../../helpers/patch-metadata-url";
+import { masa } from "../../helpers/masa";
+import { getMetadata } from "../../helpers/sdk/helpers/client";
 
-export const list = async () => {
-  if (await checkLogin()) {
-    const identityContracts = await loadIdentityContracts();
+export const list = async (address?: string) => {
+  if (await masa.session.checkLogin()) {
+    const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    let identityId;
+    address = address || (await account.getAddress());
 
-    const address = await account.getAddress();
+    const identityId = await masa.identity.loadIdentity(address);
 
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(address);
-    } catch {
-      console.log("No identity please create one");
+    if (!identityId) return;
+
+    const creditReportBalance =
+      await identityContracts.SoulboundCreditReportContract.balanceOf(address);
+
+    if (creditReportBalance.toNumber() === 0) {
+      console.log("No Credit Reports found");
     }
 
-    if (identityId) {
-      const creditReportBalance =
-        await identityContracts.SoulboundCreditReportContract.balanceOf(
-          address
+    for (
+      let creditReportIndex = 0;
+      creditReportBalance < creditReportBalance;
+      creditReportIndex++
+    ) {
+      const tokenId =
+        await identityContracts.SoulboundCreditReportContract.tokenOfOwnerByIndex(
+          address,
+          creditReportIndex
         );
 
-      if (creditReportBalance.toNumber() === 0) {
-        console.log("No Credit Reports found");
-      }
+      const tokenUri = patchMetadataUrl(
+        await identityContracts.SoulNameContract.tokenURI(tokenId)
+      );
 
-      for (
-        let creditReportIndex = 0;
-        creditReportBalance < creditReportBalance;
-        creditReportIndex++
-      ) {
-        const tokenId =
-          await identityContracts.SoulboundCreditReportContract.tokenOfOwnerByIndex(
-            address,
-            creditReportIndex
-          );
+      const metadata = await getMetadata(tokenUri);
 
-        const tokenUri = patchMetadataUrl(
-          await identityContracts.SoulNameContract.tokenURI(tokenId)
-        );
-
-        const cookie = config.get("cookie") as string;
-
-        const metadataResponse = await middlewareClient.get(tokenUri, {
-          headers: {
-            cookie: [cookie],
-          },
-        });
-
-        if (metadataResponse) {
-          const { data: metadata } = metadataResponse;
-
-          console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
-        }
+      if (metadata) {
+        console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);
       }
     }
   } else {

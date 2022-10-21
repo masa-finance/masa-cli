@@ -1,22 +1,14 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
+import { account } from "../../utils/ethers";
+import { masa } from "../../helpers/masa";
 
 export const burn = async (creditReportId: number) => {
-  if (await checkLogin()) {
-    const identityContracts = await loadIdentityContracts();
+  if (await masa.session.checkLogin()) {
+    const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    let identityId;
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(
-          await account.getAddress()
-        );
-    } catch {
-      // ignore
-    }
+    const address = await account.getAddress();
+    const identityId = await masa.identity.loadIdentity(address);
 
     if (!identityId) {
-      console.error("No identity! Create one first.");
       return;
     }
 

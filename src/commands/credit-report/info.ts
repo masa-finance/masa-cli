@@ -1,7 +1,7 @@
-import { loadIdentityContracts } from "../../utils/ethers";
+import { masa } from "../../helpers/masa";
 
 export const info = async () => {
-  const identityContracts = await loadIdentityContracts();
+  const identityContracts = await masa.contracts.loadIdentityContracts();
 
   console.log("Soulbound Credit Report");
   console.log(

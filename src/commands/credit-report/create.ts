@@ -1,60 +1,32 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
-import { middlewareClient } from "../../utils/client";
-import { config } from "../../utils/config";
+import { account } from "../../utils/ethers";
+import { masa } from "../../helpers/masa";
 
 export const create = async () => {
-  if (await checkLogin()) {
-    const identityContracts = await loadIdentityContracts();
-
+  if (await masa.session.checkLogin()) {
     const address = await account.getAddress();
-    let identityId;
 
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(address);
-    } catch {
-      // ignore
-    }
+    const identityId = await masa.identity.loadIdentity(address);
+    if (!identityId) return;
 
-    if (!identityId) {
-      console.error("No identity! Create one first.");
-      return;
-    }
-
-    // todo make something cooler here
+    // todo do something cooler here
     const msg = `${address}`;
 
-    console.log(`Signing '${msg}'`);
+    console.log(`Signer Address: '${address}'`);
+    console.log(`Signing: \n'${msg}'\n`);
 
     // 1. creat signature
     const signature = await account.signMessage(msg);
+    console.log(`Signature: '${signature}'`);
 
     // 2. mint credit report
-    const cookie = config.get("cookie") as string;
-
     console.log("\nCreating Credit Report");
-    const storeMetadataResponse = await middlewareClient
-      .post(
-        `/contracts/credit-score/mint`,
-        {
-          address,
-          signature,
-        },
-        {
-          headers: {
-            cookie: [cookie],
-          },
-        }
-      )
-      .catch((err: any) => {
-        console.error(err.message);
-      });
+    const storeMetadataData = await masa.creditScore.creditScoreMint(
+      address,
+      signature
+    );
 
-    if (storeMetadataResponse) {
-      const {
-        data: { success, message },
-      } = storeMetadataResponse;
+    if (storeMetadataData) {
+      const { success, message } = storeMetadataData;
 
       if (!success) {
         console.error("Creating Credit Report failed!");

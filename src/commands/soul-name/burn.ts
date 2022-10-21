@@ -1,28 +1,18 @@
-import { checkLogin } from "../../helpers/check-login";
-import { account, loadIdentityContracts } from "../../utils/ethers";
+import { account } from "../../utils/ethers";
+import { masa } from "../../helpers/masa";
 
 export const burn = async (soulName: string) => {
-  if (await checkLogin()) {
+  if (await masa.session.checkLogin()) {
     if (soulName.endsWith(".soul")) {
       soulName = soulName.replace(".soul", "");
     }
 
-    const identityContracts = await loadIdentityContracts();
+    const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    let identityId;
-    try {
-      identityId =
-        await identityContracts.SoulboundIdentityContract.tokenOfOwner(
-          await account.getAddress()
-        );
-    } catch {
-      // ignore
-    }
+    const address = await account.getAddress();
+    const identityId = await masa.identity.loadIdentity(address);
 
-    if (!identityId) {
-      console.error("No identity! Create one first.");
-      return;
-    }
+    if (!identityId) return;
 
     const nameData = await identityContracts.SoulNameContract.nameData(
       soulName
