@@ -1,19 +1,21 @@
-import { account } from "../../utils/ethers";
 import { masa } from "../../helpers/masa";
 
 export const burn = async () => {
   if (await masa.session.checkLogin()) {
     const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    const address = await account.getAddress();
-    const identityId = await masa.identity.loadIdentity(address);
+    const signer = await masa.config.provider?.getSigner();
+    if (!signer) return;
 
+    const address = await signer.getAddress();
+
+    const identityId = await masa.identity.loadIdentity(address);
     if (!identityId) return;
 
     console.log("Burning Identity");
     try {
       const tx = await identityContracts.SoulboundIdentityContract.connect(
-        account
+        signer
       ).burn(identityId);
 
       console.log("Waiting for the burn tx to finalize");

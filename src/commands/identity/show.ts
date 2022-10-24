@@ -1,25 +1,23 @@
-import { account } from "../../utils/ethers";
 import { masa } from "../../helpers/masa";
-import { getMetadata } from "../../helpers/sdk/helpers/client"
-import { patchMetadataUrl } from "../../helpers/sdk/helpers/patch-metadata-url"
 
 export const show = async (address?: string) => {
   if (await masa.session.checkLogin()) {
-    const identityContracts = await masa.contracts.loadIdentityContracts();
+    address = address || (await masa.config.provider?.getSigner().getAddress());
+    if (!address) return;
 
-    address = address || (await account.getAddress());
     const identityId = await masa.identity.loadIdentity(address);
-
     if (!identityId) return;
 
-    const tokenUri = patchMetadataUrl(
+    const identityContracts = await masa.contracts.loadIdentityContracts();
+
+    const tokenUri = masa.metadata.patchMetadataUrl(
       await identityContracts.SoulboundIdentityContract["tokenURI(uint256)"](
         identityId
       )
     );
     console.log(`Identity Metadata URL: ${tokenUri}`);
 
-    const metadata = await getMetadata(tokenUri);
+    const metadata = await masa.metadata.getMetadata(tokenUri);
 
     if (metadata) {
       console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);

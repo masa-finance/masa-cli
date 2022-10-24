@@ -1,9 +1,11 @@
-import { account } from "../../utils/ethers";
 import { masa } from "../../helpers/masa";
 
 export const create = async () => {
   if (await masa.session.checkLogin()) {
-    const address = await account.getAddress();
+    const signer = await masa.config.provider?.getSigner();
+    if (!signer) return;
+
+    const address = await signer.getAddress();
 
     const identityId = await masa.identity.loadIdentity(address);
     if (!identityId) return;
@@ -15,7 +17,7 @@ export const create = async () => {
     console.log(`Signing: \n'${msg}'\n`);
 
     // 1. creat signature
-    const signature = await account.signMessage(msg);
+    const signature = await signer.signMessage(msg);
     console.log(`Signature: '${signature}'`);
 
     // 2. mint credit report

@@ -1,12 +1,9 @@
-import { account as acc, provider } from "../utils/ethers";
 import { ethers } from "ethers";
 import { config } from "../utils/config";
-import { MASA__factory } from "@masa-finance/masa-contracts-identity";
-import { addresses } from "@masa-finance/tools";
 import { masa } from "../helpers/masa";
 
 export const account = async () => {
-  const address = await acc.getAddress();
+  const address = (await masa.config.provider.listAccounts())[0];
 
   // login status
   const isLoggedIn = await masa.session.checkLogin();
@@ -22,26 +19,12 @@ export const account = async () => {
   // balances
   console.log("\nBalances");
 
-  // @ts-ignore
-  const contractAddresses = addresses[config.get("network")];
+  const balances = await masa.account.getBalances(address);
 
-  const [ethBalance, masaBalance, usdcBalance, wethBalance] = await Promise.all(
-    [
-      acc.getBalance(),
-      MASA__factory.connect(contractAddresses.MASA, provider).balanceOf(
-        address
-      ),
-      MASA__factory.connect(contractAddresses.USDC, provider).balanceOf(
-        address
-      ),
-      MASA__factory.connect(contractAddresses.WETH, provider).balanceOf(
-        address
-      ),
-    ]
-  );
-
-  console.log(`ETH: ${ethers.utils.formatEther(ethBalance)}`);
-  console.log(`MASA: ${ethers.utils.formatEther(masaBalance)}`);
-  console.log(`USDC: ${ethers.utils.formatEther(usdcBalance)}`);
-  console.log(`WETH: ${ethers.utils.formatEther(wethBalance)}`);
+  if (balances) {
+    console.log(`ETH: ${ethers.utils.formatEther(balances.ethBalance)}`);
+    console.log(`MASA: ${ethers.utils.formatEther(balances.masaBalance)}`);
+    console.log(`USDC: ${ethers.utils.formatEther(balances.usdcBalance)}`);
+    console.log(`WETH: ${ethers.utils.formatEther(balances.wethBalance)}`);
+  }
 };

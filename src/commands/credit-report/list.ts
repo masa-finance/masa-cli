@@ -1,16 +1,13 @@
-import { account } from "../../utils/ethers";
 import { masa } from "../../helpers/masa";
-import { getMetadata } from "../../helpers/sdk/helpers/client";
-import { patchMetadataUrl } from "../../helpers/sdk/helpers/patch-metadata-url";
 
 export const list = async (address?: string) => {
   if (await masa.session.checkLogin()) {
     const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    address = address || (await account.getAddress());
+    address = address || (await masa.config.provider?.getSigner().getAddress());
+    if (!address) return;
 
     const identityId = await masa.identity.loadIdentity(address);
-
     if (!identityId) return;
 
     const creditReportBalance =
@@ -31,11 +28,11 @@ export const list = async (address?: string) => {
           creditReportIndex
         );
 
-      const tokenUri = patchMetadataUrl(
-        await identityContracts.SoulNameContract.tokenURI(tokenId)
+      const tokenUri = masa.metadata.patchMetadataUrl(
+        await identityContracts.SoulNameContract["tokenURI(uint256)"](tokenId)
       );
 
-      const metadata = await getMetadata(tokenUri);
+      const metadata = await masa.metadata.getMetadata(tokenUri);
 
       if (metadata) {
         console.log(`Metadata: ${JSON.stringify(metadata, null, 2)}`);

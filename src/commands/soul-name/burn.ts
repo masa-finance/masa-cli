@@ -1,4 +1,3 @@
-import { account } from "../../utils/ethers";
 import { masa } from "../../helpers/masa";
 
 export const burn = async (soulName: string) => {
@@ -9,7 +8,10 @@ export const burn = async (soulName: string) => {
 
     const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    const address = await account.getAddress();
+    const signer = await masa.config.provider?.getSigner();
+    if (!signer) return;
+
+    const address = await signer.getAddress();
     const identityId = await masa.identity.loadIdentity(address);
 
     if (!identityId) return;
@@ -20,7 +22,7 @@ export const burn = async (soulName: string) => {
 
     console.log(`Burning ${soulName}.soul with id ${nameData.tokenId}!`);
     try {
-      const tx = await identityContracts.SoulNameContract.connect(account).burn(
+      const tx = await identityContracts.SoulNameContract.connect(signer).burn(
         nameData.tokenId
       );
 

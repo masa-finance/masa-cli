@@ -15,7 +15,7 @@
     "lint": "eslint ./src"
   },
   "dependencies": {
-    "@masa-finance/tools": "^0.9.1",
+    "@masa-finance/masa-sdk": "^0.0.3",
     "@types/clear": "^0.1.2",
     "@types/figlet": "^1.5.5",
     "@types/react": "^18.0.21",
