@@ -18,7 +18,9 @@ export const sessionCheck = async (): Promise<any | undefined> => {
         cookie: [config.get("cookie") as string],
       },
     })
-    .catch();
+    .catch(() => {
+      // ignore
+    });
 
   if (checkResponse) {
     const { data: checkData } = checkResponse;

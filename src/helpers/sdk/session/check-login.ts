@@ -10,7 +10,7 @@ export const checkLogin = async (): Promise<boolean> => {
   if (checkSessionResponse) {
     console.log(`User ID: '${checkSessionResponse.user.userId}'`);
     console.log(
-      `Session ID: '${unpackSessionId([config.get("cookie") as string])}'`
+      `Session ID: '${unpackSessionId(config.get("cookie") as string)}'`
     );
     console.log(`Signer Address: '${await account.getAddress()}'`);
     console.log("\n");

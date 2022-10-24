@@ -3,7 +3,7 @@ import { config } from "../../../utils/config";
 import { account } from "../../../utils/ethers";
 import { unpackSessionId } from "../../unpack-session-id";
 import { getLoginTemplate } from "./get-logintemplate";
-import { checkSignature, getChallenge } from "../helpers/client"
+import { checkSignature, getChallenge } from "../helpers/client";
 
 export const login = async () => {
   console.log("Logging in");
@@ -39,7 +39,7 @@ export const login = async () => {
         console.log(`User ID: '${checkSignatureData.id}'`);
 
         if (challengeData.cookie) {
-          console.log(`Session ID: ${unpackSessionId(challengeData.cookie)}`);
+          console.log(`Session ID: '${unpackSessionId(challengeData.cookie)}'`);
         }
       }
     }

@@ -1,3 +1,3 @@
-export const unpackSessionId = (cookies: string[]): string | undefined => {
-  return cookies[0].split(";")[0].split("=")[1];
+export const unpackSessionId = (cookie: string): string | undefined => {
+  return cookie?.split(";")[0].split("=")[1];
 };
