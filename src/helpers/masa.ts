@@ -15,8 +15,8 @@ export const masa = new Masa({
   environment: config.get("environment") as string,
   arweave: {
     host: config.get("arweave-host") as string,
-    port: config.get("arweave-host") as number,
-    protocol: config.get("arweave-host") as string,
-    logging: config.get("arweave-host") as boolean,
+    port: config.get("arweave-port") as number,
+    protocol: config.get("arweave-protocol") as string,
+    logging: config.get("arweave-logging") as boolean,
   },
 });
