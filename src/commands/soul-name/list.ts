@@ -15,7 +15,7 @@ export const list = async (address?: string) => {
     for (const soulName of soulNames) {
       console.log(`\nToken: ${parseInt(soulName.index) + 1}`);
       console.log(`Name: ${soulName.tokenDetails.sbtName}`);
-      console.log(`Token ID: ${soulName.tokenId.toNumber()}`);
+      console.log(`Token ID: ${soulName.tokenDetails.tokenId.toNumber()}`);
       console.log(
         `Identity ID: ${soulName.tokenDetails.identityId.toNumber()}`
       );
