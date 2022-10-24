@@ -2,8 +2,7 @@ import { masa } from "../../helpers/masa";
 
 export const show = async (address?: string) => {
   if (await masa.session.checkLogin()) {
-    address = address || (await masa.config.provider?.getSigner().getAddress());
-    if (!address) return;
+    address = address || (await masa.config.wallet.getAddress());
 
     const identityId = await masa.identity.loadIdentity(address);
     if (!identityId) return;

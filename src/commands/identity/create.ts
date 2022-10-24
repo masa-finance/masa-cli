@@ -6,11 +6,8 @@ export const create = async (soulName: string, duration: number) => {
     if (soulName.endsWith(".soul")) {
       soulName = soulName.replace(".soul", "");
     }
-    const signer = await masa.config.provider?.getSigner();
-    if (!signer) return;
 
-    const address = await signer.getAddress();
-
+    const address = await masa.config.wallet.getAddress();
     const identityId = await masa.identity.loadIdentity(address);
 
     if (identityId) {
@@ -20,7 +17,7 @@ export const create = async (soulName: string, duration: number) => {
 
     const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    if (!(await identityContracts.SoulNameContract.isAvailable(soulName))) {
+    if (await identityContracts.SoulNameContract.isAvailable(soulName)) {
       console.log("Writing metadata");
       const storeMetadataData = await masa.metadata.metadataStore(soulName);
 
@@ -35,7 +32,7 @@ export const create = async (soulName: string, duration: number) => {
           );
 
         const tx = await identityContracts.SoulStoreContract.connect(
-          signer
+          masa.config.wallet
         ).purchaseIdentityAndName(
           // todo change payment method
           ethers.constants.AddressZero,

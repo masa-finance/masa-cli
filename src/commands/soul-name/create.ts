@@ -7,10 +7,7 @@ export const create = async (soulName: string, duration: number) => {
       soulName = soulName.replace(".soul", "");
     }
 
-    const signer = await masa.config.provider?.getSigner();
-    if (!signer) return;
-
-    const address = await signer.getAddress();
+    const address = await masa.config.wallet.getAddress();
 
     const identityId = await masa.identity.loadIdentity(address);
     if (!identityId) return;
@@ -32,7 +29,7 @@ export const create = async (soulName: string, duration: number) => {
           );
 
         const tx = await identityContracts.SoulStoreContract.connect(
-          signer
+          masa.config.wallet
         ).purchaseName(
           // todo change payment method
           ethers.constants.AddressZero,

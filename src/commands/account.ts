@@ -3,7 +3,7 @@ import { config } from "../utils/config";
 import { masa } from "../helpers/masa";
 
 export const account = async () => {
-  const address = (await masa.config.provider.listAccounts())[0];
+  const address = await masa.config.wallet.getAddress();
 
   // login status
   const isLoggedIn = await masa.session.checkLogin();

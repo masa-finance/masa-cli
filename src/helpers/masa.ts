@@ -6,10 +6,11 @@ const provider = new ethers.providers.JsonRpcProvider(
   config.get("rpc-url") as string
 );
 
-new ethers.Wallet(config.get("private-key") as string).connect(provider);
+const wallet = new ethers.Wallet(config.get("private-key") as string, provider);
 
 export const masa = new Masa({
-  provider,
+  cookie: config.get("cookie") as string,
+  wallet,
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as string,
   arweave: {
@@ -19,5 +20,3 @@ export const masa = new Masa({
     logging: config.get("arweave-host") as boolean,
   },
 });
-
-masa.config.cookie = config.get("cookie") as string;

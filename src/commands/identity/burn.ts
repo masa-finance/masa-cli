@@ -4,10 +4,7 @@ export const burn = async () => {
   if (await masa.session.checkLogin()) {
     const identityContracts = await masa.contracts.loadIdentityContracts();
 
-    const signer = await masa.config.provider?.getSigner();
-    if (!signer) return;
-
-    const address = await signer.getAddress();
+    const address = await masa.config.wallet.getAddress();
 
     const identityId = await masa.identity.loadIdentity(address);
     if (!identityId) return;
@@ -15,7 +12,7 @@ export const burn = async () => {
     console.log("Burning Identity");
     try {
       const tx = await identityContracts.SoulboundIdentityContract.connect(
-        signer
+        masa.config.wallet
       ).burn(identityId);
 
       console.log("Waiting for the burn tx to finalize");
