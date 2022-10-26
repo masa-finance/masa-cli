@@ -88,97 +88,113 @@ Masa Endpoint: https://dev.middleware.masa.finance/
 
 ## Commands
 
-## `login`
+## `masa login `
 
 Login to the masa infrastructure
 
-## `logout`
+## `masa logout `
 
 Logout from the masa infrastructure
 
-## `account`
+## `masa account `
 
 Shows information about your account
 
-## `identity`
+## `masa identity `
 
 Identity commands
 
-### `identity info`
+### `masa identity info `
 
 Shows info about all Identities
 
-### `identity create`
+### `masa identity create <soulname> <duration>`
 
 Creates a masa identity with soul name
 
-### `identity show`
+- `<soulname> soulname to register`
+- `<duration> period of registration`
+
+### `masa identity show `
 
 Shows details about your masa identity
+
 Options:
 
 - `-a, --address [address]`
   Address override
 
-### `identity burn`
+### `masa identity burn `
 
 Burns your masa identity
 
-## `soul-name`
+## `masa soul-name `
 
 Soul Name Commands
 
-### `soul-name info`
+### `masa soul-name info `
 
 Shows info about all Soul Names
 
-### `soul-name list`
+### `masa soul-name list `
 
 Shows details about your soul names
+
 Options:
 
 - `-a, --address [address]`
   Address override
 
-### `soul-name create`
+### `masa soul-name create <soulname> <duration>`
 
 Creates a new soul name
 
-### `soul-name burn`
+- `<soulname> soulname to register`
+- `<duration> period of registration`
+
+### `masa soul-name burn <soulname>`
 
 Burns soul name that you own
 
-## `credit-report`
+- `<soulname> soulname to register`
+
+## `masa credit-report `
 
 Credit Report Commands
 
-### `credit-report info`
+### `masa credit-report info `
 
 Shows info about all Credit Reports
 
-### `credit-report list`
+### `masa credit-report list `
 
 Shows details about your Credit Reports
+
 Options:
 
 - `-a, --address [address]`
   Address override
 
-### `credit-report create`
+### `masa credit-report create `
 
 Creates a Credit Report
 
-### `credit-report burn`
+### `masa credit-report burn <Credit Report ID>`
 
 Burns a Credit Report
 
-## `settings`
+- `<Credit Report ID> ID of the Credit Report to burn`
+
+## `masa settings `
 
 Set config settings
 
-### `settings set`
+### `masa settings set <key> <value>`
 
 Changes setting <key> to <value>
+
+- `<key> key to set`
+- `<value> value to set to key`
 
 ## Configuration
 
