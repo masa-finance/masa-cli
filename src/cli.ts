@@ -37,6 +37,7 @@ program
     }
     process.exit(0);
   })
+  .usage("[options] [command] [subcommand] [arguments]")
   .description("The Masa CLI");
 
 program
@@ -184,8 +185,4 @@ program
     });
 }
 
-program.parse(process.argv);
-
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}
+export default program;
