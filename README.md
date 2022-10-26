@@ -8,35 +8,36 @@ $ masa --help
  | |  | | | (_| | \__ \ | (_| |   | |___  | |___   | | 
  |_|  |_|  \__,_| |___/  \__,_|    \____| |_____| |___|
                                                        
-Usage: masa [options] [command]
+Usage: masa [command] [subcommand] [arguments] [options]
 
 The Masa CLI
 
 Options:
-  -V, --version   output the version number
+  -v, --version   output the version number
   -h, --help      display help for command
 
 Commands:
-  login                                     Login to the masa infrastructure
-  logout                                    Logout from the masa infrastructure
-  account                                   Shows information about your account
-  identity                                  Identity commands
-  identity info                             Shows info about all Identities
-  identity create <soulname> <duration>     Creates a masa identity with soul name
-  identity show                             Shows details about your masa identity
-  identity burn                             Burns your masa identity
-  soul-name                                 Soul Name Commands
-  soul-name info                            Shows info about all Soul Names
-  soul-name list                            Shows details about your soul names
-  soul-name create <soulname> <duration>    Creates a new soul name
-  soul-name burn <soulname>                 Burns soul name that you own
-  credit-report                             Credit Report Commands
-  credit-report info                        Shows info about all Credit Reports
-  credit-report list                        Shows details about your Credit Reports
-  credit-report create                      Creates a Credit Report
-  credit-report burn <Credit Report ID>     Burns a Credit Report
-  settings                                  Set config settings
-  help [command]                            display help for command
+  login                                   Login to the masa infrastructure
+  logout                                  Logout from the masa infrastructure
+  account                                 Shows information about your account
+  identity                                Identity commands
+  identity info                           Shows info about all Identities
+  identity create <soulname> <duration>   Creates a masa identity with soul name
+  identity show [options]                 Shows detail about your masa identity
+  identity burn                           Burns your masa identity
+  soul-name                               Soul Name Commands
+  soul-name info                          Shows info about all Soul Names
+  soul-name list [options]                Lists your soul names
+  soul-name create <soulname> <duration>  Creates a new soul name
+  soul-name burn <soulname>               Burns soul name that you own
+  credit-report                           Credit Report Commands
+  credit-report info                      Shows info about all Credit Reports
+  credit-report list [options]            Lists your Credit Reports
+  credit-report create                    Creates a Credit Report
+  credit-report burn <Credit Report ID>   Burns a Credit Report 
+  settings                                Set config settings
+  settings set <key> <value>              Changes setting <key> to <value>
+  help [command]                          display help for command
 ```
 
 To get help for a specific command use:
@@ -117,7 +118,7 @@ Creates a masa identity with soul name
 
 ### `masa identity show `
 
-Shows details about your masa identity
+Shows detail about your masa identity
 
 Options:
 
@@ -138,7 +139,7 @@ Shows info about all Soul Names
 
 ### `masa soul-name list `
 
-Shows details about your soul names
+Lists your soul names
 
 Options:
 
@@ -156,7 +157,7 @@ Creates a new soul name
 
 Burns soul name that you own
 
-- `<soulname> soulname to register`
+- `<soulname> soulname to burn`
 
 ## `masa credit-report `
 
@@ -168,7 +169,7 @@ Shows info about all Credit Reports
 
 ### `masa credit-report list `
 
-Shows details about your Credit Reports
+Lists your Credit Reports
 
 Options:
 

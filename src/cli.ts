@@ -37,7 +37,7 @@ program
     }
     process.exit(0);
   })
-  .usage("[options] [command] [subcommand] [arguments]")
+  .usage("[command] [subcommand] [arguments] [options]")
   .description("The Masa CLI");
 
 program
@@ -83,7 +83,7 @@ program
   identity
     .command("show")
     .option("-a, --address [address]", "Address override")
-    .description("Shows details about your masa identity")
+    .description("Shows detail about your masa identity")
     .action(async ({ address }) => {
       await identityShow(address);
     });
@@ -110,7 +110,7 @@ program
 
   soulName
     .command("list")
-    .description("Shows details about your soul names")
+    .description("Lists your soul names")
     .option("-a, --address [address]", "Address override")
     .action(async ({ address }) => {
       await soulNameList(address);
@@ -127,7 +127,7 @@ program
 
   soulName
     .command("burn")
-    .argument("<soulname>", "soulname to register")
+    .argument("<soulname>", "soulname to burn")
     .description("Burns soul name that you own")
     .action(async (soulname: string) => {
       await soulNameBurn(soulname);
@@ -148,7 +148,7 @@ program
 
   creditReport
     .command("list")
-    .description("Shows details about your Credit Reports")
+    .description("Lists your Credit Reports")
     .option("-a, --address [address]", "Address override")
     .action(async ({ address }) => {
       await creditReportList(address);
