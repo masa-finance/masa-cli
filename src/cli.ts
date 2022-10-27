@@ -182,6 +182,7 @@ program
     .description("Changes setting <key> to <value>")
     .action(async (key: string, value: any) => {
       config.set(key, value);
+      console.log(`Key '${key}' successfully set!`);
     });
 }
 
