@@ -193,14 +193,14 @@ Set config settings
 
 #### `masa settings set <key> <value>`
 
-Changes setting <key> to <value>
+Changes setting &lt;key&gt; to &lt;value&gt;
 
 - `<key> key to set`
 - `<value> value to set to key`
 
 #### `masa settings preset <environment>`
 
-Changes setting <environment> presets
+Changes setting &lt;environment&gt; presets
 
 - `<environment> The environment to use as preset`
 

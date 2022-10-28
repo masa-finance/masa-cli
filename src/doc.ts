@@ -40,11 +40,18 @@ const listArguments = (args: Argument[]) =>
     .map((argument) => `- \`<${argument._name}> ${argument.description}\``)
     .join("\n");
 
+const escape = (input: string) => {
+  input = input.replace(/&/g, "&amp;");
+  input = input.replace(/</g, "&lt;");
+  input = input.replace(/>/g, "&gt;");
+  return input;
+};
+
 for (const command of commands) {
   console.log(
     `### \`masa ${command.command} ${formatArguments(command.arguments)}\``
   );
-  console.log(`${command.description}`);
+  console.log(`${escape(command.description)}`);
   console.log(listArguments(command.arguments));
 
   for (const option of command.options) {
@@ -60,7 +67,7 @@ for (const command of commands) {
         } ${formatArguments(subCommand.arguments)}\``
       );
 
-      console.log(`${subCommand.description}`);
+      console.log(`${escape(subCommand.description)}`);
       console.log(listArguments(subCommand.arguments));
 
       for (const option of subCommand.options) {
