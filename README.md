@@ -1,3 +1,9 @@
+---
+title: Masa CLI
+excerpt: Masa CLI Documentation
+category: 635b9dca3148b2005c0309c8
+---
+
 # Masa CLI
 
 ```bash
