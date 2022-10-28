@@ -13,7 +13,8 @@
     "build": "tsc -p .",
     "prettier": "prettier ./src --write",
     "lint": "eslint ./src",
-    "doc": "ts-node ./src/doc.ts"
+    "doc": "ts-node ./src/doc.ts",
+    "doc:export": "cat docs/README.yml > docs/README.md README.md >> docs/README.md"
   },
   "dependencies": {
     "@masa-finance/masa-sdk": "^0.0.9",
