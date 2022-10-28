@@ -64,7 +64,7 @@ RPC Endpoint: https://rpc.ankr.com/eth_goerli
 Masa Endpoint: https://dev.middleware.masa.finance/
 ```
 
-### Yarn
+### yarn
 
 `yarn global add @masa-finance/masa-cli`
 
