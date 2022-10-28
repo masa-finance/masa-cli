@@ -1,4 +1,4 @@
-name: Sync `documentation` directory to ReadMe
+name: Sync README to ReadMe.com
 
 # Run workflow for every push to the `main` branch
 on:
