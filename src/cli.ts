@@ -22,6 +22,7 @@ import {
   identityInfo,
   creditReportInfo,
 } from "./commands";
+import { settingsPreset, settingsSet } from "./commands/settings";
 
 clear();
 console.log(
@@ -67,33 +68,28 @@ program
   identity
     .command("info")
     .description("Shows info about all Identities")
-    .action(async () => {
-      await identityInfo();
-    });
+    .action(async () => await identityInfo());
 
   identity
     .command("create")
     .argument("<soulname>", "soulname to register")
     .argument("<duration>", "period of registration")
     .description("Creates a masa identity with soul name")
-    .action(async (soulname: string, duration: number) => {
-      await identityCreate(soulname, duration);
-    });
+    .action(
+      async (soulname: string, duration: number) =>
+        await identityCreate(soulname, duration)
+    );
 
   identity
     .command("show")
     .option("-a, --address [address]", "Address override")
     .description("Shows detail about your masa identity")
-    .action(async ({ address }) => {
-      await identityShow(address);
-    });
+    .action(async ({ address }) => await identityShow(address));
 
   identity
     .command("burn")
     .description("Burns your masa identity")
-    .action(async () => {
-      await identityBurn();
-    });
+    .action(async () => await identityBurn());
 }
 
 {
@@ -104,34 +100,29 @@ program
   soulName
     .command("info")
     .description("Shows info about all Soul Names")
-    .action(async () => {
-      await soulNameInfo();
-    });
+    .action(async () => await soulNameInfo());
 
   soulName
     .command("list")
     .description("Lists your soul names")
     .option("-a, --address [address]", "Address override")
-    .action(async ({ address }) => {
-      await soulNameList(address);
-    });
+    .action(async ({ address }) => await soulNameList(address));
 
   soulName
     .command("create")
     .argument("<soulname>", "soulname to register")
     .argument("<duration>", "period of registration")
     .description("Creates a new soul name")
-    .action(async (soulname: string, duration: number) => {
-      await soulNameCreate(soulname, duration);
-    });
+    .action(
+      async (soulname: string, duration: number) =>
+        await soulNameCreate(soulname, duration)
+    );
 
   soulName
     .command("burn")
     .argument("<soulname>", "soulname to burn")
     .description("Burns soul name that you own")
-    .action(async (soulname: string) => {
-      await soulNameBurn(soulname);
-    });
+    .action(async (soulname: string) => await soulNameBurn(soulname));
 }
 
 {
@@ -142,32 +133,24 @@ program
   creditReport
     .command("info")
     .description("Shows info about all Credit Reports")
-    .action(async () => {
-      await creditReportInfo();
-    });
+    .action(async () => await creditReportInfo());
 
   creditReport
     .command("list")
     .description("Lists your Credit Reports")
     .option("-a, --address [address]", "Address override")
-    .action(async ({ address }) => {
-      await creditReportList(address);
-    });
+    .action(async ({ address }) => await creditReportList(address));
 
   creditReport
     .command("create")
     .description("Creates a Credit Report")
-    .action(async () => {
-      await creditReportCreate();
-    });
+    .action(async () => await creditReportCreate());
 
   creditReport
     .command("burn")
     .argument("<Credit Report ID>", "ID of the Credit Report to burn")
     .description("Burns a Credit Report")
-    .action(async (creditReportId) => {
-      await creditReportBurn(creditReportId);
-    });
+    .action(async (creditReportId) => await creditReportBurn(creditReportId));
 }
 
 {
@@ -180,10 +163,13 @@ program
     .argument("<key>", "key to set")
     .argument("<value>", "value to set to key")
     .description("Changes setting <key> to <value>")
-    .action(async (key: string, value: any) => {
-      config.set(key, value);
-      console.log(`Key '${key}' successfully set!`);
-    });
+    .action((key: string, value: any) => settingsSet(key, value));
+
+  settings
+    .command("preset")
+    .argument("<environment>", "The environment to use as preset")
+    .description("Changes setting <environment> presets")
+    .action((environment: string) => settingsPreset(environment));
 }
 
 export default program;

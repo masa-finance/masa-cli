@@ -385,10 +385,10 @@
   dependencies:
     ethers "^5.6.9"
 
-"@masa-finance/masa-sdk@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-0.0.8.tgz#12fe258f8d7d22f87695fb4057254d75f532620c"
-  integrity sha512-6sHlYhr88i3obe5X7T/23rr/1lyVtpKnYQq0u0P4xm6kHqZ/UAwmvZ/O18FgobtkDpgxM1eLwQHrqd9b70mdDQ==
+"@masa-finance/masa-sdk@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-0.0.9.tgz#0df7b3b8daecc9970501d4741473f9a7b2847cc5"
+  integrity sha512-tT3ZRmh6AtSdv8ewkdDqrzdBHL0nrThPvHLJaQ6JF6k9C8d+OGoglwjPZ64KnFsdj+4XOt3PoFOIy7Gs2PWteQ==
   dependencies:
     "@masa-finance/masa-contracts-identity" "^0.3.1"
     arweave "^1.11.6"
@@ -433,14 +433,14 @@
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
 "@types/node@^18.11.2":
-  version "18.11.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.5.tgz#1bc94cf2f9ab5fe33353bc7c79c797dcc5325bef"
-  integrity sha512-3JRwhbjI+cHLAkUorhf8RnqUbFXajvzX4q6fMn5JwkgtuwfYtRQYI3u4V92vI6NJuTsbBQWWh3RZjFsuevyMGQ==
+  version "18.11.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
+  integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
 
 "@types/semver@^7.3.12":
-  version "7.3.12"
-  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.12.tgz#920447fdd78d76b19de0438b7f60df3c4a80bf1c"
-  integrity sha512-WwA1MW0++RfXmCr12xeYOOC5baSC9mSb0ZqCquFzKhcoF4TvHu5MKOuXsncgZcpVFhB1pXd5hZmM0ryAoCp12A==
+  version "7.3.13"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.3.13.tgz#da4bfd73f49bd541d28920ab0e2bf0ee80f71c91"
+  integrity sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==
 
 "@typescript-eslint/eslint-plugin@^5.40.1":
   version "5.41.0"

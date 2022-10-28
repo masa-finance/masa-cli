@@ -37,6 +37,7 @@ Commands:
   credit-report burn <Credit Report ID>   Burns a Credit Report 
   settings                                Set config settings
   settings set <key> <value>              Changes setting <key> to <value>
+  settings preset <environment>           Changes setting <environment> presets
   help [command]                          display help for command
 ```
 
@@ -196,6 +197,12 @@ Changes setting <key> to <value>
 
 - `<key> key to set`
 - `<value> value to set to key`
+
+### `masa settings preset <environment>`
+
+Changes setting <environment> presets
+
+- `<environment> The environment to use as preset`
 
 ## Configuration
 
