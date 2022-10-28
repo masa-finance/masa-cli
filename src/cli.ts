@@ -3,7 +3,6 @@ import clear from "clear";
 import figlet from "figlet";
 import { program } from "commander";
 import { version as cliVersion } from "../package.json";
-import { config } from "./utils/config";
 import {
   login,
   logout,
@@ -82,7 +81,7 @@ program
 
   identity
     .command("show")
-    .option("-a, --address [address]", "Address override")
+    .option("-a, --address <address>", "Address override")
     .description("Shows detail about your masa identity")
     .action(async ({ address }) => await identityShow(address));
 
@@ -105,7 +104,7 @@ program
   soulName
     .command("list")
     .description("Lists your soul names")
-    .option("-a, --address [address]", "Address override")
+    .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await soulNameList(address));
 
   soulName
@@ -138,7 +137,7 @@ program
   creditReport
     .command("list")
     .description("Lists your Credit Reports")
-    .option("-a, --address [address]", "Address override")
+    .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await creditReportList(address));
 
   creditReport

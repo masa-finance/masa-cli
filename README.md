@@ -123,7 +123,7 @@ Shows detail about your masa identity
 
 Options:
 
-- `-a, --address [address]`
+- `-a, --address <address>`
   Address override
 
 ### `masa identity burn `
@@ -144,7 +144,7 @@ Lists your soul names
 
 Options:
 
-- `-a, --address [address]`
+- `-a, --address <address>`
   Address override
 
 ### `masa soul-name create <soulname> <duration>`
@@ -174,7 +174,7 @@ Lists your Credit Reports
 
 Options:
 
-- `-a, --address [address]`
+- `-a, --address <address>`
   Address override
 
 ### `masa credit-report create `
