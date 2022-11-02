@@ -16,6 +16,7 @@ jobs:
         run: |
           mkdir docs
           cp README.md docs
+          cp CHANGELOG.md docs
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
