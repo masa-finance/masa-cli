@@ -49,7 +49,9 @@ const escape = (input: string) => {
 
 for (const command of commands) {
   console.log(
-    `### \`masa ${command.command} ${formatArguments(command.arguments)}\``
+    `### \`masa ${`${command.command} ${formatArguments(
+      command.arguments
+    )}`.trimEnd()}\``
   );
   console.log(`${escape(command.description)}`);
   console.log(listArguments(command.arguments));
@@ -62,9 +64,9 @@ for (const command of commands) {
   if (command.commands) {
     for (const subCommand of command.commands) {
       console.log(
-        `\n#### \`masa ${command.command} ${
+        `\n#### \`masa ${`${command.command} ${
           subCommand.command
-        } ${formatArguments(subCommand.arguments)}\``
+        } ${formatArguments(subCommand.arguments)}`.trimEnd()}\``
       );
 
       console.log(`${escape(subCommand.description)}`);
