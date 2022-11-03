@@ -10,10 +10,13 @@ export const settingsPreset = (environment: string) => {
   const preset = environments.find((e) => e.name === environment.toLowerCase());
 
   if (preset) {
+    // delete cookie on env change
+    config.delete("cookie");
+
     config.set("api-url", preset.apiUrl);
     config.set("environment", preset.environment);
     config.set("network", preset.network);
-    
+
     if (preset.arweave) {
       config.set("arweave-host", preset.arweave.host);
       config.set("arweave-port", preset.arweave.port);
