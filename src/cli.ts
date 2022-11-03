@@ -22,6 +22,7 @@ import {
   creditReportInfo,
 } from "./commands";
 import { settingsPreset, settingsSet } from "./commands/settings";
+import { twofaBurn, twofaCreate, twofaInfo, twofaList } from "./commands/2fa";
 
 clear();
 console.log(
@@ -147,9 +148,35 @@ program
 
   creditReport
     .command("burn")
-    .argument("<Credit Report ID>", "ID of the Credit Report to burn")
+    .argument("<credit-report-id>", "ID of the Credit Report to burn")
     .description("Burns a Credit Report")
     .action(async (creditReportId) => await creditReportBurn(creditReportId));
+}
+
+{
+  const twofa = program.command("2fa").description("2fa Commands");
+
+  twofa
+    .command("info")
+    .description("Shows info about all 2fas")
+    .action(async () => await twofaInfo());
+
+  twofa
+    .command("list")
+    .description("Lists your 2fas")
+    .option("-a, --address <address>", "Address override")
+    .action(async ({ address }) => await twofaList(address));
+
+  twofa
+    .command("create")
+    .description("Creates a 2fa Token")
+    .action(async () => await twofaCreate());
+
+  twofa
+    .command("burn")
+    .argument("<2fa-id>", "ID of the 2fa to burn")
+    .description("Burns a 2fa")
+    .action(async (twofaId) => await twofaBurn(twofaId));
 }
 
 {
