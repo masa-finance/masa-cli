@@ -5,7 +5,7 @@ export const info = async () => {
 
   console.log("Soulbound Credit Report");
   console.log(
-    `Contract Address: ${identityContracts.SoulboundCreditReportContract.address}`
+    `Contract Address: '${identityContracts.SoulboundCreditReportContract.address}'`
   );
   console.log(
     `Total Credit Reports: ${(

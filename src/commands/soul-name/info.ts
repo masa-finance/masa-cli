@@ -5,7 +5,7 @@ export const info = async () => {
 
   console.log("Soul Name");
   console.log(
-    `Contract Address: ${identityContracts.SoulNameContract.address}`
+    `Contract Address: '${identityContracts.SoulNameContract.address}'`
   );
   console.log(
     `Total Soul Names: ${(
