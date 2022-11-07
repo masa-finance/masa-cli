@@ -169,8 +169,9 @@ program
 
   twofa
     .command("create")
+    .argument("<phone-number>", "The phone number to verify")
     .description("Creates a 2fa Token")
-    .action(async () => await twofaCreate());
+    .action(async (phoneNumber: string) => await twofaCreate(phoneNumber));
 
   twofa
     .command("burn")

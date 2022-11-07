@@ -4,6 +4,12 @@ import { environments } from "@masa-finance/masa-sdk/dist/src/utils";
 export const settingsSet = (key: string, value: any) => {
   config.set(key, value);
   console.log(`Key '${key}' successfully set!`);
+  switch (key) {
+    case "private-key":
+    case "network":
+    case "environment":
+      config.delete("cookie");
+  }
 };
 
 export const settingsPreset = (environment: string) => {
