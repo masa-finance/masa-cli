@@ -5,7 +5,6 @@ export const login = async () => {
   const result = await masa.session.login();
 
   if (result) {
-    console.log("cookie", result.cookie);
     config.set("cookie", result.cookie);
   }
 };
