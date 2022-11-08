@@ -154,29 +154,29 @@ program
 }
 
 {
-  const twofa = program.command("2fa").description("2fa Commands");
+  const twofa = program.command("2fa").description("2FA Commands");
 
   twofa
     .command("info")
-    .description("Shows info about all 2fas")
+    .description("Shows info about all 2FAs")
     .action(async () => await twofaInfo());
 
   twofa
     .command("list")
-    .description("Lists your 2fas")
+    .description("Lists your 2FAs")
     .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await twofaList(address));
 
   twofa
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
-    .description("Creates a 2fa Token")
+    .description("Creates a 2FA Token")
     .action(async (phoneNumber: string) => await twofaCreate(phoneNumber));
 
   twofa
     .command("burn")
-    .argument("<2fa-id>", "ID of the 2fa to burn")
-    .description("Burns a 2fa")
+    .argument("<2fa-id>", "ID of the 2FA to burn")
+    .description("Burns a 2FA")
     .action(async (twofaId) => await twofaBurn(twofaId));
 }
 
