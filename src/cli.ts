@@ -11,6 +11,7 @@ import {
   soulNameBurn,
   identityShow,
   identityCreate,
+  identityRegister,
   identityBurn,
   version,
   account,
@@ -79,6 +80,11 @@ program
       async (soulname: string, duration: number) =>
         await identityCreate(soulname, duration)
     );
+
+  identity
+    .command("register")
+    .description("Creates a masa identity without soul name")
+    .action(async () => await identityRegister());
 
   identity
     .command("show")
