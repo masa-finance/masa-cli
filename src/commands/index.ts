@@ -5,4 +5,4 @@ export { account } from "./account";
 export * from "./soul-name";
 export * from "./identity";
 export * from "./version";
-export * from "./credit-report";
+export * from "./credit-score";

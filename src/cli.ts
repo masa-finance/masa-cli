@@ -4,23 +4,28 @@ import figlet from "figlet";
 import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
+  // session
   login,
   logout,
+  // soul name
+  soulNameInfo,
   soulNameList,
   soulNameCreate,
   soulNameBurn,
+  // identity
+  identityInfo,
   identityShow,
   identityCreate,
   identityRegister,
   identityBurn,
+  // credit score
+  creditScoreInfo,
+  creditScoreList,
+  creditScoreCreate,
+  creditScoreBurn,
+  // utils
   version,
   account,
-  creditReportCreate,
-  creditReportList,
-  creditReportBurn,
-  soulNameInfo,
-  identityInfo,
-  creditReportInfo,
 } from "./commands";
 import { settingsPreset, settingsSet } from "./commands/settings";
 import { twoFABurn, twoFACreate, twoFAInfo, twoFAList } from "./commands/2fa";
@@ -132,31 +137,31 @@ program
 }
 
 {
-  const creditReport = program
-    .command("credit-report")
-    .description("Credit Report Commands");
+  const creditScore = program
+    .command("credit-score")
+    .description("Credit Score Commands");
 
-  creditReport
+  creditScore
     .command("info")
-    .description("Shows info about all Credit Reports")
-    .action(async () => await creditReportInfo());
+    .description("Shows info about all Credit Scores")
+    .action(async () => await creditScoreInfo());
 
-  creditReport
+  creditScore
     .command("list")
-    .description("Lists your Credit Reports")
+    .description("Lists your Credit Scores")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await creditReportList(address));
+    .action(async ({ address }) => await creditScoreList(address));
 
-  creditReport
+  creditScore
     .command("create")
-    .description("Creates a Credit Report")
-    .action(async () => await creditReportCreate());
+    .description("Creates a Credit Score")
+    .action(async () => await creditScoreCreate());
 
-  creditReport
+  creditScore
     .command("burn")
-    .argument("<credit-report-id>", "ID of the Credit Report to burn")
-    .description("Burns a Credit Report")
-    .action(async (creditReportId) => await creditReportBurn(creditReportId));
+    .argument("<credit-score-id>", "ID of the Credit Score to burn")
+    .description("Burns a Credit Score")
+    .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
 }
 
 {
