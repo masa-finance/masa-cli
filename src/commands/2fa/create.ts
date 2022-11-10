@@ -18,13 +18,20 @@ export const create = async (phoneNumber: string) => {
     const address = await masa.config.wallet.getAddress();
     console.log(`Creating 2FA for phone number: '${phoneNumber}'`);
 
+    // load identity
     const identityId = await masa.identity.load(address);
     if (!identityId) return;
 
     await masa.twofa.generate(phoneNumber);
     const code = await read(
-      "The code that has been sent to your Phonenumber: "
+      "The code that has been sent to your phone number: "
     );
-    await masa.twofa.create(phoneNumber, code);
+    const result = await masa.twofa.create(phoneNumber, code);
+
+    if (result.success) {
+      console.log(`2FA successfully minted: '${result.tokenId}'`);
+    }
+  } else {
+    console.log("Not logged in please login first");
   }
 };
