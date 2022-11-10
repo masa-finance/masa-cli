@@ -23,7 +23,7 @@ import {
   creditReportInfo,
 } from "./commands";
 import { settingsPreset, settingsSet } from "./commands/settings";
-import { twofaBurn, twofaCreate, twofaInfo, twofaList } from "./commands/2fa";
+import { twoFABurn, twoFACreate, twoFAInfo, twoFAList } from "./commands/2fa";
 
 clear();
 console.log(
@@ -165,25 +165,25 @@ program
   twofa
     .command("info")
     .description("Shows info about all 2FAs")
-    .action(async () => await twofaInfo());
+    .action(async () => await twoFAInfo());
 
   twofa
     .command("list")
     .description("Lists your 2FAs")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await twofaList(address));
+    .action(async ({ address }) => await twoFAList(address));
 
   twofa
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a 2FA Token")
-    .action(async (phoneNumber: string) => await twofaCreate(phoneNumber));
+    .action(async (phoneNumber: string) => await twoFACreate(phoneNumber));
 
   twofa
     .command("burn")
     .argument("<2fa-id>", "ID of the 2FA to burn")
     .description("Burns a 2FA")
-    .action(async (twofaId) => await twofaBurn(twofaId));
+    .action(async (twofaId) => await twoFABurn(twofaId));
 }
 
 {

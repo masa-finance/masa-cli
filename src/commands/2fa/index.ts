@@ -1,4 +1,4 @@
-export { burn as twofaBurn } from "./burn";
-export { create as twofaCreate } from "./create";
-export { list as twofaList } from "./list";
-export { info as twofaInfo } from "./info";
+export { burn as twoFABurn } from "./burn";
+export { create as twoFACreate } from "./create";
+export { list as twoFAList } from "./list";
+export { info as twoFAInfo } from "./info";
