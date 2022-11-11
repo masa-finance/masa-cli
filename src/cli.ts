@@ -12,6 +12,7 @@ import {
   soulNameList,
   soulNameCreate,
   soulNameBurn,
+  soulNameSend,
   // identity
   identityInfo,
   identityShow,
@@ -78,12 +79,12 @@ program
 
   identity
     .command("create")
-    .argument("<soulname>", "soulname to register")
-    .argument("<duration>", "period of registration")
+    .argument("<soulname>", "Soul Name to register")
+    .argument("<duration>", "Period of registration")
     .description("Creates a masa identity with soul name")
     .action(
-      async (soulname: string, duration: number) =>
-        await identityCreate(soulname, duration)
+      async (soulName: string, duration: number) =>
+        await identityCreate(soulName, duration)
     );
 
   identity
@@ -125,15 +126,25 @@ program
     .argument("<duration>", "period of registration")
     .description("Creates a new soul name")
     .action(
-      async (soulname: string, duration: number) =>
-        await soulNameCreate(soulname, duration)
+      async (soulName: string, duration: number) =>
+        await soulNameCreate(soulName, duration)
     );
 
   soulName
     .command("burn")
-    .argument("<soulname>", "soulname to burn")
+    .argument("<soulname>", "Soul Name to burn")
     .description("Burns soul name that you own")
-    .action(async (soulname: string) => await soulNameBurn(soulname));
+    .action(async (soulName: string) => await soulNameBurn(soulName));
+
+  soulName
+    .command("send")
+    .argument("<soulname>", "Soul Name to send")
+    .argument("<receiver>", "Receiver to receive the Soul Name")
+    .description("Sends a soul name to that you own to a receiver")
+    .action(
+      async (soulName: string, receiver: string) =>
+        await soulNameSend(soulName, receiver)
+    );
 }
 
 {
@@ -188,7 +199,7 @@ program
     .command("burn")
     .argument("<2fa-id>", "ID of the 2FA to burn")
     .description("Burns a 2FA")
-    .action(async (twofaId) => await twoFABurn(twofaId));
+    .action(async (twoFAId) => await twoFABurn(twoFAId));
 }
 
 {
