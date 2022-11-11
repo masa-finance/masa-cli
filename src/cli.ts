@@ -149,7 +149,7 @@ program
 
   soulName
     .command("show")
-    .argument("<soulname>", "Soul Name to send")
+    .argument("<soulname>", "Soul Name to show")
     .description("Shows info about a Soul Name")
     .action(async (soulname: string) => await soulNameShow(soulname));
 }
