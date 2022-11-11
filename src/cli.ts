@@ -27,6 +27,7 @@ import {
   // utils
   version,
   account,
+  soulNameShow,
 } from "./commands";
 import { settingsPreset, settingsSet } from "./commands/settings";
 import { twoFABurn, twoFACreate, twoFAInfo, twoFAList } from "./commands/2fa";
@@ -145,6 +146,12 @@ program
       async (soulName: string, receiver: string) =>
         await soulNameSend(soulName, receiver)
     );
+
+  soulName
+    .command("show")
+    .argument("<soulname>", "Soul Name to send")
+    .description("Shows info about a Soul Name")
+    .action(async (soulname: string) => await soulNameShow(soulname));
 }
 
 {
