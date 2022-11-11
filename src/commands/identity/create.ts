@@ -1,4 +1,4 @@
-import { masa } from "../../helpers/masa";
+import { masa } from "../../helpers";
 import { PaymentMethod } from "@masa-finance/masa-sdk";
 
 export const create = async (

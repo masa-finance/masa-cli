@@ -1,4 +1,4 @@
-import { masa } from "../helpers/masa";
+import { masa } from "../helpers";
 import { config } from "../utils/config";
 
 export const login = async () => {

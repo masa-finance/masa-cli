@@ -1,5 +1,5 @@
 import { config } from "../utils/config";
-import { masa } from "../helpers/masa";
+import { masa } from "../helpers";
 import { version as cliVersion } from "../../package.json";
 
 export const version = () => {

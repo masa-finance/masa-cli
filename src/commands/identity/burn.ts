@@ -1,4 +1,4 @@
-import { masa } from "../../helpers/masa";
+import { masa } from "../../helpers";
 
 export const burn = async () => {
   await masa.identity.burn();

@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { config } from "../utils/config";
-import { masa } from "../helpers/masa";
+import { masa } from "../helpers";
 
 export const account = async () => {
   const address = await masa.config.wallet.getAddress();
