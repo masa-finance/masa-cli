@@ -42,5 +42,12 @@ export const account = async () => {
         ethers.utils.formatEther(balances.wethBalance)
       ).toFixed(precision)}'`
     );
+
+    console.log(`Identity: ${balances.identityBalance.toNumber()}`);
+    console.log(`Soul Names: ${balances.soulNameBalance.toNumber()}`);
+    console.log(
+      `Credit Scores: ${balances.soulboundCreditScoreBalance.toNumber()}`
+    );
+    console.log(`Credit Scores: ${balances.soulbound2FABalance.toNumber()}`);
   }
 };
