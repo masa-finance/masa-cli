@@ -1,15 +1,13 @@
 import { masa } from "../../helpers";
 
 export const info = async () => {
-  const identityContracts = await masa.contracts.loadIdentityContracts();
-
   console.log("Soulbound Credit Report");
   console.log(
-    `Contract Address: '${identityContracts.SoulboundCreditReportContract.address}'`
+    `Contract Address: '${masa.contracts.identity.SoulboundCreditReportContract.address}'`
   );
   console.log(
     `Total Credit Reports: ${(
-      await identityContracts.SoulboundCreditReportContract.totalSupply()
+      await masa.contracts.identity.SoulboundCreditReportContract.totalSupply()
     ).toNumber()}`
   );
 };

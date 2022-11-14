@@ -16,7 +16,7 @@
     "doc": "ts-node ./src/doc.ts"
   },
   "dependencies": {
-    "@masa-finance/masa-sdk": "^0.4.6",
+    "@masa-finance/masa-sdk": "^0.5.0",
     "@types/clear": "^0.1.2",
     "@types/figlet": "^1.5.5",
     "chalk": "~4.1.2",
