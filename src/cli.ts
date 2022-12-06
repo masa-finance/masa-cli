@@ -4,30 +4,26 @@ import figlet from "figlet";
 import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
-  // session
-  login,
-  logout,
-  // soul name
-  soulNameInfo,
-  soulNameList,
-  soulNameCreate,
-  soulNameBurn,
-  soulNameSend,
-  // identity
-  identityInfo,
-  identityShow,
-  identityCreate,
-  identityRegister,
-  identityBurn,
-  // credit score
+  account,
+  creditScoreBurn,
+  creditScoreCreate,
   creditScoreInfo,
   creditScoreList,
-  creditScoreCreate,
-  creditScoreBurn,
-  // utils
-  version,
-  account,
+  identityBurn,
+  identityCreate,
+  identityInfo,
+  identityRegister,
+  identityShow,
+  login,
+  logout,
+  soulNameBurn,
+  soulNameCreate,
+  soulNameInfo,
+  soulNameList,
+  soulNameSend,
   soulNameShow,
+  soulNameVerify,
+  version,
 } from "./commands";
 import { settingsPreset, settingsSet } from "./commands/settings";
 import { twoFABurn, twoFACreate, twoFAInfo, twoFAList } from "./commands/2fa";
@@ -151,7 +147,13 @@ program
     .command("show")
     .argument("<soulname>", "Soul Name to show")
     .description("Shows info about a Soul Name")
-    .action(async (soulname: string) => await soulNameShow(soulname));
+    .action(async (soulName: string) => await soulNameShow(soulName));
+
+  soulName
+    .command("verify")
+    .argument("<soulname>", "Soul Name to verify")
+    .description("Verifies a Soul Name")
+    .action(async (soulName: string) => await soulNameVerify(soulName));
 }
 
 {
