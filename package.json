@@ -1,6 +1,6 @@
 {
   "name": "@masa-finance/masa-cli",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "The Masa CLI",
   "main": "index.js",
   "author": "Sebastian Gerske <13647606+H34D@users.noreply.github.com>",
@@ -16,7 +16,7 @@
     "doc": "ts-node ./src/doc.ts"
   },
   "dependencies": {
-    "@masa-finance/masa-sdk": "^0.6.0",
+    "@masa-finance/masa-sdk": "^0.6.6",
     "@types/clear": "^0.1.2",
     "@types/figlet": "^1.5.5",
     "chalk": "~4.1.2",
