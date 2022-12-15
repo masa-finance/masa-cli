@@ -5,8 +5,10 @@ import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
   account,
+  creditScoreAddPermission,
   creditScoreBurn,
   creditScoreCreate,
+  creditScoreGrantAccess,
   creditScoreInfo,
   creditScoreList,
   identityBurn,
@@ -182,6 +184,36 @@ program
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
     .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
+
+  creditScore
+    .command("grant-access")
+    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+    .argument(
+      "<receiver-identity-id>",
+      "ID of the identity that should receive access"
+    )
+    .description("Grants access to a Credit Score")
+    .action(
+      async (creditScoreId, receiverIdentityId) =>
+        await creditScoreGrantAccess(creditScoreId, receiverIdentityId)
+    );
+
+  creditScore
+    .command("add-permission")
+    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+    .argument("<signature>", "signature")
+    .argument("<signature-date>", "signature")
+    .argument("<expiration-date>", "signature")
+    .description("Adds permission to a Credit Score")
+    .action(
+      async (creditScoreId, signature, signatureDate, expirationDate) =>
+        await creditScoreAddPermission(
+          creditScoreId,
+          signature,
+          signatureDate,
+          expirationDate
+        )
+    );
 }
 
 {
