@@ -5,11 +5,12 @@ import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
   account,
-  creditScoreAddPermission,
   creditScoreBurn,
   creditScoreCreate,
-  creditScoreGrantAccess,
   creditScoreInfo,
+  creditScoreLinksCreate,
+  creditScoreLinksEstablish,
+  creditScoreLinksList,
   creditScoreList,
   identityBurn,
   identityCreate,
@@ -185,34 +186,44 @@ program
     .description("Burns a Credit Score")
     .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
 
-  creditScore
-    .command("grant-access")
+  const creditScoreLinks = creditScore
+    .command("links")
+    .description("Credit Score Soul Linker Commands");
+
+  creditScoreLinks
+    .command("create")
     .argument("<credit-score-id>", "ID of the Credit Score to grant access")
     .argument(
       "<receiver-identity-id>",
       "ID of the identity that should receive access"
     )
-    .description("Grants access to a Credit Score")
+    .description("Creates a Soul Linker Passport")
     .action(
       async (creditScoreId, receiverIdentityId) =>
-        await creditScoreGrantAccess(creditScoreId, receiverIdentityId)
+        await creditScoreLinksCreate(creditScoreId, receiverIdentityId)
     );
 
-  creditScore
-    .command("add-permission")
+  creditScoreLinks
+    .command("establish")
     .argument("<credit-score-id>", "ID of the Credit Score to grant access")
-    .argument("<signature>", "signature")
-    .argument("<signature-date>", "signature")
-    .argument("<expiration-date>", "signature")
-    .description("Adds permission to a Credit Score")
+    .argument("<passport>", "Masa Soul Linker passport")
+    .description("Establishes a link to a Credit Score")
     .action(
-      async (creditScoreId, signature, signatureDate, expirationDate) =>
-        await creditScoreAddPermission(
-          creditScoreId,
-          signature,
-          signatureDate,
-          expirationDate
-        )
+      async (creditScoreId, passport) =>
+        await creditScoreLinksEstablish(creditScoreId, passport)
+    );
+
+  creditScoreLinks
+    .command("list")
+    .argument(
+      "<credit-score-id>",
+      "ID of the Credit Score to list all the links of"
+    )
+    .argument("<reader-identity-id>", "ID of the Link reader identity")
+    .description("Lists all soul links for a credit report id")
+    .action(
+      async (creditScoreId, readerIdentityId) =>
+        await creditScoreLinksList(creditScoreId, readerIdentityId)
     );
 }
 

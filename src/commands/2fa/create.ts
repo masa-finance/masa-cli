@@ -2,11 +2,10 @@ import { masa, readLine } from "../../helpers";
 
 export const create = async (phoneNumber: string) => {
   if (await masa.session.checkLogin()) {
-    const address = await masa.config.wallet.getAddress();
     console.log(`Creating 2FA for phone number: '${phoneNumber}'`);
 
     // load identity
-    const identityId = await masa.identity.load(address);
+    const { identityId } = await masa.identity.load();
     if (!identityId) return;
 
     await masa.twoFA.generate(phoneNumber);

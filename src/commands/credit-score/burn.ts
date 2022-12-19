@@ -1,5 +1,6 @@
 import { masa } from "../../helpers";
+import { BigNumber } from "ethers";
 
-export const burn = async (creditReportId: number) => {
-  await masa.creditScore.burn(creditReportId);
+export const burn = async (creditScoreId: string) => {
+  await masa.creditScore.burn(BigNumber.from(creditScoreId));
 };
