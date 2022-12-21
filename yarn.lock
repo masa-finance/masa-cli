@@ -385,13 +385,13 @@
   dependencies:
     ethers "^5.6.9"
 
-"@masa-finance/masa-sdk@^0.7.10":
-  version "0.7.10"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-0.7.10.tgz#6d4087dbeb2fbc06da6b22601f6f08e067b0fc4f"
-  integrity sha512-ERPKoNF9INdjrBjvfHIbWjUwW2BHA7wz+yW+V19cXFAWb8zbHXcBPaq9UPX39zQvot33AJvaW1fYlFSFK4SMVQ==
+"@masa-finance/masa-sdk@^0.7.12":
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-0.7.12.tgz#31fabccafeb36374ea3f1ff48192df0e4821e079"
+  integrity sha512-4kWAnVfzjxT++Z8rWTLpRxafmIG8cPSmTjk4/OsJMy/i5N2QBhDhPtu5P8CEBxj/2VExM4NvtHzDk76xqvn+tA==
   dependencies:
     "@masa-finance/masa-contracts-identity" "^0.5.0"
-    arweave "^1.11.6"
+    arweave "^1.11.8"
     axios "1.1.0"
     ethers "^5.7.2"
     typescript "^4.2.3"
@@ -596,7 +596,7 @@ array-union@^2.1.0:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
-arweave@^1.10.13, arweave@^1.11.6:
+arweave@^1.10.13, arweave@^1.11.8:
   version "1.11.8"
   resolved "https://registry.yarnpkg.com/arweave/-/arweave-1.11.8.tgz#09376e0c6cec40a661cbb27a306cb11c0a663cd8"
   integrity sha512-58ODeNPIC4OjaOCl2bXjKbOFGsiVZFs+DkQg3BvQGvFWNqw1zTJ4Jp01xGUz+GbdOaDyJcCC0g3l0HwdJfFPyw==
