@@ -14,7 +14,7 @@ export const account = async () => {
 
   // identity id
   const { identityId } = await masa.identity.load(address);
-  if(identityId) {
+  if (identityId) {
     console.log(`Identity ID: '${identityId}'`);
   }
 
