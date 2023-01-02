@@ -223,14 +223,14 @@ program
   creditScoreLink
     .command("verify")
     .argument("<credit-score-id>", "ID of the Credit Score to grant access")
-    .argument(
-      "<receiver-identity-id>",
+    .option(
+      "-r, --reader-identity-id <reader-identity-id>",
       "ID of the identity that should receive access"
     )
     .description("Verifies soul link")
     .action(
-      async (creditScoreId, receiverIdentityId) =>
-        await creditScoreLinkVerify(creditScoreId, receiverIdentityId)
+      async (creditScoreId, { readerIdentityId }) =>
+        await creditScoreLinkVerify(creditScoreId, readerIdentityId)
     );
 
   creditScoreLink
