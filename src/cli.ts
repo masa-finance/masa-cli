@@ -12,6 +12,7 @@ import {
   creditScoreLinkCreate,
   creditScoreLinkEstablish,
   creditScoreLinkList,
+  creditScoreLinkQuery,
   creditScoreLinkVerify,
   creditScoreList,
   identityBurn,
@@ -196,13 +197,13 @@ program
     .command("create")
     .argument("<credit-score-id>", "ID of the Credit Score to grant access")
     .argument(
-      "<receiver-identity-id>",
+      "<reader-identity-id>",
       "ID of the identity that should receive access"
     )
     .description("Creates a Soul Linker Passport")
     .action(
-      async (creditScoreId, receiverIdentityId) =>
-        await creditScoreLinkCreate(creditScoreId, receiverIdentityId)
+      async (creditScoreId, readerIdentityId) =>
+        await creditScoreLinkCreate(creditScoreId, readerIdentityId)
     );
 
   creditScoreLink
@@ -210,6 +211,12 @@ program
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Establishes a link to a Credit Score")
     .action(async (passport) => await creditScoreLinkEstablish(passport));
+
+  creditScoreLink
+    .command("query")
+    .argument("<passport>", "Masa Soul Linker passport")
+    .description("Queries a link to a Credit Score")
+    .action(async (passport) => await creditScoreLinkQuery(passport));
 
   creditScoreLink
     .command("list")
@@ -237,37 +244,37 @@ program
     .command("break")
     .argument("<credit-score-id>", "ID of the Credit Score to grant access")
     .argument(
-      "<receiver-identity-id>",
+      "<reader-identity-id>",
       "ID of the identity that should receive access"
     )
     .description("Verifies soul link")
     .action(
-      async (creditScoreId, receiverIdentityId) =>
-        await creditScoreLinkBreak(creditScoreId, receiverIdentityId)
+      async (creditScoreId, readerIdentityId) =>
+        await creditScoreLinkBreak(creditScoreId, readerIdentityId)
     );
 }
 
 {
-  const twofa = program.command("2fa").description("2FA Commands");
+  const twoFA = program.command("2fa").description("2FA Commands");
 
-  twofa
+  twoFA
     .command("info")
     .description("Shows info about all 2FAs")
     .action(async () => await twoFAInfo());
 
-  twofa
+  twoFA
     .command("list")
     .description("Lists your 2FAs")
     .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await twoFAList(address));
 
-  twofa
+  twoFA
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a 2FA Token")
     .action(async (phoneNumber: string) => await twoFACreate(phoneNumber));
 
-  twofa
+  twoFA
     .command("burn")
     .argument("<2fa-id>", "ID of the 2FA to burn")
     .description("Burns a 2FA")
