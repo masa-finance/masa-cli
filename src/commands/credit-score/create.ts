@@ -1,5 +1,6 @@
 import { masa } from "../../helpers";
 
 export const create = async () => {
-  await masa.creditScore.create();
+  const result = await masa.creditScore.create();
+  if (!result || !result.success) console.error(result?.message);
 };

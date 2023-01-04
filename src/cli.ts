@@ -8,7 +8,14 @@ import {
   creditScoreBurn,
   creditScoreCreate,
   creditScoreInfo,
+  creditScoreLinkBreak,
+  creditScoreLinkCreate,
+  creditScoreLinkEstablish,
+  creditScoreLinkList,
+  creditScoreLinkQuery,
+  creditScoreLinkVerify,
   creditScoreList,
+  creditScoreLoad,
   identityBurn,
   identityCreate,
   identityInfo,
@@ -182,29 +189,99 @@ program
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
     .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
+
+  creditScore
+    .command("load")
+    .argument("<credit-score-id>", "ID of the Credit Score to load")
+    .description("Loads a Credit Score")
+    .action(async (creditScoreId) => await creditScoreLoad(creditScoreId));
+
+  const creditScoreLink = creditScore
+    .command("link")
+    .description("Credit Score Soul Linker Commands");
+
+  creditScoreLink
+    .command("create")
+    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+    .argument(
+      "<reader-identity-id>",
+      "ID of the identity that should receive access"
+    )
+    .description("Creates a Soul Linker Passport")
+    .action(
+      async (creditScoreId, readerIdentityId) =>
+        await creditScoreLinkCreate(creditScoreId, readerIdentityId)
+    );
+
+  creditScoreLink
+    .command("establish")
+    .argument("<passport>", "Masa Soul Linker passport")
+    .description("Establishes a link to a Credit Score")
+    .action(async (passport) => await creditScoreLinkEstablish(passport));
+
+  creditScoreLink
+    .command("query")
+    .argument("<passport>", "Masa Soul Linker passport")
+    .description("Queries a link to a Credit Score")
+    .action(async (passport) => await creditScoreLinkQuery(passport));
+
+  creditScoreLink
+    .command("list")
+    .argument(
+      "<credit-score-id>",
+      "ID of the Credit Score to list all the links of"
+    )
+    .description("Lists all soul links for a credit report id")
+    .action(async (creditScoreId) => await creditScoreLinkList(creditScoreId));
+
+  creditScoreLink
+    .command("verify")
+    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+    .option(
+      "-r, --reader-identity-id <reader-identity-id>",
+      "ID of the identity that should receive access"
+    )
+    .description("Verifies soul link")
+    .action(
+      async (creditScoreId, { readerIdentityId }) =>
+        await creditScoreLinkVerify(creditScoreId, readerIdentityId)
+    );
+
+  creditScoreLink
+    .command("break")
+    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+    .argument(
+      "<reader-identity-id>",
+      "ID of the identity that should receive access"
+    )
+    .description("Verifies soul link")
+    .action(
+      async (creditScoreId, readerIdentityId) =>
+        await creditScoreLinkBreak(creditScoreId, readerIdentityId)
+    );
 }
 
 {
-  const twofa = program.command("2fa").description("2FA Commands");
+  const twoFA = program.command("2fa").description("2FA Commands");
 
-  twofa
+  twoFA
     .command("info")
     .description("Shows info about all 2FAs")
     .action(async () => await twoFAInfo());
 
-  twofa
+  twoFA
     .command("list")
     .description("Lists your 2FAs")
     .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await twoFAList(address));
 
-  twofa
+  twoFA
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a 2FA Token")
     .action(async (phoneNumber: string) => await twoFACreate(phoneNumber));
 
-  twofa
+  twoFA
     .command("burn")
     .argument("<2fa-id>", "ID of the 2FA to burn")
     .description("Burns a 2FA")

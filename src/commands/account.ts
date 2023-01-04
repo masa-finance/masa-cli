@@ -13,8 +13,8 @@ export const account = async () => {
   console.log(`Logged in: ${isLoggedIn}`);
 
   // identity id
-  const identityId = await masa.identity.load(address);
-  if(identityId) {
+  const { identityId } = await masa.identity.load(address);
+  if (identityId) {
     console.log(`Identity ID: '${identityId}'`);
   }
 
