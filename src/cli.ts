@@ -15,6 +15,7 @@ import {
   creditScoreLinkQuery,
   creditScoreLinkVerify,
   creditScoreList,
+  creditScoreLoad,
   identityBurn,
   identityCreate,
   identityInfo,
@@ -188,6 +189,12 @@ program
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
     .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
+
+  creditScore
+    .command("load")
+    .argument("<credit-score-id>", "ID of the Credit Score to load")
+    .description("Loads a Credit Score")
+    .action(async (creditScoreId) => await creditScoreLoad(creditScoreId));
 
   const creditScoreLink = creditScore
     .command("link")
