@@ -47,6 +47,41 @@ const escape = (input: string) => {
   return input;
 };
 
+const printDetails = (command: DocCommand) => {
+  console.log(`${escape(command.description)}`);
+  console.log(listArguments(command.arguments));
+
+  for (const option of command.options) {
+    console.log("Options:");
+    console.log(`- \`${option.flags}\``);
+    console.log(`${option.description}`);
+  }
+};
+
+const printSubCommand = (command: DocCommand, subCommand: DocCommand) => {
+  console.log(
+    `\n#### \`masa ${`${command.command} ${
+      subCommand.command
+    } ${formatArguments(subCommand.arguments)}`.trimEnd()}\``
+  );
+
+  printDetails(subCommand);
+};
+
+const printSubSubCommand = (
+  command: DocCommand,
+  subCommand: DocCommand,
+  subSubCommand: DocCommand
+) => {
+  console.log(
+    `\n##### \`masa ${`${command.command} ${subCommand.command} ${
+      subSubCommand.command
+    } ${formatArguments(subSubCommand.arguments)}`.trimEnd()}\``
+  );
+
+  printDetails(subSubCommand);
+};
+
 for (const command of commands) {
   console.log(
     `### \`masa ${`${command.command} ${formatArguments(
@@ -63,19 +98,12 @@ for (const command of commands) {
 
   if (command.commands) {
     for (const subCommand of command.commands) {
-      console.log(
-        `\n#### \`masa ${`${command.command} ${
-          subCommand.command
-        } ${formatArguments(subCommand.arguments)}`.trimEnd()}\``
-      );
+      printSubCommand(command, subCommand);
 
-      console.log(`${escape(subCommand.description)}`);
-      console.log(listArguments(subCommand.arguments));
-
-      for (const option of subCommand.options) {
-        console.log("Options:");
-        console.log(`- \`${option.flags}\``);
-        console.log(`${option.description}`);
+      if (subCommand.commands) {
+        for (const subSubCommand of subCommand.commands) {
+          printSubSubCommand(command, subCommand, subSubCommand);
+        }
       }
     }
   }
