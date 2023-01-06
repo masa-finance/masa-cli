@@ -241,7 +241,7 @@ program
       "-r, --reader-identity-id <reader-identity-id>",
       "ID of the identity that should receive access"
     )
-    .description("Verifies soul link")
+    .description("Verifies a Soul Link")
     .action(
       async (creditScoreId, { readerIdentityId }) =>
         await creditScoreLinkVerify(creditScoreId, readerIdentityId)
@@ -254,7 +254,7 @@ program
       "<reader-identity-id>",
       "ID of the identity that should receive access"
     )
-    .description("Verifies soul link")
+    .description("Breaks a Soul Link")
     .action(
       async (creditScoreId, readerIdentityId) =>
         await creditScoreLinkBreak(creditScoreId, readerIdentityId)
