@@ -1,4 +1,4 @@
-import { Masa } from "@masa-finance/masa-sdk";
+import { EnvironmentName, Masa } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
 import { ethers } from "ethers";
 
@@ -12,7 +12,7 @@ export const masa = new Masa({
   cookie: config.get("cookie") as string,
   wallet,
   apiUrl: config.get("api-url") as string,
-  environment: config.get("environment") as string,
+  environment: config.get("environment") as EnvironmentName,
   network: config.get("network") as string,
   arweave: {
     host: config.get("arweave-host") as string,
