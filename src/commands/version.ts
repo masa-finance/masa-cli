@@ -13,5 +13,6 @@ export const version = () => {
     )}:${config.get("arweave-port")}`
   );
   console.log(`RPC Endpoint: ${config.get("rpc-url")}`);
+  console.log(`Network: ${config.get("network")}`);
   console.log(`Masa Endpoint: ${masa.config.apiUrl}`);
 };
