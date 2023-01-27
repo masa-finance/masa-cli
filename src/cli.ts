@@ -16,6 +16,10 @@ import {
   creditScoreLinkVerify,
   creditScoreList,
   creditScoreLoad,
+  greenBurn,
+  greenCreate,
+  greenInfo,
+  greenList,
   identityBurn,
   identityCreate,
   identityInfo,
@@ -23,6 +27,8 @@ import {
   identityShow,
   login,
   logout,
+  settingsPreset,
+  settingsSet,
   soulNameBurn,
   soulNameCreate,
   soulNameInfo,
@@ -32,8 +38,6 @@ import {
   soulNameVerify,
   version,
 } from "./commands";
-import { settingsPreset, settingsSet } from "./commands/settings";
-import { twoFABurn, twoFACreate, twoFAInfo, twoFAList } from "./commands/2fa";
 
 clear();
 console.log(
@@ -262,30 +266,30 @@ program
 }
 
 {
-  const twoFA = program.command("2fa").description("2FA Commands");
+  const green = program.command("green").description("Green Commands");
 
-  twoFA
+  green
     .command("info")
-    .description("Shows info about all 2FAs")
-    .action(async () => await twoFAInfo());
+    .description("Shows info about Masa Green")
+    .action(async () => await greenInfo());
 
-  twoFA
+  green
     .command("list")
-    .description("Lists your 2FAs")
+    .description("Lists your Greens")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await twoFAList(address));
+    .action(async ({ address }) => await greenList(address));
 
-  twoFA
+  green
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
-    .description("Creates a 2FA Token")
-    .action(async (phoneNumber: string) => await twoFACreate(phoneNumber));
+    .description("Creates a Green Token")
+    .action(async (phoneNumber: string) => await greenCreate(phoneNumber));
 
-  twoFA
+  green
     .command("burn")
-    .argument("<2fa-id>", "ID of the 2FA to burn")
-    .description("Burns a 2FA")
-    .action(async (twoFAId) => await twoFABurn(twoFAId));
+    .argument("<green-id>", "ID of the Green to burn")
+    .description("Burns a green")
+    .action(async (greenId) => await greenBurn(greenId));
 }
 
 {

@@ -1,5 +1,5 @@
 import { masa } from "../../helpers";
 
 export const list = async (address?: string) => {
-  await masa.twoFA.list(address);
+  await masa.green.list(address);
 };
