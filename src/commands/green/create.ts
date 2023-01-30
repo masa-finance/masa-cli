@@ -8,11 +8,11 @@ export const create = async (phoneNumber: string) => {
     const { identityId } = await masa.identity.load();
     if (!identityId) return;
 
-    await masa.twoFA.generate(phoneNumber);
+    await masa.green.generate(phoneNumber);
     const code = await readLine(
       "The code that has been sent to your phone number: "
     );
-    const result = await masa.twoFA.create(phoneNumber, code);
+    const result = await masa.green.create(phoneNumber, code);
 
     if (result.success) {
       console.log(`2FA successfully minted: '${result.tokenId}'`);
