@@ -21,7 +21,7 @@ export const settingsPreset = (environment: string) => {
 
     config.set("api-url", preset.apiUrl);
     config.set("environment", preset.environment);
-    config.set("network", preset.network);
+    config.set("network", preset.defaultNetwork);
 
     if (preset.arweave) {
       config.set("arweave-host", preset.arweave.host);

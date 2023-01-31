@@ -13,7 +13,7 @@ export const masa = new Masa({
   wallet,
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
-  network: config.get("network") as NetworkName,
+  defaultNetwork: config.get("network") as NetworkName,
   arweave: {
     host: config.get("arweave-host") as string,
     port: config.get("arweave-port") as number,

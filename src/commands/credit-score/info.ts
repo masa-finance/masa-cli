@@ -10,4 +10,5 @@ export const info = async () => {
       await masa.contracts.instances.SoulboundCreditScoreContract.totalSupply()
     ).toNumber()}`
   );
+  console.log(`Network: '${masa.config.network}'`);
 };
