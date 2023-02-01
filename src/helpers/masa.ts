@@ -14,6 +14,7 @@ export const masa = new Masa({
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
   defaultNetwork: config.get("network") as NetworkName,
+  verbose: config.get("verbose") as boolean,
   arweave: {
     host: config.get("arweave-host") as string,
     port: config.get("arweave-port") as number,

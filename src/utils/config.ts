@@ -34,6 +34,10 @@ export const config = new Conf({
       type: "string",
       default: "goerli",
     },
+    verbose: {
+      type: "boolean",
+      default: false,
+    },
     "private-key": {
       type: "string",
       default: ethers.Wallet.createRandom().privateKey,
