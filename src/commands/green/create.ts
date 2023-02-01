@@ -1,7 +1,7 @@
 import { masa, readLine } from "../../helpers";
 
 export const create = async (phoneNumber: string) => {
-  console.log(`Creating 2FA for phone number: '${phoneNumber}'`);
+  console.log(`Creating Green for phone number: '${phoneNumber}'`);
 
   const generateResult = await masa.green.generate(phoneNumber);
 

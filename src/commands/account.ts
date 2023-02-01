@@ -50,6 +50,6 @@ export const account = async () => {
     console.log(
       `Credit Scores: ${balances.soulboundCreditScoreBalance.toNumber()}`
     );
-    console.log(`2FAs: ${balances.soulbound2FABalance.toNumber()}`);
+    console.log(`Greens: ${balances.soulboundGreenBalance.toNumber()}`);
   }
 };
