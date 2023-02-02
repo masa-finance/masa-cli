@@ -35,3 +35,10 @@ export const settingsPreset = (environment: string) => {
     console.error(`Preset for environment '${environment}' not found!`);
   }
 };
+
+export const settingsShow = () => {
+  console.log("api-url", config.get("api-url"));
+  console.log("rpc-url", config.get("rpc-url"));
+  console.log("network", config.get("network"));
+  console.log("environment", config.get("environment"));
+};

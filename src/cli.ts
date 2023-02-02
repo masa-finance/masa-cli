@@ -29,6 +29,7 @@ import {
   logout,
   settingsPreset,
   settingsSet,
+  settingsShow,
   soulNameBurn,
   soulNameCreate,
   soulNameInfo,
@@ -309,6 +310,11 @@ program
     .argument("<environment>", "The environment to use as preset")
     .description("Changes setting <environment> presets")
     .action((environment: string) => settingsPreset(environment));
+
+  settings
+    .command("show")
+    .description("Shows config values")
+    .action(() => settingsShow());
 }
 
 export default program;
