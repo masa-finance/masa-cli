@@ -1,5 +1,6 @@
 import { config } from "../utils/config";
 import { environments } from "@masa-finance/masa-sdk/dist/src/utils";
+import { masa } from "../helpers";
 
 export const settingsSet = (key: string, value: any) => {
   config.set(key, value);
@@ -36,9 +37,10 @@ export const settingsPreset = (environment: string) => {
   }
 };
 
-export const settingsShow = () => {
+export const settingsShow = async () => {
   console.log("api-url", config.get("api-url"));
   console.log("rpc-url", config.get("rpc-url"));
   console.log("network", config.get("network"));
   console.log("environment", config.get("environment"));
+  console.log("address", await masa.config.wallet.getAddress());
 };
