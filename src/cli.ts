@@ -39,6 +39,7 @@ import {
   soulNameVerify,
   version,
 } from "./commands";
+import { masa } from "./helpers";
 
 clear();
 console.log(
@@ -53,6 +54,10 @@ program
       console.log(`v${cliVersion}`);
     }
     process.exit(0);
+  })
+  .option("--verbose", "verbosity that can be increased", () => {
+    console.log("Masa cli running with verbose output!\n");
+    masa.config.verbose = true;
   })
   .usage("[command] [subcommand] [arguments] [options]")
   .description("The Masa CLI");
