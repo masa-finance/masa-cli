@@ -55,7 +55,7 @@ program
     }
     process.exit(0);
   })
-  .option("--verbose", "verbosity that can be increased", () => {
+  .option("--verbose", "output with verbose logging", () => {
     console.log("Masa cli running with verbose output!\n");
     masa.config.verbose = true;
   })
