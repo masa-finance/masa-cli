@@ -20,6 +20,10 @@ export const account = async () => {
 
   const balances = await masa.account.getBalances(address);
 
+  if (masa.config.verbose) {
+    console.log({ balances });
+  }
+
   const precision = 8;
   if (balances) {
     // balances
