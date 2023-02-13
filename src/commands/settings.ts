@@ -1,5 +1,5 @@
 import { config } from "../utils/config";
-import { environments } from "@masa-finance/masa-sdk/dist/src/utils";
+import { environments } from "@masa-finance/masa-sdk";
 import { masa } from "../helpers";
 
 export const settingsSet = (key: string, value: any) => {
