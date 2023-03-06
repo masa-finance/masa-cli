@@ -19,7 +19,7 @@
     "@masa-finance/masa-sdk": "^1.7.1",
     "@types/clear": "^0.1.2",
     "@types/figlet": "^1.5.5",
-    "chalk": "~4.1.2",
+    "chalk": "~5.2.0",
     "clear": "^0.1.0",
     "commander": "^10.0.0",
     "conf": "~10.2.0",
