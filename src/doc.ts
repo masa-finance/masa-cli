@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Argument, Command, Option } from "commander";
 import program from "./cli";
 

@@ -1,6 +1,10 @@
 import { masa, readLine } from "../../helpers";
+import { PaymentMethod } from "@masa-finance/masa-sdk";
 
-export const create = async (phoneNumber: string) => {
+export const create = async (
+  paymentMethod: PaymentMethod,
+  phoneNumber: string
+) => {
   console.log(`Creating Green for phone number: '${phoneNumber}'`);
 
   const generateResult = await masa.green.generate(phoneNumber);
@@ -38,6 +42,7 @@ export const create = async (phoneNumber: string) => {
           console.log(`Minting Green on '${masa.config.network}'`);
 
           mintGreenResult = await masa.green.mint(
+            paymentMethod,
             verifyGreenResult.authorityAddress,
             verifyGreenResult.signatureDate,
             verifyGreenResult.signature
