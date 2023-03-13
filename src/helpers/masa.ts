@@ -1,4 +1,9 @@
-import { EnvironmentName, Masa, NetworkName } from "@masa-finance/masa-sdk";
+import {
+  EnvironmentName,
+  Masa,
+  MasaArgs,
+  NetworkName,
+} from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
 import { ethers } from "ethers";
 
@@ -8,7 +13,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 
 const wallet = new ethers.Wallet(config.get("private-key") as string, provider);
 
-export const masa = new Masa({
+const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
   wallet,
   apiUrl: config.get("api-url") as string,
@@ -21,4 +26,10 @@ export const masa = new Masa({
     protocol: config.get("arweave-protocol") as string,
     logging: config.get("arweave-logging") as boolean,
   },
-});
+};
+
+export const reloadMasa = (overrideConfig: { verbose?: boolean }) => {
+  masa = new Masa({ ...masaArgs, ...overrideConfig });
+};
+
+export let masa = new Masa(masaArgs);

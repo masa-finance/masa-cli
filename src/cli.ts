@@ -34,12 +34,16 @@ import {
   soulNameCreate,
   soulNameInfo,
   soulNameList,
+  soulNameResolve,
+  soulNameResolveReverse,
   soulNameSend,
   soulNameShow,
   soulNameVerify,
   version,
 } from "./commands";
-import { masa } from "./helpers";
+import { reloadMasa } from "./helpers";
+import { factoryInfo, factorySign } from "./commands/factory";
+import { BigNumber, TypedDataField } from "ethers";
 
 clear();
 console.log(
@@ -57,7 +61,9 @@ program
   })
   .option("--verbose", "output with verbose logging", () => {
     console.log("Masa cli running with verbose output!\n");
-    masa.config.verbose = true;
+    reloadMasa({
+      verbose: true,
+    });
   })
   .usage("[command] [subcommand] [arguments] [options]")
   .description("The Masa CLI");
@@ -133,6 +139,18 @@ program
     .description("Lists your soul names")
     .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await soulNameList(address));
+
+  soulName
+    .command("resolve")
+    .description("Resolves a soul name to the address")
+    .argument("<soulname>", "Soul Name to resolve")
+    .action(async (soulName: string) => await soulNameResolve(soulName));
+
+  soulName
+    .command("resolve-reverse")
+    .description("Resolves an address to soul names")
+    .argument("<soulname>", "Address to resolve")
+    .action(async (address: string) => await soulNameResolveReverse(address));
 
   soulName
     .command("create")
@@ -300,6 +318,32 @@ program
     .argument("<green-id>", "ID of the Green to burn")
     .description("Burns a green")
     .action(async (greenId) => await greenBurn(greenId));
+}
+
+{
+  const factory = program.command("factory").description("Factory Commands");
+
+  factory
+    .command("info")
+    .description("Shows info about an SBT")
+    .argument("<address>", "Address of the SBT to sign")
+    .action(async (address: string) => await factoryInfo(address));
+
+  factory
+    .command("sign")
+    .description("Signs an SBT")
+    .argument("<address>", "Address of the SBT to sign")
+    .argument("<name>", "Name of the contract")
+    .argument("<types>", "Types structure to sign")
+    .argument("<value>", "Values of the structure")
+    .action(
+      async (
+        address: string,
+        name: string,
+        types: Record<string, Array<TypedDataField>>,
+        value: Record<string, string | BigNumber | number>
+      ) => await factorySign(address, name, types, value)
+    );
 }
 
 {

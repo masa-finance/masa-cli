@@ -5,3 +5,7 @@ export { info as soulNameInfo } from "./info";
 export { send as soulNameSend } from "./send";
 export { show as soulNameShow } from "./show";
 export { verify as soulNameVerify } from "./verify";
+export {
+  resolve as soulNameResolve,
+  resolveReverse as soulNameResolveReverse,
+} from "./resolve";
