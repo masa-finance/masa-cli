@@ -5,13 +5,11 @@ import {
   NetworkName,
 } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
-import { ethers } from "ethers";
+import { providers, Wallet } from "ethers";
 
-const provider = new ethers.providers.JsonRpcProvider(
-  config.get("rpc-url") as string
-);
+const provider = new providers.JsonRpcProvider(config.get("rpc-url") as string);
 
-const wallet = new ethers.Wallet(config.get("private-key") as string, provider);
+const wallet = new Wallet(config.get("private-key") as string, provider);
 
 const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
