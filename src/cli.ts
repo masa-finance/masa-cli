@@ -55,6 +55,14 @@ console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
+const overrides: {
+  verbose?: boolean;
+  defaultNetwork?: NetworkName;
+} = {
+  verbose: undefined,
+  defaultNetwork: undefined,
+};
+
 program
   .option("-v, --version", "output the version number", () => {
     if (process.argv.indexOf("--version") > -1) {
@@ -66,9 +74,12 @@ program
   })
   .option("--verbose", "output with verbose logging", () => {
     console.log("Masa cli running with verbose output!\n");
-    reloadMasa({
-      verbose: true,
-    });
+    overrides.verbose = true;
+    reloadMasa(overrides);
+  })
+  .option("-n, --network <network>", "Address override", (networkName) => {
+    overrides.defaultNetwork = networkName as NetworkName;
+    reloadMasa(overrides);
   })
   .usage("[command] [subcommand] [arguments] [options]")
   .description("The Masa CLI");

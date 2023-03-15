@@ -3,17 +3,17 @@ import {
   Masa,
   MasaArgs,
   NetworkName,
+  SupportedNetworks,
 } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
 import { providers, Wallet } from "ethers";
 
-const provider = new providers.JsonRpcProvider(config.get("rpc-url") as string);
-
-const wallet = new Wallet(config.get("private-key") as string, provider);
-
 const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
-  wallet,
+  wallet: new Wallet(
+    config.get("private-key") as string,
+    new providers.JsonRpcProvider(config.get("rpc-url") as string)
+  ),
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
   defaultNetwork: config.get("network") as NetworkName,
@@ -26,7 +26,23 @@ const masaArgs: MasaArgs = {
   },
 };
 
-export const reloadMasa = (overrideConfig: { verbose?: boolean }) => {
+export const reloadMasa = (overrideConfig: {
+  verbose?: boolean;
+  defaultNetwork?: NetworkName;
+  wallet?: Wallet;
+}) => {
+  if (overrideConfig.defaultNetwork) {
+    const network = SupportedNetworks[overrideConfig.defaultNetwork];
+    if (network) {
+      overrideConfig.wallet = new Wallet(
+        config.get("private-key") as string,
+        new providers.JsonRpcProvider(network.rpcUrls[0])
+      );
+    } else {
+      // network not found
+      delete overrideConfig.defaultNetwork;
+    }
+  }
   masa = new Masa({ ...masaArgs, ...overrideConfig });
 };
 
