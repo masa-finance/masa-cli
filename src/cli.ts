@@ -33,6 +33,7 @@ import {
   sbtPrepareMint,
   sbtSign,
   settingsPreset,
+  settingsPresetNetwork,
   settingsSet,
   settingsShow,
   soulNameBurn,
@@ -47,6 +48,7 @@ import {
   version,
 } from "./commands";
 import { reloadMasa } from "./helpers";
+import { NetworkName } from "@masa-finance/masa-sdk";
 
 clear();
 console.log(
@@ -415,6 +417,12 @@ program
     .argument("<environment>", "The environment to use as preset")
     .description("Changes setting <environment> presets")
     .action((environment: string) => settingsPreset(environment));
+
+  settings
+    .command("preset-network")
+    .argument("<network-name>", "The network to use as preset")
+    .description("Changes setting <network-name> presets")
+    .action((networkName: NetworkName) => settingsPresetNetwork(networkName));
 
   settings
     .command("show")

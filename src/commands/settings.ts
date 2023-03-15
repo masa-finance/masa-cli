@@ -1,5 +1,11 @@
 import { config } from "../utils/config";
-import { environments } from "@masa-finance/masa-sdk";
+import {
+  Environment,
+  environments,
+  Network,
+  NetworkName,
+  SupportedNetworks,
+} from "@masa-finance/masa-sdk";
 import { masa } from "../helpers";
 
 export const settingsSet = (key: string, value: any) => {
@@ -13,27 +19,49 @@ export const settingsSet = (key: string, value: any) => {
   }
 };
 
-export const settingsPreset = (environment: string) => {
-  const preset = environments.find((e) => e.name === environment.toLowerCase());
+export const settingsPreset = (environmentName: string) => {
+  const presetEnvironment: Environment | undefined = environments.find(
+    (environment) => environment.name === environmentName.toLowerCase()
+  );
 
-  if (preset) {
+  if (presetEnvironment) {
     // delete cookie on env change
     config.delete("cookie");
 
-    config.set("api-url", preset.apiUrl);
-    config.set("environment", preset.environment);
-    config.set("network", preset.defaultNetwork);
+    config.set("api-url", presetEnvironment.apiUrl);
+    config.set("environment", presetEnvironment.environment);
+    config.set("network", presetEnvironment.defaultNetwork);
 
-    if (preset.arweave) {
-      config.set("arweave-host", preset.arweave.host);
-      config.set("arweave-port", preset.arweave.port);
-      config.set("arweave-protocol", preset.arweave.protocol);
-      config.set("arweave-logging", preset.arweave.logging);
+    if (presetEnvironment.arweave) {
+      config.set("arweave-host", presetEnvironment.arweave.host);
+      config.set("arweave-port", presetEnvironment.arweave.port);
+      config.set("arweave-protocol", presetEnvironment.arweave.protocol);
+      config.set("arweave-logging", presetEnvironment.arweave.logging);
     }
 
-    console.log(`Preset '${environment}' set!`);
+    if (presetEnvironment.defaultNetwork) {
+      const network: Network | undefined =
+        SupportedNetworks[presetEnvironment.defaultNetwork];
+      if (network) {
+        config.set("rpc-url", network.rpcUrls[0]);
+      }
+    }
+
+    console.log(`Preset '${environmentName}' set!`);
   } else {
-    console.error(`Preset for environment '${environment}' not found!`);
+    console.error(`Preset for environment '${environmentName}' not found!`);
+  }
+};
+
+export const settingsPresetNetwork = (networkName: NetworkName) => {
+  const network: Network | undefined = SupportedNetworks[networkName];
+  if (network) {
+    config.set("rpc-url", network.rpcUrls[0]);
+    config.set("network", network.networkName);
+
+    console.log(`Preset network '${networkName}' set!`);
+  } else {
+    console.error(`Preset for network '${networkName}' not found!`);
   }
 };
 
