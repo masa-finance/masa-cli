@@ -1,12 +1,9 @@
 import { ethers } from "ethers";
-import { config } from "../utils/config";
 import { masa } from "../helpers";
 
 export const account = async () => {
   const address = await masa.config.wallet.getAddress();
-  console.log(`Address: '${address}'`);
-
-  console.log(`\nNetwork: '${config.get("network")}'`);
+  console.log(`Address: '${address}'\n`);
 
   // login status
   const isLoggedIn = await masa.session.checkLogin();
