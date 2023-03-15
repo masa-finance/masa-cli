@@ -8,12 +8,15 @@ import {
 import { config } from "../utils/config";
 import { providers, Wallet } from "ethers";
 
+const loadWallet = (rpcUrl?: string) =>
+  new Wallet(
+    config.get("private-key") as string,
+    new providers.JsonRpcProvider(rpcUrl || (config.get("rpc-url") as string))
+  );
+
 const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
-  wallet: new Wallet(
-    config.get("private-key") as string,
-    new providers.JsonRpcProvider(config.get("rpc-url") as string)
-  ),
+  wallet: loadWallet(),
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
   defaultNetwork: config.get("network") as NetworkName,
@@ -34,11 +37,11 @@ export const reloadMasa = (overrideConfig: {
   if (overrideConfig.defaultNetwork) {
     const network = SupportedNetworks[overrideConfig.defaultNetwork];
     if (network) {
-      overrideConfig.wallet = new Wallet(
-        config.get("private-key") as string,
-        new providers.JsonRpcProvider(network.rpcUrls[0])
-      );
+      overrideConfig.wallet = loadWallet(network.rpcUrls[0]);
     } else {
+      console.error(
+        `Network '${overrideConfig.defaultNetwork}' not found! Using '${masaArgs.defaultNetwork}'`
+      );
       // network not found
       delete overrideConfig.defaultNetwork;
     }
