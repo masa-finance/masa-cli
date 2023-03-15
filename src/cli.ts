@@ -30,6 +30,7 @@ import {
   sbtBurn,
   sbtInfo,
   sbtList,
+  sbtPrepareMint,
   sbtSign,
   settingsPreset,
   settingsSet,
@@ -46,7 +47,6 @@ import {
   version,
 } from "./commands";
 import { reloadMasa } from "./helpers";
-import { BigNumber, TypedDataField } from "ethers";
 
 clear();
 console.log(
@@ -353,9 +353,38 @@ program
       async (
         contractAddress: string,
         name: string,
-        types: Record<string, Array<TypedDataField>>,
-        value: Record<string, string | BigNumber | number>
+        types: string,
+        value: string
       ) => await sbtSign(contractAddress, name, types, value)
+    );
+
+  sbt
+    .command("prepare-mint")
+    .description("Prepares an SBT mint operation")
+    .argument("<contract-address>", "Address of the SBT to sign")
+    .argument("<name>", "Name of the contract")
+    .argument("<types>", "Types structure to sign")
+    .argument("<value>", "Values of the structure")
+    .argument("<authority-address>", "Authority address used for signing")
+    .argument("<signature>", "Signature from the signing step")
+    .action(
+      async (
+        contractAddress: string,
+        name: string,
+        types: string,
+        value: string,
+        authorityAddress: string,
+        signature: string
+      ) =>
+        await sbtPrepareMint(
+          "eth",
+          contractAddress,
+          name,
+          types,
+          value,
+          authorityAddress,
+          signature
+        )
     );
 
   sbt

@@ -1,26 +1,16 @@
 import { masa } from "../../helpers";
-import { BigNumber, TypedDataField } from "ethers";
 
 export const sign = async (
   address: string,
   name: string,
-  types: Record<string, Array<TypedDataField>>,
-  value: Record<string, string | BigNumber | number>
+  types: string,
+  value: string
 ) => {
   const { sign } = await masa.contracts.sbt(address);
-  const signResult = await sign(name, types, value);
-
-  /*
-    types: {
-      MintGreen: [
-        { name: "to", type: "address" },
-        { name: "authorityAddress", type: "address" },
-        { name: "signatureDate", type: "uint256" },
-      ],
-    },
-   */
+  const signResult = await sign(name, JSON.parse(types), JSON.parse(value));
 
   if (signResult) {
-    console.log(signResult.signature, signResult.authorityAddress);
+    const { signature, authorityAddress } = signResult;
+    console.log(signature, authorityAddress);
   }
 };
