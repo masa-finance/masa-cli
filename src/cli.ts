@@ -27,6 +27,10 @@ import {
   identityShow,
   login,
   logout,
+  sbtBurn,
+  sbtInfo,
+  sbtList,
+  sbtSign,
   settingsPreset,
   settingsSet,
   settingsShow,
@@ -42,7 +46,6 @@ import {
   version,
 } from "./commands";
 import { reloadMasa } from "./helpers";
-import { factoryInfo, factorySign } from "./commands/factory";
 import { BigNumber, TypedDataField } from "ethers";
 
 clear();
@@ -321,28 +324,48 @@ program
 }
 
 {
-  const factory = program.command("factory").description("Factory Commands");
+  const sbt = program.command("sbt").description("SBT Commands");
 
-  factory
+  sbt
     .command("info")
     .description("Shows info about an SBT")
-    .argument("<address>", "Address of the SBT to sign")
-    .action(async (address: string) => await factoryInfo(address));
+    .argument("<contract-address>", "Address of the SBT to sign")
+    .action(async (contractAddress: string) => await sbtInfo(contractAddress));
 
-  factory
+  sbt
+    .command("list")
+    .description("Lists your SBTs")
+    .argument("<contract-address>", "Address of the SBT contract to list")
+    .option("-a, --address <address>", "Address override")
+    .action(
+      async (contractAddress: string, { address }) =>
+        await sbtList(contractAddress, address)
+    );
+
+  sbt
     .command("sign")
     .description("Signs an SBT")
-    .argument("<address>", "Address of the SBT to sign")
+    .argument("<contract-address>", "Address of the SBT to sign")
     .argument("<name>", "Name of the contract")
     .argument("<types>", "Types structure to sign")
     .argument("<value>", "Values of the structure")
     .action(
       async (
-        address: string,
+        contractAddress: string,
         name: string,
         types: Record<string, Array<TypedDataField>>,
         value: Record<string, string | BigNumber | number>
-      ) => await factorySign(address, name, types, value)
+      ) => await sbtSign(contractAddress, name, types, value)
+    );
+
+  sbt
+    .command("burn")
+    .argument("<contract-address>", "Address of the SBT to sign")
+    .argument("<sbt-id>", "ID of the SBT to burn")
+    .description("Burns an SBT")
+    .action(
+      async (contractAddress: string, greenId: string) =>
+        await sbtBurn(contractAddress, greenId)
     );
 }
 

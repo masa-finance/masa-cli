@@ -7,7 +7,7 @@ export const sign = async (
   types: Record<string, Array<TypedDataField>>,
   value: Record<string, string | BigNumber | number>
 ) => {
-  const { sign } = await masa.contracts.factory(address);
+  const { sign } = await masa.contracts.sbt(address);
   const signResult = await sign(name, types, value);
 
   /*
