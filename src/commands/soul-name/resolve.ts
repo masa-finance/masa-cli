@@ -17,9 +17,7 @@ export const resolveReverse = async (address: string) => {
 
   if (soulNames.length > 0) {
     console.log("Soul names:", "\n");
-    soulNames.map((soulName: string) => {
-      console.log(`${soulName}${extension}`);
-    });
+    soulNames.map((soulName: string) => console.log(`${soulName}${extension}`));
   } else {
     console.log(`No soul names for ${address}`);
   }
