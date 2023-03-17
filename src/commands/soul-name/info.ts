@@ -6,6 +6,9 @@ export const info = async () => {
     `Contract Address: '${masa.contracts.instances.SoulNameContract.address}'`
   );
   console.log(
+    `Extension: '${await masa.contracts.instances.SoulNameContract.extension()}'`
+  );
+  console.log(
     `Total Soul Names: ${(
       await masa.contracts.instances.SoulNameContract.totalSupply()
     ).toNumber()}`
