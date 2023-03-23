@@ -30,7 +30,7 @@ export const settingsPreset = (environmentName: string) => {
 
     config.set("api-url", presetEnvironment.apiUrl);
     config.set("environment", presetEnvironment.environment);
-    config.set("network", presetEnvironment.defaultNetwork);
+    config.set("network", presetEnvironment.networkName);
 
     if (presetEnvironment.arweave) {
       config.set("arweave-host", presetEnvironment.arweave.host);
@@ -39,9 +39,9 @@ export const settingsPreset = (environmentName: string) => {
       config.set("arweave-logging", presetEnvironment.arweave.logging);
     }
 
-    if (presetEnvironment.defaultNetwork) {
+    if (presetEnvironment.networkName) {
       const network: Network | undefined =
-        SupportedNetworks[presetEnvironment.defaultNetwork];
+        SupportedNetworks[presetEnvironment.networkName];
       if (network) {
         config.set("rpc-url", network.rpcUrls[0]);
       }

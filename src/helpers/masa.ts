@@ -19,7 +19,7 @@ const masaArgs: MasaArgs = {
   wallet: loadWallet(),
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
-  defaultNetwork: config.get("network") as NetworkName,
+  networkName: config.get("network") as NetworkName,
   verbose: config.get("verbose") as boolean,
   arweave: {
     host: config.get("arweave-host") as string,
@@ -40,7 +40,7 @@ export const reloadMasa = (overrideConfig: {
       overrideConfig.wallet = loadWallet(network.rpcUrls[0]);
     } else {
       console.error(
-        `Network '${overrideConfig.defaultNetwork}' not found! Using '${masaArgs.defaultNetwork}'`
+        `Network '${overrideConfig.defaultNetwork}' not found! Using '${masaArgs.networkName}'`
       );
       // network not found
       delete overrideConfig.defaultNetwork;

@@ -39,7 +39,7 @@ export const create = async (
       ) {
         let mintGreenResult;
         do {
-          console.log(`Minting Green on '${masa.config.network}'`);
+          console.log(`Minting Green on '${masa.config.networkName}'`);
 
           mintGreenResult = await masa.green.mint(
             paymentMethod,
@@ -50,7 +50,7 @@ export const create = async (
 
           if (mintGreenResult && mintGreenResult.tokenId) {
             console.log(
-              `Green successfully minted on '${masa.config.network}' with token ID: '${mintGreenResult.tokenId}'`
+              `Green successfully minted on '${masa.config.networkName}' with token ID: '${mintGreenResult.tokenId}'`
             );
           }
         } while (!mintGreenResult?.tokenId);

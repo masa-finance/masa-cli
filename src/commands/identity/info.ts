@@ -10,5 +10,5 @@ export const info = async () => {
       await masa.contracts.instances.SoulboundIdentityContract.totalSupply()
     ).toNumber()}`
   );
-  console.log(`Network: '${masa.config.network}'`);
+  console.log(`Network: '${masa.config.networkName}'`);
 };

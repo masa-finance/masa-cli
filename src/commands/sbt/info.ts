@@ -11,7 +11,7 @@ export const info = async (address: string) => {
     console.log(
       `Total SBTs: ${(await selfSovereignSBT.totalSupply()).toNumber()}`
     );
-    console.log(`Network: '${masa.config.network}'`);
+    console.log(`Network: '${masa.config.networkName}'`);
   } else {
     console.error("Contract not found!");
   }

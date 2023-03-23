@@ -13,5 +13,5 @@ export const info = async () => {
       await masa.contracts.instances.SoulNameContract.totalSupply()
     ).toNumber()}`
   );
-  console.log(`Network: '${masa.config.network}'`);
+  console.log(`Network: '${masa.config.networkName}'`);
 };
