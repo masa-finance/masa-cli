@@ -1,4 +1,3 @@
-import { ethers } from "ethers";
 import { masa } from "../helpers";
 
 export const account = async () => {
@@ -24,33 +23,16 @@ export const account = async () => {
   const precision = 8;
   if (balances) {
     // balances
-    console.log("\nBalances");
-    console.log(
-      `ETH '${parseFloat(ethers.utils.formatEther(balances.ethBalance)).toFixed(
-        precision
-      )}'`
-    );
-    console.log(
-      `MASA '${parseFloat(
-        ethers.utils.formatEther(balances.masaBalance)
-      ).toFixed(precision)}'`
-    );
-    console.log(
-      `USDC '${parseFloat(
-        ethers.utils.formatEther(balances.usdcBalance)
-      ).toFixed(precision)}'`
-    );
-    console.log(
-      `WETH '${parseFloat(
-        ethers.utils.formatEther(balances.wethBalance)
-      ).toFixed(precision)}'`
-    );
+    console.log("\nBalances:\n");
 
-    console.log(`Identity: ${balances.identityBalance.toNumber()}`);
-    console.log(`Soul Names: ${balances.soulNameBalance.toNumber()}`);
-    console.log(
-      `Credit Scores: ${balances.soulboundCreditScoreBalance.toNumber()}`
-    );
-    console.log(`Greens: ${balances.soulboundGreenBalance.toNumber()}`);
+    for (const [symbol, balance] of Object.entries(balances)) {
+      if (!isNaN(balance)) {
+        console.log(
+          `${symbol}: '${
+            balance % 1 === 0 ? balance : balance.toFixed(precision)
+          }'`
+        );
+      }
+    }
   }
 };

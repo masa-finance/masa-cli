@@ -120,7 +120,7 @@ program
     .description("Creates a masa identity with soul name")
     .action(
       async (soulName: string, duration: number) =>
-        await identityCreate("eth", soulName, duration)
+        await identityCreate("ETH", soulName, duration)
     );
 
   identity
@@ -175,7 +175,7 @@ program
     .description("Creates a new soul name")
     .action(
       async (soulName: string, duration: number) =>
-        await soulNameCreate("eth", soulName, duration)
+        await soulNameCreate("ETH", soulName, duration)
     );
 
   soulName
@@ -226,7 +226,7 @@ program
   creditScore
     .command("create")
     .description("Creates a Credit Score")
-    .action(async () => await creditScoreCreate("eth"));
+    .action(async () => await creditScoreCreate("ETH"));
 
   creditScore
     .command("burn")
@@ -262,14 +262,14 @@ program
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Establishes a link to a Credit Score")
     .action(
-      async (passport) => await creditScoreLinkEstablish("eth", passport)
+      async (passport) => await creditScoreLinkEstablish("ETH", passport)
     );
 
   creditScoreLink
     .command("query")
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Queries a link to a Credit Score")
-    .action(async (passport) => await creditScoreLinkQuery("eth", passport));
+    .action(async (passport) => await creditScoreLinkQuery("ETH", passport));
 
   creditScoreLink
     .command("list")
@@ -326,7 +326,7 @@ program
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a Green Token")
     .action(
-      async (phoneNumber: string) => await greenCreate("eth", phoneNumber)
+      async (phoneNumber: string) => await greenCreate("ETH", phoneNumber)
     );
 
   green
@@ -390,7 +390,7 @@ program
         signature: string
       ) =>
         await sbtPrepareMint(
-          "eth",
+          "ETH",
           contractAddress,
           name,
           types,
