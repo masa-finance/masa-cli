@@ -48,19 +48,16 @@ import {
   version,
 } from "./commands";
 import { reloadMasa } from "./helpers";
-import { NetworkName } from "@masa-finance/masa-sdk";
+import { MasaArgs, NetworkName } from "@masa-finance/masa-sdk";
 
 clear();
 console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
-const overrides: {
-  verbose?: boolean;
-  defaultNetwork?: NetworkName;
-} = {
+const overrides: Partial<MasaArgs> = {
   verbose: undefined,
-  defaultNetwork: undefined,
+  networkName: undefined,
 };
 
 program
@@ -78,7 +75,7 @@ program
     reloadMasa(overrides);
   })
   .option("-n, --network <network>", "Address override", (networkName) => {
-    overrides.defaultNetwork = networkName as NetworkName;
+    overrides.networkName = networkName as NetworkName;
     reloadMasa(overrides);
   })
   .usage("[command] [subcommand] [arguments] [options]")

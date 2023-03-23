@@ -29,21 +29,17 @@ const masaArgs: MasaArgs = {
   },
 };
 
-export const reloadMasa = (overrideConfig: {
-  verbose?: boolean;
-  defaultNetwork?: NetworkName;
-  wallet?: Wallet;
-}) => {
-  if (overrideConfig.defaultNetwork) {
-    const network = SupportedNetworks[overrideConfig.defaultNetwork];
+export const reloadMasa = (overrideConfig: Partial<MasaArgs>) => {
+  if (overrideConfig.networkName) {
+    const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
       overrideConfig.wallet = loadWallet(network.rpcUrls[0]);
     } else {
       console.error(
-        `Network '${overrideConfig.defaultNetwork}' not found! Using '${masaArgs.networkName}'`
+        `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`
       );
       // network not found
-      delete overrideConfig.defaultNetwork;
+      delete overrideConfig.networkName;
     }
   }
   masa = new Masa({ ...masaArgs, ...overrideConfig });
