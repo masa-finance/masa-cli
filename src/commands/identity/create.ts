@@ -6,9 +6,21 @@ export const create = async (
   soulName: string,
   duration: number
 ) => {
-  await masa.identity.createWithSoulName(paymentMethod, soulName, duration);
+  const { success, message } = await masa.identity.createWithSoulName(
+    paymentMethod,
+    soulName,
+    duration
+  );
+
+  if (!success) {
+    console.error(message);
+  }
 };
 
 export const register = async () => {
-  await masa.identity.create();
+  const { success, message } = await masa.identity.create();
+
+  if (!success) {
+    console.error(message);
+  }
 };

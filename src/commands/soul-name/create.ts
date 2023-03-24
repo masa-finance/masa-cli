@@ -6,5 +6,12 @@ export const create = async (
   soulName: string,
   duration: number
 ) => {
-  await masa.soulName.create(paymentMethod, soulName, duration);
+  const { success, message } = await masa.soulName.create(
+    paymentMethod,
+    soulName,
+    duration
+  );
+  if (!success) {
+    console.error(message);
+  }
 };
