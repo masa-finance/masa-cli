@@ -11,6 +11,7 @@ export const create = async (
     soulName,
     duration
   );
+
   if (!success) {
     console.error(message);
   }

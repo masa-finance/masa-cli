@@ -5,8 +5,12 @@ export const create = async (
   creditReportId: string,
   readerIdentityId: string
 ) => {
-  await masa.creditScore.links.create(
+  const { success, message } = await masa.creditScore.links.create(
     BigNumber.from(creditReportId),
     BigNumber.from(readerIdentityId)
   );
+
+  if (!success) {
+    console.error(message);
+  }
 };
