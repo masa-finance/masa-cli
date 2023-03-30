@@ -1,7 +1,7 @@
 import { masa } from "../../helpers";
 
 export const info = async (address: string) => {
-  const { selfSovereignSBT } = await masa.contracts.sbt(address);
+  const { selfSovereignSBT } = await masa.contracts.sbt.connect(address);
 
   if (selfSovereignSBT) {
     console.log("Self Sovereign SBT Contract Information:\n");

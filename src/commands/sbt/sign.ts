@@ -6,7 +6,7 @@ export const sign = async (
   types: string,
   value: string
 ) => {
-  const { sign } = await masa.contracts.sbt(address);
+  const { sign } = await masa.contracts.sbt.connect(address);
   const signResult = await sign(name, JSON.parse(types), JSON.parse(value));
 
   if (signResult) {

@@ -10,7 +10,7 @@ export const prepareMint = async (
   authorityAddress: string,
   signature: string
 ) => {
-  const { prepareMint } = await masa.contracts.sbt(address);
+  const { prepareMint } = await masa.contracts.sbt.connect(address);
   const prepareMintResults = await prepareMint(
     paymentMethod,
     name,
