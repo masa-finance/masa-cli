@@ -71,7 +71,7 @@ program
     process.exit(0);
   })
   .option("--verbose", "output with verbose logging", () => {
-    console.log("Masa cli running with verbose output!\n");
+    console.log("Masa CLI running with verbose output!\n");
     overrides.verbose = true;
     reloadMasa(overrides);
   })
