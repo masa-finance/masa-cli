@@ -44,6 +44,7 @@ import {
   soulNameResolveReverse,
   soulNameSend,
   soulNameShow,
+  soulNameTail,
   soulNameVerify,
   version,
 } from "./commands";
@@ -152,6 +153,12 @@ program
     .description("Lists your soul names")
     .option("-a, --address <address>", "Address override")
     .action(async ({ address }) => await soulNameList(address));
+
+  soulName
+    .command("tail")
+    .description("Tails your soul names")
+    .option("-l, --limit <limit>", "Limit")
+    .action(async ({ limit }) => await soulNameTail(limit));
 
   soulName
     .command("resolve")
