@@ -7,5 +7,8 @@ export const show = async (soulName: string) => {
   const details = await masa.soulName.loadSoulNameByName(
     soulName.replace(extension, "")
   );
-  if (details) printSoulName(details);
+  
+  if (details) {
+    printSoulName(details, undefined, masa.config.verbose);
+  }
 };
