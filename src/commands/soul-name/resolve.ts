@@ -1,5 +1,5 @@
 import { masa } from "../../helpers";
-import { loadSoulNamesByAddress } from "@masa-finance/masa-sdk";
+import { loadSoulNames } from "@masa-finance/masa-sdk";
 
 export const resolve = async (soulName: string) => {
   const owner = await masa.soulName.resolve(soulName);
@@ -12,8 +12,10 @@ export const resolve = async (soulName: string) => {
 };
 
 export const resolveReverse = async (address: string) => {
-  const soulNames: string[] = await loadSoulNamesByAddress(masa, address);
-  const extension = await masa.contracts.instances.SoulNameContract.extension();
+  const [soulNames, extension] = await Promise.all([
+    loadSoulNames(masa, address),
+    masa.contracts.instances.SoulNameContract.extension(),
+  ]);
 
   if (soulNames.length > 0) {
     console.log("Soul names:", "\n");

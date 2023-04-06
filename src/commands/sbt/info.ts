@@ -13,6 +13,8 @@ export const info = async (address: string) => {
     );
     console.log(`Network: '${masa.config.networkName}'`);
   } else {
-    console.error("Contract not found!");
+    console.error(
+      `Contract ${address} is not deployed to network: '${masa.config.networkName}'`
+    );
   }
 };

@@ -28,8 +28,10 @@ import {
   login,
   logout,
   sbtBurn,
+  sbtDeployASBT,
   sbtInfo,
   sbtList,
+  sbtMintASBT,
   sbtPrepareMint,
   sbtSign,
   settingsPreset,
@@ -410,8 +412,27 @@ program
     .argument("<sbt-id>", "ID of the SBT to burn")
     .description("Burns an SBT")
     .action(
-      async (contractAddress: string, greenId: string) =>
-        await sbtBurn(contractAddress, greenId)
+      async (contractAddress: string, SBTId: string) =>
+        await sbtBurn(contractAddress, SBTId)
+    );
+}
+
+{
+  const asbt = program.command("asbt").description("ASBT Commands");
+
+  asbt
+    .command("deploy")
+    .description("Deploys ASBTs")
+    .action(async () => await sbtDeployASBT());
+
+  asbt
+    .command("mint")
+    .description("Mints ASBTs")
+    .argument("<contract-address>", "Address of the SBT to mint on")
+    .argument("<receiver>", "Address of the SBT receiver")
+    .action(
+      async (contractAddress, receiver) =>
+        await sbtMintASBT(contractAddress, receiver)
     );
 }
 
