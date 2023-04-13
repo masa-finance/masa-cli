@@ -1,11 +1,10 @@
 import { masa } from "../../helpers";
-import { loadSoulNames } from "@masa-finance/masa-sdk";
 
 export const resolve = async (soulName: string) => {
-  const owner = await masa.soulName.resolve(soulName);
+  const address = await masa.soulName.resolve(soulName);
 
-  if (owner) {
-    console.log(owner);
+  if (address) {
+    console.log(address);
   } else {
     console.error(`${soulName} does not exist!`);
   }
@@ -13,7 +12,7 @@ export const resolve = async (soulName: string) => {
 
 export const resolveReverse = async (address: string) => {
   const [soulNames, extension] = await Promise.all([
-    loadSoulNames(masa, address),
+    masa.soulName.loadSoulNames(address),
     masa.contracts.instances.SoulNameContract.extension(),
   ]);
 
