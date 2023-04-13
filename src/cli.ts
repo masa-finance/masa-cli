@@ -283,7 +283,7 @@ program
       "<credit-score-id>",
       "ID of the Credit Score to list all the links of"
     )
-    .description("Lists all soul links for a credit report id")
+    .description("Lists all soul links for a credit score id")
     .action(async (creditScoreId) => await creditScoreLinkList(creditScoreId));
 
   creditScoreLink
