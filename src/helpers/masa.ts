@@ -42,7 +42,31 @@ export const reloadMasa = (overrideConfig: Partial<MasaArgs>) => {
       delete overrideConfig.networkName;
     }
   }
-  masa = new Masa({ ...masaArgs, ...overrideConfig });
+
+  /*
+    const contractOverrides: Partial<IIdentityContracts> = {
+      SoulStoreContract: SoulStore__factory.connect(
+        constants.AddressZero,
+        overrideConfig.wallet || masaArgs.wallet
+      ),
+      SoulNameContract: SoulName__factory.connect(
+        constants.AddressZero,
+        overrideConfig.wallet || masaArgs.wallet
+      ),
+    };
+
+    if (contractOverrides.SoulStoreContract) {
+      contractOverrides.SoulStoreContract.hasAddress = true;
+    }
+    if (contractOverrides.SoulNameContract) {
+      contractOverrides.SoulNameContract.hasAddress = true;
+    }
+  */
+
+  masa = new Masa({
+    ...masaArgs,
+    ...overrideConfig,
+  });
 };
 
 export let masa = new Masa(masaArgs);
