@@ -403,9 +403,9 @@
     ethers "~5.7.2"
 
 "@masa-finance/masa-sdk@^1.13.3":
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-1.13.3.tgz#ccce6851ac6a1c5b00af387e9de57df81bd271a7"
-  integrity sha512-6L7xsezJF66S3qqIBv0BpqkUT51mxNExoVrWtn7mKUSxFnATooOCeyv2uZUySU7zZQ+te+AUtwkFgFBwAfSMOQ==
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-1.13.4.tgz#c2621b32963e577a779ad88a67c7800e5811718d"
+  integrity sha512-jIrzVLwgIg9lZxYlJvwt7gcDcQ0+iJ9y0yw9+TWrI4fDiLVWyz0Ukknrgj4KUJ1dR2IJnfzahKY+qdpH+/NkFA==
   dependencies:
     "@masa-finance/masa-contracts-identity" "^1.5.2"
     "@masa-finance/masa-token" "^1.0.0"
