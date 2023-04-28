@@ -402,23 +402,23 @@
   dependencies:
     ethers "~5.7.2"
 
-"@masa-finance/masa-sdk@^1.14.2":
-  version "1.14.2"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-1.14.2.tgz#d93a828c8e458795ed839c1f3900d049058720f3"
-  integrity sha512-kDR58iWECq+G8D/Ntf1H4lXv/nxPOpdDgCC5tQRmr7uWNtGWmDMbZiPpCeU+cKEyRv4OQ9XtboheZV9UkOExbg==
+"@masa-finance/masa-sdk@^1.15.1":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-1.15.1.tgz#d09db724ea8cafad84adf4389cce11566749581d"
+  integrity sha512-z7HUauzd4rIhHgqsYVrqhnOKfjCcfZbAwa+maUNWuyLwoeMnuzWWDTJUeyaTlPbSls+a50AjgFvtNh49+qIs4Q==
   dependencies:
     "@masa-finance/masa-contracts-identity" "^1.5.3"
-    "@masa-finance/masa-token" "^1.0.0"
+    "@masa-finance/masa-token" "^2.0.0"
     arweave "1.11.8"
     axios "^1.3.2"
     ethers "~5.7.2"
     grapheme-splitter "^1.0.4"
     typescript "^5.0.2"
 
-"@masa-finance/masa-token@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-token/-/masa-token-1.0.0.tgz#9a9dfb5d446a8a96c39c56a9a1ec9435906f1179"
-  integrity sha512-1T7HEAe1CzoP6L29Glxabqw1rz379KV92txTtvBkl03CNxJNWop1SwdXLOHrL82eaKg9Unr3V6x8kwdLpI0QGw==
+"@masa-finance/masa-token@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-token/-/masa-token-2.0.0.tgz#b87635ab55de166183ad1535199a1a848016d5eb"
+  integrity sha512-2k4nXBZTVfguJunYXNpQ9EreHW1EVOTmo+U1+OKnnX6lh69MWgoZsWMmSBjyZwJQ2R21QmoVCP57p+LpY0vM1A==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
