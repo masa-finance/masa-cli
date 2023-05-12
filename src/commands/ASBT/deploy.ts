@@ -10,7 +10,7 @@ export const deployASBT = async () => {
     `Admin address (leave empty to use: '${await masa.config.wallet.getAddress()}'): `
   );
 
-  const address = await masa.sbt.deployASBT(
+  const address = await masa.sbt.ASBT.deploy(
     name,
     symbol,
     baseTokenUri,

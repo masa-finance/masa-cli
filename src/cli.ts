@@ -52,6 +52,7 @@ import {
 } from "./commands";
 import { reloadMasa } from "./helpers";
 import { MasaArgs, NetworkName } from "@masa-finance/masa-sdk";
+import { sbtDeploySSSBT, sbtMintSSSBT, sbtSignSSSBT } from "./commands/SSSBT";
 
 clear();
 console.log(
@@ -433,6 +434,47 @@ program
     .action(
       async (contractAddress, receiver) =>
         await sbtMintASBT(contractAddress, receiver)
+    );
+}
+
+{
+  const sssbt = program.command("sssbt").description("SSSBT Commands");
+
+  sssbt
+    .command("deploy")
+    .description("Deploys SSSBTs")
+    .action(async () => await sbtDeploySSSBT());
+
+  sssbt
+    .command("sign")
+    .description("Signs SSSBTs")
+    .argument("<contract-address>", "Address of the SBT to mint on")
+    .argument("<receiver>", "Address of the SBT receiver")
+    .action(
+      async (contractAddress: string, receiver: string) =>
+        await sbtSignSSSBT(contractAddress, receiver)
+    );
+
+  sssbt
+    .command("mint")
+    .description("Mints SSSBTs")
+    .argument("<contract-address>", "Address of the SBT to mint on")
+    .argument("<authority-address>", "Address of the Authority")
+    .argument("<signature-date>", "sig date")
+    .argument("<signature>", "signature")
+    .action(
+      async (
+        contractAddress: string,
+        authorityAddress: string,
+        signatureDate: number,
+        signature: string
+      ) =>
+        await sbtMintSSSBT(
+          contractAddress,
+          authorityAddress,
+          signatureDate,
+          signature
+        )
     );
 }
 
