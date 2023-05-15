@@ -112,7 +112,7 @@ program
   identity
     .command("info")
     .description("Shows info about all Identities")
-    .action(async () => await identityInfo());
+    .action(async () => identityInfo());
 
   identity
     .command("create")
@@ -127,18 +127,18 @@ program
   identity
     .command("register")
     .description("Creates a masa identity without soul name")
-    .action(async () => await identityRegister());
+    .action(async () => identityRegister());
 
   identity
     .command("show")
     .option("-a, --address <address>", "Address override")
     .description("Shows detail about your masa identity")
-    .action(async ({ address }) => await identityShow(address));
+    .action(async ({ address }) => identityShow(address));
 
   identity
     .command("burn")
     .description("Burns your masa identity")
-    .action(async () => await identityBurn());
+    .action(async () => identityBurn());
 }
 
 {
@@ -149,31 +149,31 @@ program
   soulName
     .command("info")
     .description("Shows info about all Soul Names")
-    .action(async () => await soulNameInfo());
+    .action(async () => soulNameInfo());
 
   soulName
     .command("list")
     .description("Lists your soul names")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await soulNameList(address));
+    .action(async ({ address }) => soulNameList(address));
 
   soulName
     .command("tail")
     .description("Tails your soul names")
     .option("-l, --limit <limit>", "Limit")
-    .action(async ({ limit }) => await soulNameTail(limit));
+    .action(async ({ limit }) => soulNameTail(limit));
 
   soulName
     .command("resolve")
     .description("Resolves a soul name to the address")
     .argument("<soulname>", "Soul Name to resolve")
-    .action(async (soulName: string) => await soulNameResolve(soulName));
+    .action(async (soulName: string) => soulNameResolve(soulName));
 
   soulName
     .command("resolve-reverse")
     .description("Resolves an address to soul names")
     .argument("<soulname>", "Address to resolve")
-    .action(async (address: string) => await soulNameResolveReverse(address));
+    .action(async (address: string) => soulNameResolveReverse(address));
 
   soulName
     .command("create")
@@ -189,7 +189,7 @@ program
     .command("burn")
     .argument("<soulname>", "Soul Name to burn")
     .description("Burns soul name that you own")
-    .action(async (soulName: string) => await soulNameBurn(soulName));
+    .action(async (soulName: string) => soulNameBurn(soulName));
 
   soulName
     .command("send")
@@ -205,13 +205,13 @@ program
     .command("show")
     .argument("<soulname>", "Soul Name to show")
     .description("Shows info about a Soul Name")
-    .action(async (soulName: string) => await soulNameShow(soulName));
+    .action(async (soulName: string) => soulNameShow(soulName));
 
   soulName
     .command("verify")
     .argument("<soulname>", "Soul Name to verify")
     .description("Verifies a Soul Name")
-    .action(async (soulName: string) => await soulNameVerify(soulName));
+    .action(async (soulName: string) => soulNameVerify(soulName));
 }
 
 {
@@ -222,30 +222,30 @@ program
   creditScore
     .command("info")
     .description("Shows info about all Credit Scores")
-    .action(async () => await creditScoreInfo());
+    .action(async () => creditScoreInfo());
 
   creditScore
     .command("list")
     .description("Lists your Credit Scores")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await creditScoreList(address));
+    .action(async ({ address }) => creditScoreList(address));
 
   creditScore
     .command("create")
     .description("Creates a Credit Score")
-    .action(async () => await creditScoreCreate("ETH"));
+    .action(async () => creditScoreCreate("ETH"));
 
   creditScore
     .command("burn")
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
-    .action(async (creditScoreId) => await creditScoreBurn(creditScoreId));
+    .action(async (creditScoreId) => creditScoreBurn(creditScoreId));
 
   creditScore
     .command("load")
     .argument("<credit-score-id>", "ID of the Credit Score to load")
     .description("Loads a Credit Score")
-    .action(async (creditScoreId) => await creditScoreLoad(creditScoreId));
+    .action(async (creditScoreId) => creditScoreLoad(creditScoreId));
 
   const creditScoreLink = creditScore
     .command("link")
@@ -259,24 +259,21 @@ program
       "ID of the identity that should receive access"
     )
     .description("Creates a Soul Linker Passport")
-    .action(
-      async (creditScoreId, readerIdentityId) =>
-        await creditScoreLinkCreate(creditScoreId, readerIdentityId)
+    .action(async (creditScoreId, readerIdentityId) =>
+      creditScoreLinkCreate(creditScoreId, readerIdentityId)
     );
 
   creditScoreLink
     .command("establish")
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Establishes a link to a Credit Score")
-    .action(
-      async (passport) => await creditScoreLinkEstablish("ETH", passport)
-    );
+    .action(async (passport) => creditScoreLinkEstablish("ETH", passport));
 
   creditScoreLink
     .command("query")
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Queries a link to a Credit Score")
-    .action(async (passport) => await creditScoreLinkQuery("ETH", passport));
+    .action(async (passport) => creditScoreLinkQuery("ETH", passport));
 
   creditScoreLink
     .command("list")
@@ -285,7 +282,7 @@ program
       "ID of the Credit Score to list all the links of"
     )
     .description("Lists all soul links for a credit score id")
-    .action(async (creditScoreId) => await creditScoreLinkList(creditScoreId));
+    .action(async (creditScoreId) => creditScoreLinkList(creditScoreId));
 
   creditScoreLink
     .command("verify")
@@ -295,9 +292,8 @@ program
       "ID of the identity that should receive access"
     )
     .description("Verifies a Soul Link")
-    .action(
-      async (creditScoreId, { readerIdentityId }) =>
-        await creditScoreLinkVerify(creditScoreId, readerIdentityId)
+    .action(async (creditScoreId, { readerIdentityId }) =>
+      creditScoreLinkVerify(creditScoreId, readerIdentityId)
     );
 
   creditScoreLink
@@ -308,9 +304,8 @@ program
       "ID of the identity that should receive access"
     )
     .description("Breaks a Soul Link")
-    .action(
-      async (creditScoreId, readerIdentityId) =>
-        await creditScoreLinkBreak(creditScoreId, readerIdentityId)
+    .action(async (creditScoreId, readerIdentityId) =>
+      creditScoreLinkBreak(creditScoreId, readerIdentityId)
     );
 }
 
@@ -320,27 +315,25 @@ program
   green
     .command("info")
     .description("Shows info about Masa Green")
-    .action(async () => await greenInfo());
+    .action(async () => greenInfo());
 
   green
     .command("list")
     .description("Lists your Greens")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => await greenList(address));
+    .action(async ({ address }) => greenList(address));
 
   green
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a Green Token")
-    .action(
-      async (phoneNumber: string) => await greenCreate("ETH", phoneNumber)
-    );
+    .action(async (phoneNumber: string) => greenCreate("ETH", phoneNumber));
 
   green
     .command("burn")
     .argument("<green-id>", "ID of the Green to burn")
     .description("Burns a green")
-    .action(async (greenId) => await greenBurn(greenId));
+    .action(async (greenId) => greenBurn(greenId));
 }
 
 {
@@ -350,7 +343,7 @@ program
     .command("info")
     .description("Shows info about an SBT")
     .argument("<contract-address>", "Address of the SBT to sign")
-    .action(async (contractAddress: string) => await sbtInfo(contractAddress));
+    .action(async (contractAddress: string) => sbtInfo(contractAddress));
 
   sbt
     .command("list")
@@ -375,7 +368,7 @@ program
         name: string,
         types: string,
         value: string
-      ) => await sbtSign(contractAddress, name, types, value)
+      ) => sbtSign(contractAddress, name, types, value)
     );
 
   sbt
@@ -424,7 +417,7 @@ program
   asbt
     .command("deploy")
     .description("Deploys ASBTs")
-    .action(async () => await sbtDeployASBT());
+    .action(async () => sbtDeployASBT());
 
   asbt
     .command("mint")
@@ -443,16 +436,15 @@ program
   sssbt
     .command("deploy")
     .description("Deploys SSSBTs")
-    .action(async () => await sbtDeploySSSBT());
+    .action(async () => sbtDeploySSSBT());
 
   sssbt
     .command("sign")
     .description("Signs SSSBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
-    .action(
-      async (contractAddress: string, receiver: string) =>
-        await sbtSignSSSBT(contractAddress, receiver)
+    .action(async (contractAddress: string, receiver: string) =>
+      sbtSignSSSBT(contractAddress, receiver)
     );
 
   sssbt
@@ -469,7 +461,7 @@ program
         signatureDate: number,
         signature: string
       ) =>
-        await sbtMintSSSBT(
+        sbtMintSSSBT(
           contractAddress,
           authorityAddress,
           signatureDate,

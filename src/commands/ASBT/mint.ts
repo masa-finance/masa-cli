@@ -1,8 +1,8 @@
 import { masa } from "../../helpers";
-import { MasaSBTAuthority } from "@masa-finance/masa-contracts-identity";
+import { ReferenceSBTAuthority } from "@masa-finance/masa-contracts-identity";
 
 export const mintASBT = async (contractAddress: string, receiver: string) => {
-  const { sbtContract } = await masa.sbt.connect<MasaSBTAuthority>(
+  const { sbtContract } = await masa.sbt.connect<ReferenceSBTAuthority>(
     contractAddress
   );
 
