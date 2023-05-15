@@ -7,6 +7,6 @@ export const mintASBT = async (contractAddress: string, receiver: string) => {
   );
 
   if (sbtContract) {
-    return await masa.sbt.ASBT.mint(sbtContract, receiver);
+    await masa.sbt.ASBT.mint(sbtContract, receiver);
   }
 };
