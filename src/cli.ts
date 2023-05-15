@@ -88,17 +88,17 @@ program
 program
   .command("login")
   .description("Login to the masa infrastructure")
-  .action(async () => login());
+  .action(() => login());
 
 program
   .command("logout")
   .description("Logout from the masa infrastructure")
-  .action(async () => logout());
+  .action(() => logout());
 
 program
   .command("account")
   .description("Shows information about your account")
-  .action(async () => account());
+  .action(() => account());
 
 {
   const identity = program.command("identity").description("Identity commands");
@@ -106,32 +106,32 @@ program
   identity
     .command("info")
     .description("Shows info about all Identities")
-    .action(async () => identityInfo());
+    .action(() => identityInfo());
 
   identity
     .command("create")
     .argument("<soulname>", "Soul Name to register")
     .argument("<duration>", "Period of registration")
     .description("Creates a masa identity with soul name")
-    .action(async (soulName: string, duration: number) =>
+    .action((soulName: string, duration: number) =>
       identityCreate("ETH", soulName, duration)
     );
 
   identity
     .command("register")
     .description("Creates a masa identity without soul name")
-    .action(async () => identityRegister());
+    .action(() => identityRegister());
 
   identity
     .command("show")
     .option("-a, --address <address>", "Address override")
     .description("Shows detail about your masa identity")
-    .action(async ({ address }) => identityShow(address));
+    .action(({ address }) => identityShow(address));
 
   identity
     .command("burn")
     .description("Burns your masa identity")
-    .action(async () => identityBurn());
+    .action(() => identityBurn());
 }
 
 {
@@ -142,38 +142,38 @@ program
   soulName
     .command("info")
     .description("Shows info about all Soul Names")
-    .action(async () => soulNameInfo());
+    .action(() => soulNameInfo());
 
   soulName
     .command("list")
     .description("Lists your soul names")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => soulNameList(address));
+    .action(({ address }) => soulNameList(address));
 
   soulName
     .command("tail")
     .description("Tails your soul names")
     .option("-l, --limit <limit>", "Limit")
-    .action(async ({ limit }) => soulNameTail(limit));
+    .action(({ limit }) => soulNameTail(limit));
 
   soulName
     .command("resolve")
     .description("Resolves a soul name to the address")
     .argument("<soulname>", "Soul Name to resolve")
-    .action(async (soulName: string) => soulNameResolve(soulName));
+    .action((soulName: string) => soulNameResolve(soulName));
 
   soulName
     .command("resolve-reverse")
     .description("Resolves an address to soul names")
     .argument("<soulname>", "Address to resolve")
-    .action(async (address: string) => soulNameResolveReverse(address));
+    .action((address: string) => soulNameResolveReverse(address));
 
   soulName
     .command("create")
     .argument("<soulname>", "soulname to register")
     .argument("<duration>", "period of registration")
     .description("Creates a new soul name")
-    .action(async (soulName: string, duration: number) =>
+    .action((soulName: string, duration: number) =>
       soulNameCreate("ETH", soulName, duration)
     );
 
@@ -181,14 +181,14 @@ program
     .command("burn")
     .argument("<soulname>", "Soul Name to burn")
     .description("Burns soul name that you own")
-    .action(async (soulName: string) => soulNameBurn(soulName));
+    .action((soulName: string) => soulNameBurn(soulName));
 
   soulName
     .command("send")
     .argument("<soulname>", "Soul Name to send")
     .argument("<receiver>", "Receiver to receive the Soul Name")
     .description("Sends a soul name to that you own to a receiver")
-    .action(async (soulName: string, receiver: string) =>
+    .action((soulName: string, receiver: string) =>
       soulNameSend(soulName, receiver)
     );
 
@@ -196,13 +196,13 @@ program
     .command("show")
     .argument("<soulname>", "Soul Name to show")
     .description("Shows info about a Soul Name")
-    .action(async (soulName: string) => soulNameShow(soulName));
+    .action((soulName: string) => soulNameShow(soulName));
 
   soulName
     .command("verify")
     .argument("<soulname>", "Soul Name to verify")
     .description("Verifies a Soul Name")
-    .action(async (soulName: string) => soulNameVerify(soulName));
+    .action((soulName: string) => soulNameVerify(soulName));
 }
 
 {
@@ -213,30 +213,30 @@ program
   creditScore
     .command("info")
     .description("Shows info about all Credit Scores")
-    .action(async () => creditScoreInfo());
+    .action(() => creditScoreInfo());
 
   creditScore
     .command("list")
     .description("Lists your Credit Scores")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => creditScoreList(address));
+    .action(({ address }) => creditScoreList(address));
 
   creditScore
     .command("create")
     .description("Creates a Credit Score")
-    .action(async () => creditScoreCreate("ETH"));
+    .action(() => creditScoreCreate("ETH"));
 
   creditScore
     .command("burn")
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
-    .action(async (creditScoreId) => creditScoreBurn(creditScoreId));
+    .action((creditScoreId) => creditScoreBurn(creditScoreId));
 
   creditScore
     .command("load")
     .argument("<credit-score-id>", "ID of the Credit Score to load")
     .description("Loads a Credit Score")
-    .action(async (creditScoreId) => creditScoreLoad(creditScoreId));
+    .action((creditScoreId) => creditScoreLoad(creditScoreId));
 
   const creditScoreLink = creditScore
     .command("link")
@@ -250,7 +250,7 @@ program
       "ID of the identity that should receive access"
     )
     .description("Creates a Soul Linker Passport")
-    .action(async (creditScoreId, readerIdentityId) =>
+    .action((creditScoreId, readerIdentityId) =>
       creditScoreLinkCreate(creditScoreId, readerIdentityId)
     );
 
@@ -258,13 +258,13 @@ program
     .command("establish")
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Establishes a link to a Credit Score")
-    .action(async (passport) => creditScoreLinkEstablish("ETH", passport));
+    .action((passport) => creditScoreLinkEstablish("ETH", passport));
 
   creditScoreLink
     .command("query")
     .argument("<passport>", "Masa Soul Linker passport")
     .description("Queries a link to a Credit Score")
-    .action(async (passport) => creditScoreLinkQuery("ETH", passport));
+    .action((passport) => creditScoreLinkQuery("ETH", passport));
 
   creditScoreLink
     .command("list")
@@ -273,7 +273,7 @@ program
       "ID of the Credit Score to list all the links of"
     )
     .description("Lists all soul links for a credit score id")
-    .action(async (creditScoreId) => creditScoreLinkList(creditScoreId));
+    .action((creditScoreId) => creditScoreLinkList(creditScoreId));
 
   creditScoreLink
     .command("verify")
@@ -283,7 +283,7 @@ program
       "ID of the identity that should receive access"
     )
     .description("Verifies a Soul Link")
-    .action(async (creditScoreId, { readerIdentityId }) =>
+    .action((creditScoreId, { readerIdentityId }) =>
       creditScoreLinkVerify(creditScoreId, readerIdentityId)
     );
 
@@ -295,7 +295,7 @@ program
       "ID of the identity that should receive access"
     )
     .description("Breaks a Soul Link")
-    .action(async (creditScoreId, readerIdentityId) =>
+    .action((creditScoreId, readerIdentityId) =>
       creditScoreLinkBreak(creditScoreId, readerIdentityId)
     );
 }
@@ -306,25 +306,25 @@ program
   green
     .command("info")
     .description("Shows info about Masa Green")
-    .action(async () => greenInfo());
+    .action(() => greenInfo());
 
   green
     .command("list")
     .description("Lists your Greens")
     .option("-a, --address <address>", "Address override")
-    .action(async ({ address }) => greenList(address));
+    .action(({ address }) => greenList(address));
 
   green
     .command("create")
     .argument("<phone-number>", "The phone number to verify")
     .description("Creates a Green Token")
-    .action(async (phoneNumber: string) => greenCreate("ETH", phoneNumber));
+    .action((phoneNumber: string) => greenCreate("ETH", phoneNumber));
 
   green
     .command("burn")
     .argument("<green-id>", "ID of the Green to burn")
     .description("Burns a green")
-    .action(async (greenId) => greenBurn(greenId));
+    .action((greenId) => greenBurn(greenId));
 }
 
 {
@@ -334,14 +334,14 @@ program
     .command("info")
     .description("Shows info about an SBT")
     .argument("<contract-address>", "Address of the SBT to sign")
-    .action(async (contractAddress: string) => sbtInfo(contractAddress));
+    .action((contractAddress: string) => sbtInfo(contractAddress));
 
   sbt
     .command("list")
     .description("Lists your SBTs")
     .argument("<contract-address>", "Address of the SBT contract to list")
     .option("-a, --address <address>", "Address override")
-    .action(async (contractAddress: string, { address }) =>
+    .action((contractAddress: string, { address }) =>
       sbtList(contractAddress, address)
     );
 
@@ -353,12 +353,8 @@ program
     .argument("<types>", "Types structure to sign")
     .argument("<value>", "Values of the structure")
     .action(
-      async (
-        contractAddress: string,
-        name: string,
-        types: string,
-        value: string
-      ) => sbtSign(contractAddress, name, types, value)
+      (contractAddress: string, name: string, types: string, value: string) =>
+        sbtSign(contractAddress, name, types, value)
     );
 
   sbt
@@ -371,7 +367,7 @@ program
     .argument("<authority-address>", "Authority address used for signing")
     .argument("<signature>", "Signature from the signing step")
     .action(
-      async (
+      (
         contractAddress: string,
         name: string,
         types: string,
@@ -395,7 +391,7 @@ program
     .argument("<contract-address>", "Address of the SBT to sign")
     .argument("<sbt-id>", "ID of the SBT to burn")
     .description("Burns an SBT")
-    .action(async (contractAddress: string, SBTId: string) =>
+    .action((contractAddress: string, SBTId: string) =>
       sbtBurn(contractAddress, SBTId)
     );
 }
@@ -406,14 +402,14 @@ program
   asbt
     .command("deploy")
     .description("Deploys ASBTs")
-    .action(async () => sbtDeployASBT());
+    .action(() => sbtDeployASBT());
 
   asbt
     .command("mint")
     .description("Mints ASBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
-    .action(async (contractAddress, receiver) =>
+    .action((contractAddress, receiver) =>
       sbtMintASBT(contractAddress, receiver)
     );
 }
@@ -424,14 +420,14 @@ program
   sssbt
     .command("deploy")
     .description("Deploys SSSBTs")
-    .action(async () => sbtDeploySSSBT());
+    .action(() => sbtDeploySSSBT());
 
   sssbt
     .command("sign")
     .description("Signs SSSBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
-    .action(async (contractAddress: string, receiver: string) =>
+    .action((contractAddress: string, receiver: string) =>
       sbtSignSSSBT(contractAddress, receiver)
     );
 
@@ -443,7 +439,7 @@ program
     .argument("<signature-date>", "sig date")
     .argument("<signature>", "signature")
     .action(
-      async (
+      (
         contractAddress: string,
         authorityAddress: string,
         signatureDate: number,
