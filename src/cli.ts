@@ -88,23 +88,17 @@ program
 program
   .command("login")
   .description("Login to the masa infrastructure")
-  .action(async () => {
-    await login();
-  });
+  .action(async () => login());
 
 program
   .command("logout")
   .description("Logout from the masa infrastructure")
-  .action(async () => {
-    await logout();
-  });
+  .action(async () => logout());
 
 program
   .command("account")
   .description("Shows information about your account")
-  .action(async () => {
-    await account();
-  });
+  .action(async () => account());
 
 {
   const identity = program.command("identity").description("Identity commands");
@@ -119,9 +113,8 @@ program
     .argument("<soulname>", "Soul Name to register")
     .argument("<duration>", "Period of registration")
     .description("Creates a masa identity with soul name")
-    .action(
-      async (soulName: string, duration: number) =>
-        await identityCreate("ETH", soulName, duration)
+    .action(async (soulName: string, duration: number) =>
+      identityCreate("ETH", soulName, duration)
     );
 
   identity
@@ -180,9 +173,8 @@ program
     .argument("<soulname>", "soulname to register")
     .argument("<duration>", "period of registration")
     .description("Creates a new soul name")
-    .action(
-      async (soulName: string, duration: number) =>
-        await soulNameCreate("ETH", soulName, duration)
+    .action(async (soulName: string, duration: number) =>
+      soulNameCreate("ETH", soulName, duration)
     );
 
   soulName
@@ -196,9 +188,8 @@ program
     .argument("<soulname>", "Soul Name to send")
     .argument("<receiver>", "Receiver to receive the Soul Name")
     .description("Sends a soul name to that you own to a receiver")
-    .action(
-      async (soulName: string, receiver: string) =>
-        await soulNameSend(soulName, receiver)
+    .action(async (soulName: string, receiver: string) =>
+      soulNameSend(soulName, receiver)
     );
 
   soulName
@@ -350,9 +341,8 @@ program
     .description("Lists your SBTs")
     .argument("<contract-address>", "Address of the SBT contract to list")
     .option("-a, --address <address>", "Address override")
-    .action(
-      async (contractAddress: string, { address }) =>
-        await sbtList(contractAddress, address)
+    .action(async (contractAddress: string, { address }) =>
+      sbtList(contractAddress, address)
     );
 
   sbt
@@ -389,7 +379,7 @@ program
         authorityAddress: string,
         signature: string
       ) =>
-        await sbtPrepareMint(
+        sbtPrepareMint(
           "ETH",
           contractAddress,
           name,
@@ -405,9 +395,8 @@ program
     .argument("<contract-address>", "Address of the SBT to sign")
     .argument("<sbt-id>", "ID of the SBT to burn")
     .description("Burns an SBT")
-    .action(
-      async (contractAddress: string, SBTId: string) =>
-        await sbtBurn(contractAddress, SBTId)
+    .action(async (contractAddress: string, SBTId: string) =>
+      sbtBurn(contractAddress, SBTId)
     );
 }
 
@@ -424,9 +413,8 @@ program
     .description("Mints ASBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
-    .action(
-      async (contractAddress, receiver) =>
-        await sbtMintASBT(contractAddress, receiver)
+    .action(async (contractAddress, receiver) =>
+      sbtMintASBT(contractAddress, receiver)
     );
 }
 
