@@ -97,8 +97,9 @@ program
 
 program
   .command("account")
+  .option("-a, --address <address>", "Address override")
   .description("Shows information about your account")
-  .action(() => account());
+  .action(({ address }) => account(address));
 
 {
   const identity = program.command("identity").description("Identity commands");
