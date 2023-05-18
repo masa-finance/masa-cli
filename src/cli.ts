@@ -32,6 +32,7 @@ import {
   sbtInfo,
   sbtList,
   sbtMintASBT,
+  sbtMintASBTBulk,
   sbtPrepareMint,
   sbtSign,
   settingsPreset,
@@ -412,6 +413,14 @@ program
     .argument("<receiver>", "Address of the SBT receiver")
     .action((contractAddress, receiver) =>
       sbtMintASBT(contractAddress, receiver)
+    );
+    asbt
+    .command("bulk-mint")
+    .description("Mints ASBTs from CSV files")
+    .argument("<contract-address>", "Address of the SBT to mint on")
+    .argument("<csv>", "Address of the SBT receiver")
+    .action((contractAddress, csv) =>
+      sbtMintASBTBulk(contractAddress, csv)
     );
 }
 
