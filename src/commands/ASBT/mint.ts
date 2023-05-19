@@ -6,8 +6,17 @@ import {
 
 import { createReadStream } from "fs";
 import csv from "csv-parser";
-import { LogDescription } from "ethers/lib/utils";
-import { Masa, Messages } from "@masa-finance/masa-sdk";
+
+export const mintFromSoulname = async (
+  contractAddress: string,
+  soulname: string
+) => {
+  const address = await masa.soulName.resolve(soulname);
+
+  if (address) {
+    mintASBT(contractAddress, address);
+  }
+};
 
 export const bulkMintASBT = async (
   contractAddress: string,

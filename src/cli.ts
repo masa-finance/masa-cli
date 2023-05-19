@@ -33,6 +33,7 @@ import {
   sbtList,
   sbtMintASBT,
   sbtMintASBTBulk,
+  sbtMintASBTFromSoulname,
   sbtPrepareMint,
   sbtSign,
   settingsPreset,
@@ -414,13 +415,20 @@ program
     .action((contractAddress, receiver) =>
       sbtMintASBT(contractAddress, receiver)
     );
-    asbt
+  asbt
     .command("bulk-mint")
     .description("Mints ASBTs from CSV files")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<csv>", "Address of the SBT receiver")
-    .action((contractAddress, csv) =>
-      sbtMintASBTBulk(contractAddress, csv)
+    .action((contractAddress, csv) => sbtMintASBTBulk(contractAddress, csv));
+
+  asbt
+    .command("mint-to-soulname")
+    .description("Mints ASBTs from soulname")
+    .argument("<contract-address>", "Address of the SBT to mint on")
+    .argument("<soulname>", "Address of the SBT receiver")
+    .action((contractAddress, soulname) =>
+      sbtMintASBTFromSoulname(contractAddress, soulname)
     );
 }
 
