@@ -1,4 +1,4 @@
-import { masa, readLine } from "../../helpers";
+import { masa, readLine } from "../../../helpers";
 
 export const deploySSSBT = async () => {
   console.log("Deploying SSSBT contract\n");

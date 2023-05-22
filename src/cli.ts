@@ -29,9 +29,12 @@ import {
   logout,
   sbtBurn,
   sbtDeployASBT,
+  sbtDeploySSSBT,
   sbtInfo,
   sbtList,
   sbtMintASBT,
+  sbtMintSSSBT,
+  sbtSignSSSBT,
   settingsPreset,
   settingsPresetNetwork,
   settingsSet,
@@ -50,7 +53,6 @@ import {
 } from "./commands";
 import { reloadMasa } from "./helpers";
 import { MasaArgs, NetworkName } from "@masa-finance/masa-sdk";
-import { sbtDeploySSSBT, sbtMintSSSBT, sbtSignSSSBT } from "./commands/SSSBT";
 
 clear();
 console.log(
