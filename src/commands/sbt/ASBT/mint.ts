@@ -1,7 +1,14 @@
 import { masa } from "../../../helpers";
-
 import { createReadStream } from "fs";
 import csv from "csv-parser";
+
+export const mintASBT = async (contractAddress: string, receiver: string) => {
+  const { mint } = await masa.asbt.connect(contractAddress);
+
+  if (mint) {
+    await mint(receiver);
+  }
+};
 
 export const mintFromSoulname = async (
   contractAddress: string,
@@ -14,10 +21,7 @@ export const mintFromSoulname = async (
   }
 };
 
-export const bulkMintASBT = async (
-  contractAddress: string,
-  csvFile: string
-) => {
+export const bulkMintASBT = (contractAddress: string, csvFile: string) => {
   const receivers: string[] = [];
 
   // Load all receivers from the CSV file
@@ -42,19 +46,11 @@ export const bulkMintASBT = async (
                   receiver
                 )}/${receivers.length}`
               );
-            } catch (e) {
-              console.log("mint failed for: " + receiver, { error: e });
+            } catch (error) {
+              console.log(`mint failed for: ${receiver}`, { error });
             }
           }
         }
       }
     });
-};
-
-export const mintASBT = async (contractAddress: string, receiver: string) => {
-  const { mint } = await masa.asbt.connect(contractAddress);
-
-  if (mint) {
-    await mint(receiver);
-  }
 };
