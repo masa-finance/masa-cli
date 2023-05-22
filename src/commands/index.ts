@@ -1,4 +1,3 @@
-export * from "./ASBT/";
 export * from "./credit-score/";
 export * from "./green/";
 export * from "./identity/";

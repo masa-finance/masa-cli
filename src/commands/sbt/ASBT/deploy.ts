@@ -1,4 +1,4 @@
-import { masa, readLine } from "../../helpers";
+import { masa, readLine } from "../../../helpers";
 
 export const deployASBT = async () => {
   console.log("Deploying ASBT contract\n");
@@ -10,7 +10,7 @@ export const deployASBT = async () => {
     `Admin address (leave empty to use: '${await masa.config.wallet.getAddress()}'): `
   );
 
-  const address = await masa.sbt.ASBT.deploy(
+  const address = await masa.asbt.deploy(
     name,
     symbol,
     baseTokenUri,
