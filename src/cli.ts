@@ -32,8 +32,6 @@ import {
   sbtInfo,
   sbtList,
   sbtMintASBT,
-  sbtPrepareMint,
-  sbtSign,
   settingsPreset,
   settingsPresetNetwork,
   settingsSet,
@@ -344,47 +342,6 @@ program
     .option("-a, --address <address>", "Address override")
     .action((contractAddress: string, { address }) =>
       sbtList(contractAddress, address)
-    );
-
-  sbt
-    .command("sign")
-    .description("Signs an SBT")
-    .argument("<contract-address>", "Address of the SBT to sign")
-    .argument("<name>", "Name of the contract")
-    .argument("<types>", "Types structure to sign")
-    .argument("<value>", "Values of the structure")
-    .action(
-      (contractAddress: string, name: string, types: string, value: string) =>
-        sbtSign(contractAddress, name, types, value)
-    );
-
-  sbt
-    .command("prepare-mint")
-    .description("Prepares an SBT mint operation")
-    .argument("<contract-address>", "Address of the SBT to sign")
-    .argument("<name>", "Name of the contract")
-    .argument("<types>", "Types structure to sign")
-    .argument("<value>", "Values of the structure")
-    .argument("<authority-address>", "Authority address used for signing")
-    .argument("<signature>", "Signature from the signing step")
-    .action(
-      (
-        contractAddress: string,
-        name: string,
-        types: string,
-        value: string,
-        authorityAddress: string,
-        signature: string
-      ) =>
-        sbtPrepareMint(
-          "ETH",
-          contractAddress,
-          name,
-          types,
-          value,
-          authorityAddress,
-          signature
-        )
     );
 
   sbt

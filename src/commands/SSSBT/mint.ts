@@ -1,5 +1,4 @@
 import { masa } from "../../helpers";
-import { ReferenceSBTSelfSovereign } from "@masa-finance/masa-contracts-identity";
 
 /**
  *
@@ -14,16 +13,9 @@ export const mintSSSBT = async (
   signatureDate: number,
   signature: string
 ) => {
-  const { sbtContract } = await masa.sbt.connect<ReferenceSBTSelfSovereign>(
-    contractAddress
-  );
+  const { mint } = await masa.sssbt.connect(contractAddress);
 
-  if (sbtContract) {
-    await masa.sbt.SSSBT.mint(
-      sbtContract,
-      authorityAddress,
-      signatureDate,
-      signature
-    );
+  if (mint) {
+    await mint(authorityAddress, signatureDate, signature);
   }
 };
