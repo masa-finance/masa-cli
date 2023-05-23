@@ -1,18 +1,22 @@
 import { masa } from "../../helpers";
 
 export const info = async (address: string) => {
-  const { sbtContract } = await masa.sbt.connect(address);
+  const { contract } = await masa.sbt.connect(address);
 
-  if (sbtContract) {
-    const supply = (await sbtContract.totalSupply()).toNumber();
+  if (contract) {
+    const supply = (await contract.totalSupply()).toNumber();
     console.log("Self Sovereign SBT Contract Information:\n");
     console.log(`Network: '${masa.config.networkName}'`);
-    console.log(`Contract Name: '${await sbtContract.name()}'`);
-    console.log(`Contract Symbol: '${await sbtContract.symbol()}'`);
+    console.log(`Contract Name: '${await contract.name()}'`);
+    console.log(`Contract Symbol: '${await contract.symbol()}'`);
     if (supply > 0) {
-      console.log(`Contract Token URI: '${await sbtContract.tokenURI(0)}'`);
+      try {
+        console.log(`Contract Token URI: '${await contract.tokenURI(0)}'`);
+      } catch {
+        // ignore
+      }
     }
-    console.log(`Contract Address: '${sbtContract.address}'`);
+    console.log(`Contract Address: '${contract.address}'`);
     console.log(`Total SBTs: ${supply}`);
   } else {
     console.error(
