@@ -16,7 +16,7 @@ const loadWallet = (rpcUrl?: string) =>
 
 const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
-  wallet: loadWallet(),
+  signer: loadWallet(),
   apiUrl: config.get("api-url") as string,
   environment: config.get("environment") as EnvironmentName,
   networkName: config.get("network") as NetworkName,
@@ -33,7 +33,7 @@ export const reloadMasa = (overrideConfig: Partial<MasaArgs>) => {
   if (overrideConfig.networkName) {
     const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
-      overrideConfig.wallet = loadWallet(network.rpcUrls[0]);
+      overrideConfig.signer = loadWallet(network.rpcUrls[0]);
     } else {
       console.error(
         `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`

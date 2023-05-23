@@ -7,10 +7,10 @@ export const deploySSSBT = async () => {
   const symbol = await readLine("Enter the ticker of the SBT: ");
   const baseTokenUri = await readLine("Enter the URL for the metadata image: ");
   const authorityAddress = await readLine(
-    `Authority address (leave empty to use: '${await masa.config.wallet.getAddress()}'): `
+    `Authority address (leave empty to use: '${await masa.config.signer.getAddress()}'): `
   );
   const adminAddress = await readLine(
-    `Admin address (leave empty to use: '${await masa.config.wallet.getAddress()}'): `
+    `Admin address (leave empty to use: '${await masa.config.signer.getAddress()}'): `
   );
 
   const address = await masa.sssbt.deploy(

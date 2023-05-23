@@ -1,7 +1,7 @@
 import { masa } from "../helpers";
 
 export const account = async (address?: string) => {
-  address = address || (await masa.config.wallet.getAddress());
+  address = address || (await masa.config.signer.getAddress());
   console.log(`Address: '${address}'\n`);
 
   // login status

@@ -1,14 +1,15 @@
-import { masa } from "../../../helpers";
-import { PaymentMethod } from "@masa-finance/masa-sdk";
+import { MasaSoulLinker, PaymentMethod } from "@masa-finance/masa-sdk";
 
 /**
  *
+ * @param links
  * @param paymentMethod
  * @param passport the base64 encoded soul linker passport
  */
 export const establish = async (
+  links: MasaSoulLinker,
   paymentMethod: PaymentMethod,
   passport: string
 ) => {
-  await masa.creditScore.links.establish(paymentMethod, passport);
+  await links.establish(paymentMethod, passport);
 };

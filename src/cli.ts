@@ -5,15 +5,13 @@ import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
   account,
+  asbtDeploy,
+  asbtMint,
+  asbtMintBulk,
+  asbtMintFromSoulname,
   creditScoreBurn,
   creditScoreCreate,
   creditScoreInfo,
-  creditScoreLinkBreak,
-  creditScoreLinkCreate,
-  creditScoreLinkEstablish,
-  creditScoreLinkList,
-  creditScoreLinkQuery,
-  creditScoreLinkVerify,
   creditScoreList,
   creditScoreLoad,
   greenBurn,
@@ -28,15 +26,8 @@ import {
   login,
   logout,
   sbtBurn,
-  sbtDeployASBT,
-  sbtDeploySSSBT,
   sbtInfo,
   sbtList,
-  sbtMintASBT,
-  sbtMintASBTBulk,
-  sbtMintASBTFromSoulname,
-  sbtMintSSSBT,
-  sbtSignSSSBT,
   settingsPreset,
   settingsPresetNetwork,
   settingsSet,
@@ -51,10 +42,21 @@ import {
   soulNameShow,
   soulNameTail,
   soulNameVerify,
+  sssbtDeploy,
+  sssbtMint,
+  sssbtSign,
   version,
 } from "./commands";
-import { reloadMasa } from "./helpers";
+import { masa, reloadMasa } from "./helpers";
 import { MasaArgs, NetworkName } from "@masa-finance/masa-sdk";
+import {
+  breakLink,
+  createLink,
+  establishLink,
+  listLinks,
+  querylink,
+  verifyLink,
+} from "./commands/soul-linker/links";
 
 clear();
 console.log(
@@ -241,66 +243,72 @@ program
     .description("Loads a Credit Score")
     .action((creditScoreId) => creditScoreLoad(creditScoreId));
 
-  const creditScoreLink = creditScore
-    .command("link")
-    .description("Credit Score Soul Linker Commands");
+  {
+    const creditScoreLink = creditScore
+      .command("link")
+      .description("Credit Score Soul Linker Commands");
 
-  creditScoreLink
-    .command("create")
-    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
-    .argument(
-      "<reader-identity-id>",
-      "ID of the identity that should receive access"
-    )
-    .description("Creates a Soul Linker Passport")
-    .action((creditScoreId, readerIdentityId) =>
-      creditScoreLinkCreate(creditScoreId, readerIdentityId)
-    );
+    creditScoreLink
+      .command("create")
+      .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+      .argument(
+        "<reader-identity-id>",
+        "ID of the identity that should receive access"
+      )
+      .description("Creates a Soul Linker Passport")
+      .action((creditScoreId, readerIdentityId) =>
+        createLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+      );
 
-  creditScoreLink
-    .command("establish")
-    .argument("<passport>", "Masa Soul Linker passport")
-    .description("Establishes a link to a Credit Score")
-    .action((passport) => creditScoreLinkEstablish("ETH", passport));
+    creditScoreLink
+      .command("establish")
+      .argument("<passport>", "Masa Soul Linker passport")
+      .description("Establishes a link to a Credit Score")
+      .action((passport) =>
+        establishLink(masa.creditScore.links, "ETH", passport)
+      );
 
-  creditScoreLink
-    .command("query")
-    .argument("<passport>", "Masa Soul Linker passport")
-    .description("Queries a link to a Credit Score")
-    .action((passport) => creditScoreLinkQuery("ETH", passport));
+    creditScoreLink
+      .command("query")
+      .argument("<passport>", "Masa Soul Linker passport")
+      .description("Queries a link to a Credit Score")
+      .action((passport) => querylink(masa.creditScore.links, "ETH", passport));
 
-  creditScoreLink
-    .command("list")
-    .argument(
-      "<credit-score-id>",
-      "ID of the Credit Score to list all the links of"
-    )
-    .description("Lists all soul links for a credit score id")
-    .action((creditScoreId) => creditScoreLinkList(creditScoreId));
+    creditScoreLink
+      .command("list")
+      .argument(
+        "<credit-score-id>",
+        "ID of the Credit Score to list all the links of"
+      )
+      .description("Lists all soul links for a credit score id")
+      .action((creditScoreId) =>
+        listLinks(masa.creditScore.links, creditScoreId)
+      );
 
-  creditScoreLink
-    .command("verify")
-    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
-    .option(
-      "-r, --reader-identity-id <reader-identity-id>",
-      "ID of the identity that should receive access"
-    )
-    .description("Verifies a Soul Link")
-    .action((creditScoreId, { readerIdentityId }) =>
-      creditScoreLinkVerify(creditScoreId, readerIdentityId)
-    );
+    creditScoreLink
+      .command("verify")
+      .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+      .option(
+        "-r, --reader-identity-id <reader-identity-id>",
+        "ID of the identity that should receive access"
+      )
+      .description("Verifies a Soul Link")
+      .action((creditScoreId, { readerIdentityId }) =>
+        verifyLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+      );
 
-  creditScoreLink
-    .command("break")
-    .argument("<credit-score-id>", "ID of the Credit Score to grant access")
-    .argument(
-      "<reader-identity-id>",
-      "ID of the identity that should receive access"
-    )
-    .description("Breaks a Soul Link")
-    .action((creditScoreId, readerIdentityId) =>
-      creditScoreLinkBreak(creditScoreId, readerIdentityId)
-    );
+    creditScoreLink
+      .command("break")
+      .argument("<credit-score-id>", "ID of the Credit Score to grant access")
+      .argument(
+        "<reader-identity-id>",
+        "ID of the identity that should receive access"
+      )
+      .description("Breaks a Soul Link")
+      .action((creditScoreId, readerIdentityId) =>
+        breakLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+      );
+  }
 }
 
 {
@@ -364,22 +372,20 @@ program
   asbt
     .command("deploy")
     .description("Deploys ASBTs")
-    .action(() => sbtDeployASBT());
+    .action(() => asbtDeploy());
 
   asbt
     .command("mint")
     .description("Mints ASBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
-    .action((contractAddress, receiver) =>
-      sbtMintASBT(contractAddress, receiver)
-    );
+    .action((contractAddress, receiver) => asbtMint(contractAddress, receiver));
   asbt
     .command("bulk-mint")
     .description("Mints ASBTs from CSV files")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<csv>", "Address of the SBT receiver")
-    .action((contractAddress, csv) => sbtMintASBTBulk(contractAddress, csv));
+    .action((contractAddress, csv) => asbtMintBulk(contractAddress, csv));
 
   asbt
     .command("mint-to-soulname")
@@ -387,7 +393,7 @@ program
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<soulname>", "Address of the SBT receiver")
     .action((contractAddress, soulname) =>
-      sbtMintASBTFromSoulname(contractAddress, soulname)
+      asbtMintFromSoulname(contractAddress, soulname)
     );
 }
 
@@ -397,7 +403,7 @@ program
   sssbt
     .command("deploy")
     .description("Deploys SSSBTs")
-    .action(() => sbtDeploySSSBT());
+    .action(() => sssbtDeploy());
 
   sssbt
     .command("sign")
@@ -405,7 +411,7 @@ program
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
     .action((contractAddress: string, receiver: string) =>
-      sbtSignSSSBT(contractAddress, receiver)
+      sssbtSign(contractAddress, receiver)
     );
 
   sssbt
@@ -422,12 +428,7 @@ program
         signatureDate: number,
         signature: string
       ) =>
-        sbtMintSSSBT(
-          contractAddress,
-          authorityAddress,
-          signatureDate,
-          signature
-        )
+        sssbtMint(contractAddress, authorityAddress, signatureDate, signature)
     );
 }
 

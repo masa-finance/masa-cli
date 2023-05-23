@@ -70,5 +70,5 @@ export const settingsShow = async () => {
   console.log("rpc-url", config.get("rpc-url"));
   console.log("network", config.get("network"));
   console.log("environment", config.get("environment"));
-  console.log("address", await masa.config.wallet.getAddress());
+  console.log("address", await masa.config.signer.getAddress());
 };

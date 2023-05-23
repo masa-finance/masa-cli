@@ -1,4 +1,4 @@
-export { deployASBT as sbtDeployASBT } from "./deploy";
-export { mintASBT as sbtMintASBT } from "./mint";
-export { bulkMintASBT as sbtMintASBTBulk } from "./mint";
-export { mintFromSoulname as sbtMintASBTFromSoulname } from "./mint";
+export { deployASBT as asbtDeploy } from "./deploy";
+export { mintASBT as asbtMint } from "./mint";
+export { bulkMintASBT as asbtMintBulk } from "./mint";
+export { mintFromSoulname as asbtMintFromSoulname } from "./mint";
