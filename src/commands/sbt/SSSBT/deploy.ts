@@ -12,11 +12,15 @@ export const deploySSSBT = async () => {
   const adminAddress = await readLine(
     `Admin address (leave empty to use: '${await masa.config.signer.getAddress()}'): `
   );
+  const limit = await readLine(
+    "Enter mint limit (0 = no limit, default = 1): "
+  );
 
   const address = await masa.sssbt.deploy(
     name,
     symbol,
     baseTokenUri,
+    limit ? parseInt(limit) : undefined,
     authorityAddress,
     adminAddress
   );
