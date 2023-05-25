@@ -8,9 +8,15 @@ import {
 import { config } from "../utils/config";
 import { providers, Wallet } from "ethers";
 
-const loadWallet = (rpcUrl?: string) =>
+const loadWallet = ({
+  rpcUrl,
+  privateKey,
+}: {
+  rpcUrl?: string;
+  privateKey?: string;
+} = {}) =>
   new Wallet(
-    config.get("private-key") as string,
+    privateKey || (config.get("private-key") as string),
     new providers.JsonRpcProvider(rpcUrl || (config.get("rpc-url") as string))
   );
 
@@ -29,11 +35,19 @@ const masaArgs: MasaArgs = {
   },
 };
 
-export const reloadMasa = (overrideConfig: Partial<MasaArgs>) => {
+export const reloadMasa = (
+  overrideConfig: Partial<MasaArgs> & {
+    privateKey?: string;
+    rpcUrl?: string;
+  }
+) => {
   if (overrideConfig.networkName) {
     const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
-      overrideConfig.signer = loadWallet(network.rpcUrls[0]);
+      overrideConfig.signer = loadWallet({
+        rpcUrl: network.rpcUrls[0],
+        privateKey: overrideConfig.privateKey,
+      });
     } else {
       console.error(
         `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`
@@ -43,25 +57,21 @@ export const reloadMasa = (overrideConfig: Partial<MasaArgs>) => {
     }
   }
 
-  /*
-    const contractOverrides: Partial<IIdentityContracts> = {
-      SoulStoreContract: SoulStore__factory.connect(
-        constants.AddressZero,
-        overrideConfig.wallet || masaArgs.wallet
-      ),
-      SoulNameContract: SoulName__factory.connect(
-        constants.AddressZero,
-        overrideConfig.wallet || masaArgs.wallet
-      ),
-    };
+  if (overrideConfig.rpcUrl) {
+    overrideConfig.signer = loadWallet({
+      rpcUrl: overrideConfig.rpcUrl,
+      privateKey: overrideConfig.privateKey,
+    });
+    delete overrideConfig.rpcUrl;
+  }
 
-    if (contractOverrides.SoulStoreContract) {
-      contractOverrides.SoulStoreContract.hasAddress = true;
-    }
-    if (contractOverrides.SoulNameContract) {
-      contractOverrides.SoulNameContract.hasAddress = true;
-    }
-  */
+  if (overrideConfig.privateKey) {
+    overrideConfig.signer = loadWallet({
+      rpcUrl: overrideConfig.rpcUrl,
+      privateKey: overrideConfig.privateKey,
+    });
+    delete overrideConfig.privateKey;
+  }
 
   masa = new Masa({
     ...masaArgs,

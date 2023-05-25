@@ -63,7 +63,10 @@ console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
-const overrides: Partial<MasaArgs> = {
+const overrides: Partial<MasaArgs> & {
+  privateKey?: string;
+  rpcUrl?: string;
+} = {
   verbose: undefined,
   networkName: undefined,
 };
@@ -84,6 +87,18 @@ program
   })
   .option("-n, --network <network>", "Address override", (networkName) => {
     overrides.networkName = networkName as NetworkName;
+    reloadMasa(overrides);
+  })
+  .option(
+    "-pk, --privateKey <private-key>",
+    "Private Key override",
+    (privateKey) => {
+      overrides.privateKey = privateKey;
+      reloadMasa(overrides);
+    }
+  )
+  .option("-r, --rpcUrl <rpc-url>", "RPC URL override", (rpcUrl) => {
+    overrides.rpcUrl = rpcUrl;
     reloadMasa(overrides);
   })
   .usage("[command] [subcommand] [arguments] [options]")
