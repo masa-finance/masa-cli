@@ -45,7 +45,7 @@ export const reloadMasa = (
     const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
       overrideConfig.signer = loadWallet({
-        rpcUrl: network.rpcUrls[0],
+        rpcUrl: overrideConfig.rpcUrl || network.rpcUrls[0],
         privateKey: overrideConfig.privateKey,
       });
     } else {
@@ -62,7 +62,6 @@ export const reloadMasa = (
       rpcUrl: overrideConfig.rpcUrl,
       privateKey: overrideConfig.privateKey,
     });
-    delete overrideConfig.rpcUrl;
   }
 
   if (overrideConfig.privateKey) {
@@ -70,7 +69,6 @@ export const reloadMasa = (
       rpcUrl: overrideConfig.rpcUrl,
       privateKey: overrideConfig.privateKey,
     });
-    delete overrideConfig.privateKey;
   }
 
   masa = new Masa({

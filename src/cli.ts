@@ -42,6 +42,7 @@ import {
   soulNameShow,
   soulNameTail,
   soulNameVerify,
+  sssbtAddAuthority,
   sssbtDeploy,
   sssbtMint,
   sssbtSign,
@@ -419,6 +420,18 @@ program
     .command("deploy")
     .description("Deploys SSSBTs")
     .action(() => sssbtDeploy());
+
+  sssbt
+    .command("add-authority")
+    .description("Adds an Authority to the SSSBT")
+    .argument(
+      "<contract-address>",
+      "Address of the SBT to add the authority to"
+    )
+    .argument("<authority-address>", "Address of the Authority")
+    .action((contractAddress: string, authorityAddress: string) =>
+      sssbtAddAuthority(contractAddress, authorityAddress)
+    );
 
   sssbt
     .command("sign")
