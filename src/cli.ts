@@ -67,9 +67,11 @@ console.log(
 const overrides: Partial<MasaArgs> & {
   privateKey?: string;
   rpcUrl?: string;
+  soulNameContractAddress?: string;
 } = {
   verbose: undefined,
   networkName: undefined,
+  soulNameContractAddress: undefined,
 };
 
 program
@@ -158,6 +160,14 @@ program
 {
   const soulName = program
     .command("soul-name")
+    .option(
+      "-c, --contract <contract>",
+      "Contract address override",
+      (soulNameContractAddress) => {
+        overrides.soulNameContractAddress = soulNameContractAddress;
+        reloadMasa(overrides);
+      }
+    )
     .description("Soul Name Commands");
 
   soulName

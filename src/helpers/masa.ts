@@ -7,6 +7,7 @@ import {
 } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
 import { providers, Wallet } from "ethers";
+import { SoulName__factory } from "@masa-finance/masa-contracts-identity";
 
 const loadWallet = ({
   rpcUrl,
@@ -39,8 +40,10 @@ export const reloadMasa = (
   overrideConfig: Partial<MasaArgs> & {
     privateKey?: string;
     rpcUrl?: string;
+    soulNameContractAddress?: string;
   }
 ) => {
+  // override network
   if (overrideConfig.networkName) {
     const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
@@ -57,6 +60,7 @@ export const reloadMasa = (
     }
   }
 
+  // override rpc url
   if (overrideConfig.rpcUrl) {
     overrideConfig.signer = loadWallet({
       rpcUrl: overrideConfig.rpcUrl,
@@ -64,11 +68,25 @@ export const reloadMasa = (
     });
   }
 
+  // override private key
   if (overrideConfig.privateKey) {
     overrideConfig.signer = loadWallet({
       rpcUrl: overrideConfig.rpcUrl,
       privateKey: overrideConfig.privateKey,
     });
+  }
+
+  // override soul name contract
+  if (overrideConfig.soulNameContractAddress) {
+    overrideConfig.contractOverrides = {
+      SoulNameContract: SoulName__factory.connect(
+        overrideConfig.soulNameContractAddress,
+        overrideConfig?.signer || masa.config.signer
+      ),
+    };
+    if (overrideConfig.contractOverrides?.SoulNameContract) {
+      overrideConfig.contractOverrides.SoulNameContract.hasAddress = true;
+    }
   }
 
   masa = new Masa({
