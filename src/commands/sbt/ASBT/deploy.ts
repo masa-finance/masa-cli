@@ -14,13 +14,13 @@ export const deployASBT = async (etherscanKey?: string) => {
     "Enter mint limit (0 = no limit, default = 1): "
   );
 
-  const deployResult = await masa.asbt.deploy(
+  const deployResult = await masa.asbt.deploy({
     name,
     symbol,
     baseTokenUri,
-    limit ? parseInt(limit) : undefined,
-    adminAddress
-  );
+    limit: limit ? parseInt(limit) : undefined,
+    adminAddress,
+  });
 
   if (
     deployResult &&
