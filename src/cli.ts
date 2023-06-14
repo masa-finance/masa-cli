@@ -482,7 +482,7 @@ program
     .argument("<key>", "key to set")
     .argument("<value>", "value to set to key")
     .description("Changes setting <key> to <value>")
-    .action((key: string, value: any) => settingsSet(key, value));
+    .action((key: string, value: string | number) => settingsSet(key, value));
 
   settings
     .command("preset")

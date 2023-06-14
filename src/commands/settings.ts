@@ -8,7 +8,7 @@ import {
 } from "@masa-finance/masa-sdk";
 import { masa } from "../helpers";
 
-export const settingsSet = (key: string, value: any) => {
+export const settingsSet = (key: string, value: string | number) => {
   config.set(key, value);
   console.log(`Key '${key}' successfully set!`);
   switch (key) {
