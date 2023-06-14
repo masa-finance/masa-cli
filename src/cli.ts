@@ -398,7 +398,8 @@ program
   asbt
     .command("deploy")
     .description("Deploys ASBTs")
-    .action(() => asbtDeploy());
+    .option("-e, --etherscan-key <etherscan-key>", "Etherscan API Key")
+    .action(({ etherscanKey }) => asbtDeploy(etherscanKey));
 
   asbt
     .command("mint")
@@ -429,7 +430,8 @@ program
   sssbt
     .command("deploy")
     .description("Deploys SSSBTs")
-    .action(() => sssbtDeploy());
+    .option("-e, --etherscan-key <etherscan-key>", "Etherscan API Key")
+    .action(({ etherscanKey }) => sssbtDeploy(etherscanKey));
 
   sssbt
     .command("add-authority")

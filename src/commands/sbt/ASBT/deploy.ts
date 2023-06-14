@@ -1,6 +1,7 @@
-import { masa, readLine } from "../../../helpers";
+import { masa, readLine, verifyContract } from "../../../helpers";
+import fs from "fs";
 
-export const deployASBT = async () => {
+export const deployASBT = async (etherscanKey?: string) => {
   console.log("Deploying ASBT contract\n");
 
   const name = await readLine("Enter the name of the SBT: ");
@@ -13,7 +14,7 @@ export const deployASBT = async () => {
     "Enter mint limit (0 = no limit, default = 1): "
   );
 
-  const address = await masa.asbt.deploy(
+  const deployResult = await masa.asbt.deploy(
     name,
     symbol,
     baseTokenUri,
@@ -21,7 +22,29 @@ export const deployASBT = async () => {
     adminAddress
   );
 
-  if (!address) {
+  if (
+    deployResult &&
+    etherscanKey &&
+    masa.config.network?.blockExplorerApiUrls?.[0]
+  ) {
+    const ReferenceSBTAuthority = fs
+      .readFileSync(
+        require.resolve(
+          // todo add flattened version here
+          "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthority.sol"
+        )
+      )
+      .toString("utf8");
+
+    await verifyContract(
+      masa.config.network?.blockExplorerApiUrls?.[0],
+      etherscanKey,
+      deployResult.address,
+      name,
+      deployResult.abiEncodedConstructorArguments,
+      ReferenceSBTAuthority
+    );
+  } else {
     console.error("Deployment failed!");
   }
 };
