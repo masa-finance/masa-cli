@@ -9,9 +9,9 @@ export const addAuthoritySSSBT = async (
   contractAddress: string,
   authorityAddress: string
 ) => {
-  const { addAuthority } = await masa.sssbt.connect(contractAddress);
+  const { contract } = await masa.sssbt.connect(contractAddress);
 
-  if (addAuthority) {
-    await addAuthority(authorityAddress);
+  if (contract) {
+    await contract.addAuthority(authorityAddress);
   }
 };
