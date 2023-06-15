@@ -33,23 +33,15 @@ export const bulkMintASBT = (contractAddress: string, csvFile: string) => {
     .on("end", async () => {
       console.log("CSV file successfully processed");
 
-      const { mint } = await masa.asbt.connect(contractAddress);
+      const { bulkMint } = await masa.asbt.connect(contractAddress);
 
-      if (mint) {
+      if (bulkMint) {
         // Mint for each receiver one at a time
-        for (const receiver of receivers) {
-          if (receiver && receiver.length > 0) {
-            try {
-              await mint(receiver);
-              console.log(
-                `Minted ASBT for receiver ${receiver} ${receivers.indexOf(
-                  receiver
-                )}/${receivers.length}`
-              );
-            } catch (error) {
-              console.log(`mint failed for: ${receiver}`, { error });
-            }
-          }
+        try {
+          await bulkMint(receivers);
+          console.log(`Minted ASBT for receivers ${receivers}`);
+        } catch (error) {
+          console.log(`mint failed for: ${receivers}`, { error });
         }
       }
     });
