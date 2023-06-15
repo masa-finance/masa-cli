@@ -1,6 +1,10 @@
 import { masa, readLine, verifyContract } from "../../../helpers";
 import fs from "fs";
 
+const ReferenceSBTAuthorityPath = require.resolve(
+  "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthorityFlattened.sol"
+);
+
 export const deployASBT = async (etherscanKey?: string) => {
   console.log("Deploying ASBT contract\n");
 
@@ -28,23 +32,20 @@ export const deployASBT = async (etherscanKey?: string) => {
     masa.config.network?.blockExplorerApiUrls?.[0]
   ) {
     const ReferenceSBTAuthority = fs
-      .readFileSync(
-        require.resolve(
-          // todo add flattened version here
-          "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthority.sol"
-        )
-      )
+      .readFileSync(ReferenceSBTAuthorityPath)
       .toString("utf8");
+
+    const { address, abiEncodedConstructorArguments } = deployResult;
 
     await verifyContract(
       masa.config.network?.blockExplorerApiUrls?.[0],
       etherscanKey,
-      deployResult.address,
+      address,
       name,
-      deployResult.abiEncodedConstructorArguments,
+      abiEncodedConstructorArguments,
       ReferenceSBTAuthority
     );
   } else {
-    console.error("Deployment failed!");
+    console.error("ASBT Deployment failed!");
   }
 };

@@ -64,7 +64,7 @@ console.log(
   chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
 );
 
-const overrides: Partial<MasaArgs> & {
+let overrides: Partial<MasaArgs> & {
   privateKey?: string;
   rpcUrl?: string;
   soulNameContractAddress?: string;
@@ -85,11 +85,17 @@ program
   })
   .option("--verbose", "output with verbose logging", () => {
     console.log("Masa CLI running with verbose output!\n");
-    overrides.verbose = true;
+    overrides = {
+      ...overrides,
+      verbose: true,
+    };
     reloadMasa(overrides);
   })
   .option("-n, --network <network>", "Address override", (networkName) => {
-    overrides.networkName = networkName as NetworkName;
+    overrides = {
+      ...overrides,
+      networkName: networkName as NetworkName,
+    };
     reloadMasa(overrides);
   })
   .option(

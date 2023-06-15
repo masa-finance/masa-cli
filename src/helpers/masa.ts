@@ -1,10 +1,9 @@
-import {
+import type {
   EnvironmentName,
-  Masa,
   MasaArgs,
   NetworkName,
-  SupportedNetworks,
 } from "@masa-finance/masa-sdk";
+import { Masa, SupportedNetworks } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
 import { providers, Wallet } from "ethers";
 import { SoulName__factory } from "@masa-finance/masa-contracts-identity";
@@ -47,43 +46,59 @@ export const reloadMasa = (
   if (overrideConfig.networkName) {
     const network = SupportedNetworks[overrideConfig.networkName];
     if (network) {
-      overrideConfig.signer = loadWallet({
-        rpcUrl: overrideConfig.rpcUrl || network.rpcUrls[0],
-        privateKey: overrideConfig.privateKey,
-      });
+      overrideConfig = {
+        ...overrideConfig,
+        signer: loadWallet({
+          rpcUrl: overrideConfig.rpcUrl || network.rpcUrls[0],
+          privateKey: overrideConfig.privateKey,
+        }),
+      };
     } else {
       console.error(
         `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`
       );
       // network not found
-      delete overrideConfig.networkName;
+      overrideConfig = {
+        ...overrideConfig,
+        networkName: undefined,
+      };
     }
   }
 
   // override rpc url
   if (overrideConfig.rpcUrl) {
-    overrideConfig.signer = loadWallet({
-      rpcUrl: overrideConfig.rpcUrl,
-      privateKey: overrideConfig.privateKey,
-    });
+    overrideConfig = {
+      ...overrideConfig,
+      signer: loadWallet({
+        rpcUrl: overrideConfig.rpcUrl,
+        privateKey: overrideConfig.privateKey,
+      }),
+    };
   }
 
   // override private key
   if (overrideConfig.privateKey) {
-    overrideConfig.signer = loadWallet({
-      rpcUrl: overrideConfig.rpcUrl,
-      privateKey: overrideConfig.privateKey,
-    });
+    overrideConfig = {
+      ...overrideConfig,
+      signer: loadWallet({
+        rpcUrl: overrideConfig.rpcUrl,
+        privateKey: overrideConfig.privateKey,
+      }),
+    };
   }
 
   // override soul name contract
   if (overrideConfig.soulNameContractAddress) {
-    overrideConfig.contractOverrides = {
-      SoulNameContract: SoulName__factory.connect(
-        overrideConfig.soulNameContractAddress,
-        overrideConfig?.signer || masa.config.signer
-      ),
+    overrideConfig = {
+      ...overrideConfig,
+      contractOverrides: {
+        SoulNameContract: SoulName__factory.connect(
+          overrideConfig.soulNameContractAddress,
+          overrideConfig?.signer || masa.config.signer
+        ),
+      },
     };
+
     if (overrideConfig.contractOverrides?.SoulNameContract) {
       overrideConfig.contractOverrides.SoulNameContract.hasAddress = true;
     }
