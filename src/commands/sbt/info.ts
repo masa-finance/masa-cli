@@ -11,7 +11,9 @@ export const info = async (address: string) => {
     console.log(`Contract Symbol: '${await contract.symbol()}'`);
     if (supply > 0) {
       try {
-        console.log(`Contract Token URI: '${await contract.tokenURI(0)}'`);
+        console.log(
+          `Contract Token URI: '${await contract.tokenURI(supply - 1)}'`
+        );
       } catch {
         // ignore
       }
