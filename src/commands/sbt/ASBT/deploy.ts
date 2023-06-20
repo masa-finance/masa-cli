@@ -26,11 +26,9 @@ export const deployASBT = async (etherscanKey?: string) => {
     adminAddress,
   });
 
-  if (
-    deployResult &&
-    etherscanKey &&
-    masa.config.network?.blockExplorerApiUrls?.[0]
-  ) {
+  if (!deployResult) {
+    console.error("ASBT Deployment failed!");
+  } else if (etherscanKey && masa.config.network?.blockExplorerApiUrls?.[0]) {
     const ReferenceSBTAuthority = fs
       .readFileSync(ReferenceSBTAuthorityPath)
       .toString("utf8");
@@ -45,7 +43,5 @@ export const deployASBT = async (etherscanKey?: string) => {
       abiEncodedConstructorArguments,
       ReferenceSBTAuthority
     );
-  } else {
-    console.error("ASBT Deployment failed!");
   }
 };
