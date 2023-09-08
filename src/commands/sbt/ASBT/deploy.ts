@@ -2,7 +2,7 @@ import { masa, readLine, verifyContract } from "../../../helpers";
 import fs from "fs";
 
 const ReferenceSBTAuthorityPath = require.resolve(
-  "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthorityFlattened.sol"
+  "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthorityFlattened.sol",
 );
 
 export const deployASBT = async (etherscanKey?: string) => {
@@ -12,10 +12,10 @@ export const deployASBT = async (etherscanKey?: string) => {
   const symbol = await readLine("Enter the ticker of the SBT: ");
   const baseTokenUri = await readLine("Enter the URL for the metadata image: ");
   const adminAddress = await readLine(
-    `Admin address (leave empty to use: '${await masa.config.signer.getAddress()}'): `
+    `Admin address (leave empty to use: '${await masa.config.signer.getAddress()}'): `,
   );
   const limit = await readLine(
-    "Enter mint limit (0 = no limit, default = 1): "
+    "Enter mint limit (0 = no limit, default = 1): ",
   );
 
   const deployResult = await masa.asbt.deploy({
@@ -41,7 +41,7 @@ export const deployASBT = async (etherscanKey?: string) => {
       address,
       name,
       abiEncodedConstructorArguments,
-      ReferenceSBTAuthority
+      ReferenceSBTAuthority,
     );
   }
 };

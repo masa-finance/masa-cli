@@ -61,7 +61,7 @@ import {
 
 clear();
 console.log(
-  chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" }))
+  chalk.red(figlet.textSync("Masa CLI", { horizontalLayout: "full" })),
 );
 
 let overrides: Partial<MasaArgs> & {
@@ -104,7 +104,7 @@ program
     (privateKey) => {
       overrides.privateKey = privateKey;
       reloadMasa(overrides);
-    }
+    },
   )
   .option("-r, --rpcUrl <rpc-url>", "RPC URL override", (rpcUrl) => {
     overrides.rpcUrl = rpcUrl;
@@ -143,7 +143,7 @@ program
     .argument("<duration>", "Period of registration")
     .description("Creates a masa identity with soul name")
     .action((soulName: string, duration: number) =>
-      identityCreate("ETH", soulName, duration)
+      identityCreate("ETH", soulName, duration),
     );
 
   identity
@@ -172,7 +172,7 @@ program
       (soulNameContractAddress) => {
         overrides.soulNameContractAddress = soulNameContractAddress;
         reloadMasa(overrides);
-      }
+      },
     )
     .description("Soul Name Commands");
 
@@ -211,7 +211,7 @@ program
     .argument("<duration>", "period of registration")
     .description("Creates a new soul name")
     .action((soulName: string, duration: number) =>
-      soulNameCreate("ETH", soulName, duration)
+      soulNameCreate("ETH", soulName, duration),
     );
 
   soulName
@@ -226,7 +226,7 @@ program
     .argument("<receiver>", "Receiver to receive the Soul Name")
     .description("Sends a soul name to that you own to a receiver")
     .action((soulName: string, receiver: string) =>
-      soulNameSend(soulName, receiver)
+      soulNameSend(soulName, receiver),
     );
 
   soulName
@@ -285,11 +285,11 @@ program
       .argument("<credit-score-id>", "ID of the Credit Score to grant access")
       .argument(
         "<reader-identity-id>",
-        "ID of the identity that should receive access"
+        "ID of the identity that should receive access",
       )
       .description("Creates a Soul Linker Passport")
       .action((creditScoreId, readerIdentityId) =>
-        createLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+        createLink(masa.creditScore.links, creditScoreId, readerIdentityId),
       );
 
     creditScoreLink
@@ -297,7 +297,7 @@ program
       .argument("<passport>", "Masa Soul Linker passport")
       .description("Establishes a link to a Credit Score")
       .action((passport) =>
-        establishLink(masa.creditScore.links, "ETH", passport)
+        establishLink(masa.creditScore.links, "ETH", passport),
       );
 
     creditScoreLink
@@ -310,11 +310,11 @@ program
       .command("list")
       .argument(
         "<credit-score-id>",
-        "ID of the Credit Score to list all the links of"
+        "ID of the Credit Score to list all the links of",
       )
       .description("Lists all soul links for a credit score id")
       .action((creditScoreId) =>
-        listLinks(masa.creditScore.links, creditScoreId)
+        listLinks(masa.creditScore.links, creditScoreId),
       );
 
     creditScoreLink
@@ -322,11 +322,11 @@ program
       .argument("<credit-score-id>", "ID of the Credit Score to grant access")
       .option(
         "-r, --reader-identity-id <reader-identity-id>",
-        "ID of the identity that should receive access"
+        "ID of the identity that should receive access",
       )
       .description("Verifies a Soul Link")
       .action((creditScoreId, { readerIdentityId }) =>
-        verifyLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+        verifyLink(masa.creditScore.links, creditScoreId, readerIdentityId),
       );
 
     creditScoreLink
@@ -334,11 +334,11 @@ program
       .argument("<credit-score-id>", "ID of the Credit Score to grant access")
       .argument(
         "<reader-identity-id>",
-        "ID of the identity that should receive access"
+        "ID of the identity that should receive access",
       )
       .description("Breaks a Soul Link")
       .action((creditScoreId, readerIdentityId) =>
-        breakLink(masa.creditScore.links, creditScoreId, readerIdentityId)
+        breakLink(masa.creditScore.links, creditScoreId, readerIdentityId),
       );
   }
 }
@@ -385,7 +385,7 @@ program
     .argument("<contract-address>", "Address of the SBT contract to list")
     .option("-a, --address <address>", "Address override")
     .action((contractAddress: string, { address }) =>
-      sbtList(contractAddress, address)
+      sbtList(contractAddress, address),
     );
 
   sbt
@@ -394,7 +394,7 @@ program
     .argument("<sbt-id>", "ID of the SBT to burn")
     .description("Burns an SBT")
     .action((contractAddress: string, SBTId: string) =>
-      sbtBurn(contractAddress, SBTId)
+      sbtBurn(contractAddress, SBTId),
     );
 }
 
@@ -426,7 +426,7 @@ program
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<soulname>", "Address of the SBT receiver")
     .action((contractAddress, soulname) =>
-      asbtMintFromSoulname(contractAddress, soulname)
+      asbtMintFromSoulname(contractAddress, soulname),
     );
 }
 
@@ -444,11 +444,11 @@ program
     .description("Adds an Authority to the SSSBT")
     .argument(
       "<contract-address>",
-      "Address of the SBT to add the authority to"
+      "Address of the SBT to add the authority to",
     )
     .argument("<authority-address>", "Address of the Authority")
     .action((contractAddress: string, authorityAddress: string) =>
-      sssbtAddAuthority(contractAddress, authorityAddress)
+      sssbtAddAuthority(contractAddress, authorityAddress),
     );
 
   sssbt
@@ -457,7 +457,7 @@ program
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<receiver>", "Address of the SBT receiver")
     .action((contractAddress: string, receiver: string) =>
-      sssbtSign(contractAddress, receiver)
+      sssbtSign(contractAddress, receiver),
     );
 
   sssbt
@@ -472,9 +472,9 @@ program
         contractAddress: string,
         authorityAddress: string,
         signatureDate: number,
-        signature: string
+        signature: string,
       ) =>
-        sssbtMint(contractAddress, authorityAddress, signatureDate, signature)
+        sssbtMint(contractAddress, authorityAddress, signatureDate, signature),
     );
 }
 

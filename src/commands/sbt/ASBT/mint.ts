@@ -12,7 +12,7 @@ export const mintASBT = async (contractAddress: string, receiver: string) => {
 
 export const mintFromSoulname = async (
   contractAddress: string,
-  soulname: string
+  soulname: string,
 ) => {
   const address = await masa.soulName.resolve(soulname);
 

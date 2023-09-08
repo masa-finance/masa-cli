@@ -4,12 +4,12 @@ import { PaymentMethod } from "@masa-finance/masa-sdk";
 export const create = async (
   paymentMethod: PaymentMethod,
   soulName: string,
-  duration: number
+  duration: number,
 ) => {
   const { success, message } = await masa.soulName.create(
     paymentMethod,
     soulName,
-    duration
+    duration,
   );
 
   if (!success) {

@@ -5,7 +5,7 @@ export const show = async (soulName: string) => {
   const extension = await masa.contracts.instances.SoulNameContract.extension();
 
   const details = await masa.soulName.loadSoulNameByName(
-    soulName.replace(extension, "")
+    soulName.replace(extension, ""),
   );
 
   if (details) {

@@ -8,27 +8,26 @@ import {
 
 export const create = async (
   paymentMethod: PaymentMethod,
-  phoneNumber: string
+  phoneNumber: string,
 ): Promise<void> => {
   console.log(`Creating Green for phone number: '${phoneNumber}'`);
 
-  const generateResult: GenerateGreenResult = await masa.green.generate(
-    phoneNumber
-  );
+  const generateResult: GenerateGreenResult =
+    await masa.green.generate(phoneNumber);
 
   if (generateResult.success) {
     let verifyGreenResult: VerifyGreenResult | undefined;
 
     do {
       const code: string = await readLine(
-        "The code that has been sent to your phone number: "
+        "The code that has been sent to your phone number: ",
       );
       verifyGreenResult = await masa.green.verify(phoneNumber, code);
 
       if (verifyGreenResult) {
         if (!verifyGreenResult.success) {
           console.error(
-            `Verifying Green failed! '${verifyGreenResult.message}'`
+            `Verifying Green failed! '${verifyGreenResult.message}'`,
           );
         }
 
@@ -53,12 +52,12 @@ export const create = async (
           paymentMethod,
           verifyGreenResult.authorityAddress,
           verifyGreenResult.signatureDate,
-          verifyGreenResult.signature
+          verifyGreenResult.signature,
         );
 
         if (mintGreenResult.tokenId) {
           console.log(
-            `Green successfully minted on '${masa.config.networkName}' with token ID: '${mintGreenResult.tokenId}'`
+            `Green successfully minted on '${masa.config.networkName}' with token ID: '${mintGreenResult.tokenId}'`,
           );
         }
       } while (!mintGreenResult.tokenId);

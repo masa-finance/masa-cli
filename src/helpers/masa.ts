@@ -17,7 +17,7 @@ const loadWallet = ({
 } = {}) =>
   new Wallet(
     privateKey || (config.get("private-key") as string),
-    new providers.JsonRpcProvider(rpcUrl || (config.get("rpc-url") as string))
+    new providers.JsonRpcProvider(rpcUrl || (config.get("rpc-url") as string)),
   );
 
 const masaArgs: MasaArgs = {
@@ -40,7 +40,7 @@ export const reloadMasa = (
     privateKey?: string;
     rpcUrl?: string;
     soulNameContractAddress?: string;
-  }
+  },
 ) => {
   // override network
   if (overrideConfig.networkName) {
@@ -55,7 +55,7 @@ export const reloadMasa = (
       };
     } else {
       console.error(
-        `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`
+        `Network '${overrideConfig.networkName}' not found! Using '${masaArgs.networkName}'`,
       );
       // network not found
       overrideConfig = {
@@ -94,7 +94,7 @@ export const reloadMasa = (
       contractOverrides: {
         SoulNameContract: SoulName__factory.connect(
           overrideConfig.soulNameContractAddress,
-          overrideConfig?.signer || masa.config.signer
+          overrideConfig?.signer || masa.config.signer,
         ),
       },
     };

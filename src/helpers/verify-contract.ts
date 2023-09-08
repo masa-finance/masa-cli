@@ -7,7 +7,7 @@ export const verifyContract = async (
   contractaddress: string,
   name: string,
   abiEncodedConstructorArguments: string,
-  sourceCode: string
+  sourceCode: string,
 ) => {
   console.log(`Verifying contract '${contractaddress}'`);
 
@@ -40,7 +40,7 @@ export const verifyContract = async (
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-    }
+    },
   );
 
   const { result: guid, status } = verifySourcecodeResult;

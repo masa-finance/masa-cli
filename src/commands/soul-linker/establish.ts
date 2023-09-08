@@ -9,7 +9,7 @@ import { MasaSoulLinker, PaymentMethod } from "@masa-finance/masa-sdk";
 export const establish = async (
   links: MasaSoulLinker,
   paymentMethod: PaymentMethod,
-  passport: string
+  passport: string,
 ) => {
   await links.establish(paymentMethod, passport);
 };

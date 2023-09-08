@@ -7,7 +7,7 @@ import { masa } from "../../../helpers";
  */
 export const addAuthoritySSSBT = async (
   contractAddress: string,
-  authorityAddress: string
+  authorityAddress: string,
 ) => {
   const { contract } = await masa.sssbt.connect(contractAddress);
 

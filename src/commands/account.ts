@@ -30,7 +30,7 @@ export const account = async (address?: string) => {
         console.log(
           `${symbol}: '${
             balance % 1 === 0 ? balance : balance.toFixed(precision)
-          }'`
+          }'`,
         );
       }
     }

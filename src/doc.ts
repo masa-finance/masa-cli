@@ -63,7 +63,7 @@ const printSubCommand = (command: DocCommand, subCommand: DocCommand) => {
   console.log(
     `\n#### \`masa ${`${command.command} ${
       subCommand.command
-    } ${formatArguments(subCommand.arguments)}`.trimEnd()}\``
+    } ${formatArguments(subCommand.arguments)}`.trimEnd()}\``,
   );
 
   printDetails(subCommand);
@@ -72,12 +72,12 @@ const printSubCommand = (command: DocCommand, subCommand: DocCommand) => {
 const printSubSubCommand = (
   command: DocCommand,
   subCommand: DocCommand,
-  subSubCommand: DocCommand
+  subSubCommand: DocCommand,
 ) => {
   console.log(
     `\n##### \`masa ${`${command.command} ${subCommand.command} ${
       subSubCommand.command
-    } ${formatArguments(subSubCommand.arguments)}`.trimEnd()}\``
+    } ${formatArguments(subSubCommand.arguments)}`.trimEnd()}\``,
   );
 
   printDetails(subSubCommand);
@@ -86,8 +86,8 @@ const printSubSubCommand = (
 for (const command of commands) {
   console.log(
     `### \`masa ${`${command.command} ${formatArguments(
-      command.arguments
-    )}`.trimEnd()}\``
+      command.arguments,
+    )}`.trimEnd()}\``,
   );
   console.log(`${escape(command.description)}`);
   console.log(listArguments(command.arguments));

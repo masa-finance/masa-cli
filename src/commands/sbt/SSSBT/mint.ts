@@ -11,7 +11,7 @@ export const mintSSSBT = async (
   contractAddress: string,
   authorityAddress: string,
   signatureDate: number,
-  signature: string
+  signature: string,
 ) => {
   const { mint } = await masa.sssbt.connect(contractAddress);
 

@@ -4,20 +4,20 @@ export const info = async () => {
   if (masa.contracts.instances.SoulNameContract.hasAddress) {
     console.log("Soul Name");
     console.log(
-      `Contract Address: '${masa.contracts.instances.SoulNameContract.address}'`
+      `Contract Address: '${masa.contracts.instances.SoulNameContract.address}'`,
     );
     console.log(
-      `Extension: '${await masa.contracts.instances.SoulNameContract.extension()}'`
+      `Extension: '${await masa.contracts.instances.SoulNameContract.extension()}'`,
     );
     console.log(
       `Total Soul Names: ${(
         await masa.contracts.instances.SoulNameContract.totalSupply()
-      ).toNumber()}`
+      ).toNumber()}`,
     );
     console.log(`Network: '${masa.config.networkName}'`);
   } else {
     console.error(
-      `Soul Name is not deployed to network: '${masa.config.networkName}'`
+      `Soul Name is not deployed to network: '${masa.config.networkName}'`,
     );
   }
 };

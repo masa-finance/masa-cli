@@ -12,7 +12,7 @@ export const info = async (address: string) => {
     if (supply > 0) {
       try {
         console.log(
-          `Contract Token URI: '${await contract.tokenURI(supply - 1)}'`
+          `Contract Token URI: '${await contract.tokenURI(supply - 1)}'`,
         );
       } catch {
         // ignore
@@ -30,7 +30,7 @@ export const info = async (address: string) => {
     console.log(`Total SBTs: ${supply}`);
   } else {
     console.error(
-      `Contract ${address} is not deployed to network: '${masa.config.networkName}'`
+      `Contract ${address} is not deployed to network: '${masa.config.networkName}'`,
     );
   }
 };

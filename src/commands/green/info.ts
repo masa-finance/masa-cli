@@ -4,17 +4,17 @@ export const info = async () => {
   if (masa.contracts.instances.SoulboundGreenContract.hasAddress) {
     console.log("Soulbound Green");
     console.log(
-      `Contract Address: '${masa.contracts.instances.SoulboundGreenContract.address}'`
+      `Contract Address: '${masa.contracts.instances.SoulboundGreenContract.address}'`,
     );
     console.log(
       `Total Greens: ${(
         await masa.contracts.instances.SoulboundGreenContract.totalSupply()
-      ).toNumber()}`
+      ).toNumber()}`,
     );
     console.log(`Network: '${masa.config.networkName}'`);
   } else {
     console.error(
-      `Soulbound Green is not deployed to network: '${masa.config.networkName}'`
+      `Soulbound Green is not deployed to network: '${masa.config.networkName}'`,
     );
   }
 };

@@ -3,7 +3,7 @@ import { BigNumber } from "ethers";
 
 export const load = async (creditScoreId?: string) => {
   const creditScore = await masa.creditScore.load(
-    BigNumber.from(creditScoreId)
+    BigNumber.from(creditScoreId),
   );
   console.log(JSON.stringify({ creditScore }, null, 2));
 };
