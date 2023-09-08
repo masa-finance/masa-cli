@@ -16,7 +16,7 @@
     "doc": "ts-node ./src/doc.ts"
   },
   "dependencies": {
-    "@masa-finance/masa-sdk": "^3.5.1",
+    "@masa-finance/masa-sdk": "^3.8.0",
     "@types/clear": "^0.1.2",
     "@types/figlet": "^1.5.5",
     "chalk": "~4.1.2",
@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
-    "@typescript-eslint/eslint-plugin": "^5.59.9",
-    "@typescript-eslint/parser": "^5.59.9",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "eslint": "^8.25.0",
     "prettier": "^3.0.0",
     "typescript": "^5.1.3"
