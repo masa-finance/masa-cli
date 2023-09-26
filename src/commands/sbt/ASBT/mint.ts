@@ -3,9 +3,13 @@ import { createReadStream } from "fs";
 import csv from "csv-parser";
 
 export const mintASBT = async (contractAddress: string, receiver: string) => {
-  const { mint } = await masa.asbt.connect(contractAddress);
+  const { mint, bulkMint } = await masa.asbt.connect(contractAddress);
 
-  if (mint) {
+  if (receiver.indexOf(",") > -1) {
+    const addresses = receiver.split(",");
+
+    await bulkMint(addresses);
+  } else {
     await mint(receiver);
   }
 };
