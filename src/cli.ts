@@ -36,6 +36,7 @@ import {
   soulNameCreate,
   soulNameInfo,
   soulNameList,
+  soulNameRenew,
   soulNameResolve,
   soulNameResolveReverse,
   soulNameSend,
@@ -219,6 +220,15 @@ program
     .argument("<soulname>", "Soul Name to burn")
     .description("Burns soul name that you own")
     .action((soulName: string) => soulNameBurn(soulName));
+
+  soulName
+    .command("renew")
+    .argument("<soulname>", "Soul Name to burn")
+    .argument("<years>", "Years to renew for")
+    .description("Renews a soul name that you own")
+    .action((soulName: string, years: number) =>
+      soulNameRenew(soulName, years),
+    );
 
   soulName
     .command("send")
