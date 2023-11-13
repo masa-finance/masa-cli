@@ -452,9 +452,9 @@
   integrity sha512-T9pwLqQsOl5Sd1QGGkVbzHQkIvVIBUJkh8r9XcOxy5dukshynYRQx5mU4KVWYAVkakKwpJ4DWNYdT7LMFJlTxg==
 
 "@types/figlet@^1.5.5":
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/@types/figlet/-/figlet-1.5.7.tgz#50c4837c7d5cde77db69f1bef4422d46556e40ec"
-  integrity sha512-0+XwDLeH346mAl3fmw/AaEctBrhkcJl0wZezoNUQ5Tg6J5YW7xL2v9hH3Yg5L4dk/sogEdQexTrNncqjGKwoVw==
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/@types/figlet/-/figlet-1.5.8.tgz#96b8186c7e2a388b4f8d09ee3276cba2af88bb0b"
+  integrity sha512-G22AUvy4Tl95XLE7jmUM8s8mKcoz+Hr+Xm9W90gJsppJq9f9tHvOGkrpn4gRX0q/cLtBdNkWtWCKDg2UDZoZvQ==
 
 "@types/json-schema@^7.0.12":
   version "7.0.12"
