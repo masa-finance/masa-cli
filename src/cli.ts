@@ -478,8 +478,8 @@ program
     .description("Mints SSSBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .argument("<authority-address>", "Address of the Authority")
-    .argument("<signature-date>", "sig date")
-    .argument("<signature>", "signature")
+    .argument("<signature-date>", "Signature date")
+    .argument("<signature>", "Signature")
     .action(
       (
         contractAddress: string,
@@ -515,8 +515,8 @@ program
     .argument("<state>", "State")
     .argument("<state-value>", "State value")
     .argument("<authority-address>", "Address of the Authority")
-    .argument("<signature-date>", "sig date")
-    .argument("<signature>", "signature")
+    .argument("<signature-date>", "Signature date")
+    .argument("<signature>", "Signature")
     .action(
       (
         contractAddress: string,
