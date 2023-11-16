@@ -21,7 +21,7 @@ export const settingsSet = (key: string, value: string | number) => {
 
 export const settingsPreset = (environmentName: string) => {
   const presetEnvironment: Environment | undefined = environments.find(
-    (environment) => environment.name === environmentName.toLowerCase(),
+    ({ environment }) => environment === environmentName.toLowerCase(),
   );
 
   if (presetEnvironment) {
