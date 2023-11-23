@@ -1,6 +1,5 @@
 import { masa, readLine } from "../../helpers";
 import {
-  BaseResult,
   GenerateGreenResult,
   PaymentMethod,
   VerifyGreenResult,
@@ -43,7 +42,7 @@ export const create = async (
       verifyGreenResult.signatureDate &&
       verifyGreenResult.signature
     ) {
-      let mintGreenResult: BaseResult;
+      let mintGreenResult;
 
       do {
         console.log(`Minting Green on '${masa.config.networkName}'`);
