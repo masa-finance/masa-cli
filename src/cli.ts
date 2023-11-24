@@ -52,7 +52,7 @@ import {
   sssbtSign,
   version,
 } from "./commands";
-import { masa, reloadMasa } from "./helpers";
+import { loadMasa, masa } from "./helpers";
 import { MasaArgs, NetworkName } from "@masa-finance/masa-sdk";
 import {
   breakLink,
@@ -72,6 +72,7 @@ let overrides: Partial<MasaArgs> & {
   privateKey?: string;
   rpcUrl?: string;
   soulNameContractAddress?: string;
+  forceTransactions?: boolean;
 } = {
   verbose: undefined,
   networkName: undefined,
@@ -93,26 +94,31 @@ program
       ...overrides,
       verbose: true,
     };
-    reloadMasa(overrides);
+    loadMasa(overrides);
   })
   .option("-n, --network <network>", "Address override", (networkName) => {
     overrides = {
       ...overrides,
       networkName: networkName as NetworkName,
     };
-    reloadMasa(overrides);
+    loadMasa(overrides);
   })
   .option(
     "-pk, --privateKey <private-key>",
     "Private Key override",
     (privateKey) => {
       overrides.privateKey = privateKey;
-      reloadMasa(overrides);
+      loadMasa(overrides);
     },
   )
   .option("-r, --rpcUrl <rpc-url>", "RPC URL override", (rpcUrl) => {
     overrides.rpcUrl = rpcUrl;
-    reloadMasa(overrides);
+    loadMasa(overrides);
+  })
+  .option("-f, --force", "Force transactions", () => {
+    console.log("Masa CLI running with force!\n");
+    overrides.forceTransactions = true;
+    loadMasa(overrides);
   })
   .usage("[command] [subcommand] [arguments] [options]")
   .description("The Masa CLI");
@@ -175,7 +181,7 @@ program
       "Contract address override",
       (soulNameContractAddress) => {
         overrides.soulNameContractAddress = soulNameContractAddress;
-        reloadMasa(overrides);
+        loadMasa(overrides);
       },
     )
     .description("Soul Name Commands");

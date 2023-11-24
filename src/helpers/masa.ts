@@ -35,13 +35,13 @@ const masaArgs: MasaArgs = {
   },
 };
 
-export const reloadMasa = (
+export const loadMasa = (
   overrideConfig: Partial<MasaArgs> & {
     privateKey?: string;
     rpcUrl?: string;
     soulNameContractAddress?: string;
   },
-) => {
+): Masa => {
   // override network
   if (overrideConfig.networkName) {
     const network = SupportedNetworks[overrideConfig.networkName];
@@ -108,6 +108,8 @@ export const reloadMasa = (
     ...masaArgs,
     ...overrideConfig,
   });
+
+  return masa;
 };
 
-export let masa = new Masa(masaArgs);
+export let masa = loadMasa(masaArgs);
