@@ -408,9 +408,9 @@
     ethers "~5.7.2"
 
 "@masa-finance/masa-sdk@^3.14.6":
-  version "3.14.6"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.14.6.tgz#4b205cb93f7cf9638392a95be8537cfc96ab30e6"
-  integrity sha512-CQyBK4NQdhGlckYtpS0p0K9TFS5P7CnvQmUwRGUmhqxqJIVoM/QFEj2boZB57XmSOWQzU+vtS983KgZy1WEChA==
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.16.0.tgz#18a8b43b51cd6b1f871bd2d7955ee36a7bd244d0"
+  integrity sha512-pg+duxnjgTPBnitskf12kKZQadwuOTUDOyTNb1mJvWt3CWhrgThbGQ9qHwHTNGgrGzeS1ckGRt38z4w9lZZv3g==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
