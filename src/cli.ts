@@ -27,6 +27,8 @@ import {
   identityShow,
   login,
   logout,
+  oracleStake,
+  oracleWithdraw,
   sbtBurn,
   sbtInfo,
   sbtList,
@@ -569,6 +571,20 @@ program
     .description("Mints Dynamic SSSBTs")
     .argument("<contract-address>", "Address of the SBT to mint on")
     .action((contractAddress: string) => dynamicSSSBTMint(contractAddress));
+}
+
+{
+  const oracle = program.command("oracle").description("Oracle commands");
+
+  oracle
+    .command("stake")
+    .argument("<amount>", "Amount to stake")
+    .action((amount: string) => oracleStake(amount));
+
+  oracle
+    .command("withdraw")
+    .argument("<amount>", "Amount to withdraw")
+    .action((amount: string) => oracleWithdraw(amount));
 }
 
 {
