@@ -64,6 +64,7 @@ import {
   querylink,
   verifyLink,
 } from "./commands/soul-linker/links";
+import { tokenSwap } from "./commands/token";
 
 clear();
 console.log(
@@ -585,6 +586,17 @@ program
     .command("withdraw")
     .argument("<amount>", "Amount to withdraw")
     .action((amount: string) => oracleWithdraw(amount));
+}
+
+{
+  const token = program.command("token").description("Token commands");
+
+  token
+    .command("swap")
+    .argument("<to>", "To network")
+    .argument("<amount>", "Amount to bridge")
+
+    .action((to: NetworkName, amount: string) => tokenSwap(to, amount));
 }
 
 {
