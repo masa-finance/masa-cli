@@ -7,4 +7,5 @@ export { account } from "./account";
 export { login } from "./login";
 export { logout } from "./logout";
 export * from "./settings";
+export * from "./oracle";
 export { version } from "./version";
