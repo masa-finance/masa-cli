@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@masa-finance/masa-contracts-oracle": "^0.2.0",
-    "@masa-finance/masa-sdk": "^3.17.0",
+    "@masa-finance/masa-sdk": "^3.18.1",
     "@types/clear": "^0.1.4",
     "@types/figlet": "^1.5.8",
     "chalk": "~4.1.2",
@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.10",
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "@typescript-eslint/parser": "^6.19.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.25.0",
     "prettier": "^3.1.0",
     "typescript": "^5.3.3"
