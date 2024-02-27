@@ -4,3 +4,5 @@ dist/
 
 yarn-error.log
 masa-finance-masa-cli-*.tgz
+
+.DS_Store
