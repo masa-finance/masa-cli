@@ -438,6 +438,13 @@
   dependencies:
     ethers "~5.7.2"
 
+"@masa-finance/masa-contracts-marketplace@^1.12.3":
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-marketplace/-/masa-contracts-marketplace-1.12.3.tgz#24f77239b09f7d18faa8f33baecde4b5d3477807"
+  integrity sha512-d7y/K69f9S7OQbMn8w6XnMmEGpGNyhjJHtN3NjQy2szm3EO7xm/zG7HQaYgVYwDWU619PSL+5h1wDFvA3t2DoQ==
+  dependencies:
+    ethers "~5.7.2"
+
 "@masa-finance/masa-contracts-oracle@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-oracle/-/masa-contracts-oracle-0.2.0.tgz#468ba1c8ebbaefb8d51a0ec7a51f6923a43b3931"
@@ -446,9 +453,9 @@
     ethers "~5.7.2"
 
 "@masa-finance/masa-sdk@^3.18.2":
-  version "3.18.2"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.18.2.tgz#db62092ecbcebbe3ed8622bdfe60a89c24b894f0"
-  integrity sha512-cfYw3z9OgF3k8YElo7MxngoyTrSeyNB2B31QvvvlJi3MOeQpjcU/J/17DzwTsQjlnNihgaVoKE5+g4G7/KKaYQ==
+  version "3.19.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.19.1.tgz#4c39b868c19f0119fa96540d7521842926541244"
+  integrity sha512-EwPUdqgiqXWuU9a/JYod/L5EBMnOw4oQhF6R7BbZfJguko/aK/5tbKTMPWErM1Mb+KQVUkkBYQaYZmV/i6X/Gw==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
@@ -458,6 +465,7 @@
     "@layerzerolabs/lz-definitions" "^2.0.25"
     "@layerzerolabs/lz-v2-utilities" "^2.0.25"
     "@masa-finance/masa-contracts-identity" "^1.12.0"
+    "@masa-finance/masa-contracts-marketplace" "^1.12.3"
     "@masa-finance/masa-token" "^2.0.8"
     arweave "1.11.8"
     axios "^1.6.7"
