@@ -1,5 +1,6 @@
 export * from "./credit-score/";
 export * from "./green/";
+export * from "./marketplace/";
 export * from "./identity/";
 export * from "./sbt/";
 export * from "./soul-name/";
