@@ -53,6 +53,9 @@ import {
   sssbtDeploy,
   sssbtMint,
   sssbtSign,
+  tokenDeposit,
+  tokenSwap,
+  tokenWithdraw,
   version,
 } from "./commands";
 import { loadMasa, masa } from "./helpers";
@@ -65,7 +68,6 @@ import {
   querylink,
   verifyLink,
 } from "./commands/soul-linker/links";
-import { tokenSwap } from "./commands/token";
 
 clear();
 console.log(
@@ -613,9 +615,19 @@ program
   token
     .command("swap")
     .argument("<to>", "To network")
-    .argument("<amount>", "Amount to bridge")
+    .argument("<amount>", "Amount to swap")
 
     .action((to: NetworkName, amount: string) => tokenSwap(to, amount));
+
+  token
+    .command("deposit")
+    .argument("<amount>", "Amount to deposit")
+    .action((amount: string) => tokenDeposit(amount));
+
+  token
+    .command("withdraw")
+    .argument("<amount>", "Amount to withdraw")
+    .action((amount: string) => tokenWithdraw(amount));
 }
 
 {

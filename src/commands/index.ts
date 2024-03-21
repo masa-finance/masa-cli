@@ -3,6 +3,7 @@ export * from "./green/";
 export * from "./marketplace/";
 export * from "./identity/";
 export * from "./sbt/";
+export * from "./token/";
 export * from "./soul-name/";
 export { account } from "./account";
 export { login } from "./login";
