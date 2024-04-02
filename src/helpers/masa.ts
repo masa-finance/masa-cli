@@ -60,7 +60,7 @@ export const loadMasa = (
       // network not found
       overrideConfig = {
         ...overrideConfig,
-        networkName: undefined,
+        networkName: masaArgs.networkName,
       };
     }
   }
