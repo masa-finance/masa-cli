@@ -28,11 +28,11 @@ export const config = new Conf({
     "rpc-url": {
       type: "string",
       format: "uri",
-      default: "https://rpc.ankr.com/eth_goerli",
+      default: "https://rpc.ankr.com/eth_sepolia",
     },
     network: {
       type: "string",
-      default: "goerli",
+      default: "sepolia",
     },
     verbose: {
       type: "boolean",
