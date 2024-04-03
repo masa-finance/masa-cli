@@ -54,6 +54,7 @@ import {
   sssbtMint,
   sssbtSign,
   tokenDeposit,
+  tokenMesh,
   tokenSwap,
   tokenWithdraw,
   version,
@@ -628,6 +629,11 @@ program
     .command("withdraw")
     .argument("<amount>", "Amount to withdraw")
     .action((amount: string) => tokenWithdraw(amount));
+
+  token
+    .command("mesh")
+    .option("-t, --testnets", "Show testnets")
+    .action(({ testnets }) => tokenMesh(testnets, overrides.verbose));
 }
 
 {
