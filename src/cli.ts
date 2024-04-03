@@ -56,6 +56,7 @@ import {
   tokenDeposit,
   tokenMesh,
   tokenSwap,
+  tokenTimelock,
   tokenWithdraw,
   version,
 } from "./commands";
@@ -634,6 +635,11 @@ program
     .command("mesh")
     .option("-t, --testnets", "Show testnets")
     .action(({ testnets }) => tokenMesh(testnets, overrides.verbose));
+
+  token
+    .command("timelock")
+    .option("-t, --testnets", "Show testnets")
+    .action(({ testnets }) => tokenTimelock(testnets, overrides.verbose));
 }
 
 {

@@ -8,5 +8,4 @@ export const stakeShow = async (
   address = address || (await masa.config.signer.getAddress());
 
   console.log({ address });
-  console.log(await masa.contracts.marketplace.stakeAll());
 };

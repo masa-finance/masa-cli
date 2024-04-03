@@ -60,12 +60,15 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
       );
 
       if (!isPeer) {
-        const peers = await networkOFT.peers(peerNetwork.lzEndpointId ?? 0);
-        console.error({ peers });
+        const peer = await networkOFT.peers(peerNetwork.lzEndpointId ?? 0);
+
+        if (peer !== utils.hexZeroPad(constants.AddressZero, 32)) {
+          console.info({ peer });
+        }
       }
 
       console.log(
-        `${network.networkName}(${network.lzEndpointId}) -> ${peerNetwork.networkName}(${peerNetwork.lzEndpointId}): ${isPeer}`,
+        `${network.chainNameShort}(${network.lzEndpointId}) -> ${peerNetwork.chainNameShort}(${peerNetwork.lzEndpointId}): ${isPeer}`,
       );
 
       if (verbose) {
