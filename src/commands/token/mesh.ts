@@ -18,6 +18,8 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
       network.addresses?.tokens?.MASA && network.isTestnet === testnets,
   );
 
+  console.log("");
+
   for (const network of masaTokenNetworks) {
     const networkMasa = new Masa({
       networkName: network.networkName,
@@ -75,5 +77,7 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
         console.log(`${networkOFT.address} -> ${peerOFT.address}`);
       }
     }
+
+    console.log("");
   }
 };
