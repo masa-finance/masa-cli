@@ -5,6 +5,7 @@ import {
   SupportedNetworks,
 } from "@masa-finance/masa-sdk";
 import { constants, providers, utils, VoidSigner } from "ethers";
+import chalk from "chalk";
 
 export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
   console.log("Masa Token Mesh viewer");
@@ -61,11 +62,15 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
         utils.zeroPad(peerOFT.address, 32),
       );
 
-      if (!isPeer) {
-        const peer = await networkOFT.peers(peerNetwork.lzEndpointId ?? 0);
+      if (!isPeer && peerNetwork.lzEndpointId) {
+        const peer = await networkOFT.peers(peerNetwork.lzEndpointId);
 
         if (peer !== utils.hexZeroPad(constants.AddressZero, 32)) {
-          console.info({ peer });
+          console.warn(
+            chalk.yellow(
+              `Peers are not as expected! Peer expected: ${peerOFT.address} but got: ${utils.hexStripZeros(peer)} for network ${peerNetwork.lzEndpointId}!`,
+            ),
+          );
         }
       }
 
