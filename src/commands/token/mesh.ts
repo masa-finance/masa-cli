@@ -74,9 +74,8 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
         }
       }
 
-      console.log(
-        `${network.chainNameShort}(${network.lzEndpointId}) -> ${peerNetwork.chainNameShort}(${peerNetwork.lzEndpointId}): ${isPeer}`,
-      );
+      const msg = `${network.chainNameShort}(${network.lzEndpointId}) -> ${peerNetwork.chainNameShort}(${peerNetwork.lzEndpointId}): ${isPeer}`;
+      console.log(!isPeer ? chalk.red(msg) : msg);
 
       if (verbose) {
         console.log(`${networkOFT.address} -> ${peerOFT.address}`);
