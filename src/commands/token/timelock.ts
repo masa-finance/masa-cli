@@ -49,7 +49,7 @@ export const timelock = async (
     const maxCount = 25;
     let x = 0;
 
-    const events = [];
+    const scheduledEvents = [];
 
     do {
       const fromBlock = lastBlockNumber
@@ -58,33 +58,48 @@ export const timelock = async (
 
       const toBlock = lastBlockNumber ? lastBlockNumber - offset * x : "latest";
 
-      events.push(
+      scheduledEvents.push(
         ...(await timelock.queryFilter(
           timelock.filters.CallScheduled(),
           fromBlock,
           toBlock,
         )),
       );
+
       x++;
-    } while (events.length <= 10 && x < maxCount);
+    } while (scheduledEvents.length <= 10 && x < maxCount);
 
     console.log(
       network.chainNameShort,
       await Promise.all(
-        events.map(async (log) => {
+        scheduledEvents.map(async (log) => {
           const block = await log.getBlock();
+          const startDate = new Date(block.timestamp * 1000);
+          const delay = log.args.delay.toNumber();
+          const endDate = new Date(startDate.getTime() + delay * 1000);
+
+          const [done, ready, pending] = await Promise.all([
+            timelock.isOperationDone(log.args.id),
+            timelock.isOperationReady(log.args.id),
+            timelock.isOperationPending(log.args.id),
+          ]);
 
           return {
             id: log.args.id,
-            date: new Date(block.timestamp * 1000).toLocaleString(),
+            startDate: startDate.toLocaleString(),
+            endDate: endDate.toLocaleString(),
+            expired: endDate.getTime() < Date.now(),
+            done,
+            ready,
+            pending,
             block: block.number,
             target: log.args.target,
             data: log.args.data,
-            delay: log.args.delay.toString(),
+            delay,
           };
         }),
       ),
-      verbose ? `Parsed ${offset * maxCount} blocks!` : undefined,
+      verbose ? `Parsed ${offset * maxCount} blocks!` : "",
     );
 
     provider._websocket.close();
