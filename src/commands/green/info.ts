@@ -1,7 +1,7 @@
 import { masa } from "../../helpers";
 
 export const info = async () => {
-  if (masa.contracts.instances.SoulboundGreenContract.hasAddress) {
+  if (masa.green.isContractAvailable) {
     console.log("Soulbound Green");
     console.log(
       `Contract Address: '${masa.contracts.instances.SoulboundGreenContract.address}'`,

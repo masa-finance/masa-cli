@@ -1,7 +1,7 @@
 import { masa } from "../../helpers";
 
 export const info = async () => {
-  if (masa.contracts.instances.SoulboundCreditScoreContract.hasAddress) {
+  if (masa.creditScore.isContractAvailable) {
     console.log("Soulbound Credit Score");
     console.log(
       `Contract Address: '${masa.contracts.instances.SoulboundCreditScoreContract.address}'`,
