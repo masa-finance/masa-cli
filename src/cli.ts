@@ -618,8 +618,10 @@ program
     .command("swap")
     .argument("<to>", "To network")
     .argument("<amount>", "Amount to swap")
-
-    .action((to: NetworkName, amount: string) => tokenSwap(to, amount));
+    .option("-s, --slippage <slippage>", "Slippage")
+    .action((to: NetworkName, amount: string, { slippage }) =>
+      tokenSwap(to, amount, slippage),
+    );
 
   token
     .command("deposit")

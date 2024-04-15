@@ -6,5 +6,9 @@ export const swap = async (
   amount: string,
   slippage?: number,
 ) => {
-  await masa.token.swap(to, amount, slippage);
+  await masa.token.swap(
+    to,
+    amount,
+    slippage ? Number(slippage) * 100 : undefined,
+  );
 };

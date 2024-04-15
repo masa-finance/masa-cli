@@ -4,7 +4,7 @@ import {
   NetworkName,
   SupportedNetworks,
 } from "@masa-finance/masa-sdk";
-import addresses from "@masa-finance/masa-token/addresses.json";
+import addresses from "@masa-finance/masa-sdk/node_modules/@masa-finance/masa-token/addresses.json";
 import { TimeLock, TimeLock__factory } from "@masa-finance/masa-token";
 import { constants, providers, VoidSigner } from "ethers";
 
@@ -28,9 +28,12 @@ export const timelock = async (
     ) as Network[];
 
   for (const network of masaTimelockNetworks) {
-    const provider = new providers.WebSocketProvider(
-      (network.rpcUrls[3] ? network.rpcUrls[3] : network.rpcUrls[2])!,
-    );
+    const provider =
+      network.rpcUrls[3] || network.rpcUrls[2]
+        ? new providers.WebSocketProvider(
+            (network.rpcUrls[3] ? network.rpcUrls[3] : network.rpcUrls[2])!,
+          )
+        : new providers.JsonRpcProvider(network.rpcUrls[0]);
 
     const networkMasa = new Masa({
       networkName: network.networkName,
@@ -45,26 +48,30 @@ export const timelock = async (
     const lastBlockNumber =
       await networkMasa.config.signer.provider?.getBlockNumber();
 
-    const offset = 3_333;
-    const maxCount = 25;
+    const offset = 2_047;
+    const maxCount = 30;
     let x = 0;
 
     const scheduledEvents = [];
 
     do {
-      const fromBlock = lastBlockNumber
-        ? lastBlockNumber - offset * (x + 1)
-        : 0;
+      let fromBlock = lastBlockNumber ? lastBlockNumber - offset * (x + 1) : 0;
+
+      if (fromBlock < 0) {
+        fromBlock = 0;
+      }
 
       const toBlock = lastBlockNumber ? lastBlockNumber - offset * x : "latest";
 
-      scheduledEvents.push(
-        ...(await timelock.queryFilter(
-          timelock.filters.CallScheduled(),
-          fromBlock,
-          toBlock,
-        )),
-      );
+      if (toBlock !== "latest" && fromBlock < toBlock) {
+        scheduledEvents.push(
+          ...(await timelock.queryFilter(
+            timelock.filters.CallScheduled(),
+            fromBlock,
+            toBlock,
+          )),
+        );
+      }
 
       x++;
     } while (scheduledEvents.length <= 10 && x < maxCount);
@@ -102,6 +109,8 @@ export const timelock = async (
       verbose ? `Parsed ${offset * maxCount} blocks!` : "",
     );
 
-    provider._websocket.close();
+    if (provider instanceof providers.WebSocketProvider) {
+      provider._websocket.close();
+    }
   }
 };
