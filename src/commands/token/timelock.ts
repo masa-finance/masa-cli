@@ -4,7 +4,7 @@ import {
   NetworkName,
   SupportedNetworks,
 } from "@masa-finance/masa-sdk";
-import addresses from "@masa-finance/masa-sdk/node_modules/@masa-finance/masa-token/addresses.json";
+import addresses from "@masa-finance/masa-token/addresses.json";
 import { TimeLock, TimeLock__factory } from "@masa-finance/masa-token";
 import { constants, providers, VoidSigner } from "ethers";
 
