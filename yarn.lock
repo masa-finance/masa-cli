@@ -407,32 +407,32 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
-"@layerzerolabs/evm-sdks-core@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.2.2.tgz#e8a20789da0eff291bb22d1f4261b24a321248a2"
-  integrity sha512-9IjWGqqSOZ7AsZJZwxBFCeoJRzieBuy+tWDhLpE1T3AeKXFZP7HrYvd5BM0YwTrxubhYmjC6t+3fwsAjfXVPSQ==
+"@layerzerolabs/evm-sdks-core@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.2.4.tgz#13d3ca12a0b92615be0e9a1a441fa8128ba17482"
+  integrity sha512-LAjv2HUy227l3hLfXIPdflSUEOQ37RNXsDM5uOUlHQXie/VOLf9r0EHRDdentuaPfjS245y3pwKseffEKNrh+w==
   dependencies:
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-definitions@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.2.2.tgz#80c7c92436e0538453901ba42ab32e6890fbe01a"
-  integrity sha512-JUuOkbPVgZn7lbzFRCotKiGjOe6w05vXCpb0Fpx+Q+DY82ib1GATV6DMAIYmlk24lsmzOILjUmMa+nsnaGjbyQ==
+"@layerzerolabs/lz-definitions@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.2.4.tgz#716a679f0ae7ba429350974ec94c9459fa259ba1"
+  integrity sha512-c0aM5/W7xNOrhekuxZIyQXk183pjCxqzFBGxrTTiSBt61lZcSzfJSD6SUG/6lIkvjY9O+1ffT7SZy6/1hBCsiQ==
   dependencies:
     tiny-invariant "^1.3.1"
 
-"@layerzerolabs/lz-evm-sdk-v2@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.2.2.tgz#1f0aeed386add7b0783194bfad2355746adcf038"
-  integrity sha512-ye5Y9lV6h0T0pb+V40hEQdB3kECHReVl7MSjruDGk0NEenmvMsgI2H3MnjAeCG5LQ6QIHlBn2LGjjQnTpdsobw==
+"@layerzerolabs/lz-evm-sdk-v2@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.2.4.tgz#0af0234f4fe606aebdbe642ac6e290f43a685b70"
+  integrity sha512-VH13iAolSxC9f4qOC5/wmimMqHzlf/WoPyTuGJKLDgDragDjnfYfRAAl3PKsurXuVw+C+h0Ev7syvzjFdoyvyg==
   dependencies:
-    "@layerzerolabs/evm-sdks-core" "^2.2.2"
+    "@layerzerolabs/evm-sdks-core" "^2.2.4"
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-v2-utilities@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.2.2.tgz#6391481724a5ec8236dea24745b6c6c2437b4283"
-  integrity sha512-0RIENoMwKpAJfaNELlzBrjki3iwJO9TR94ozFD0WETJw8UYzvJkozb/dri5yVtlcA0RSoJZpzNipf6sKWTyATA==
+"@layerzerolabs/lz-v2-utilities@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.2.4.tgz#cfd37b2d424908862e4c213b702f2732f3e5e56b"
+  integrity sha512-bqjB74iVbRoxhqbpAXDfWUw8/2+c3w9JzxS02lQ77c0lm2gUAtPj774YYQ+dOf8zViceVRIQSS/LGC8q0J1iPw==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -440,7 +440,7 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/solidity" "^5.7.0"
-    "@layerzerolabs/lz-evm-sdk-v2" "^2.2.2"
+    "@layerzerolabs/lz-evm-sdk-v2" "^2.2.4"
     "@solana/web3.js" "^1.87.6"
     tiny-invariant "^1.3.1"
 
@@ -451,10 +451,10 @@
   dependencies:
     ethers "~5.7.2"
 
-"@masa-finance/masa-contracts-marketplace@^2.1.20":
-  version "2.1.20"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-marketplace/-/masa-contracts-marketplace-2.1.20.tgz#364e2899b4bf42c66bbe92cac4f04ee87421b3b2"
-  integrity sha512-2pX2Zrk412DibZqMYcxwjGv8sfZTZuRrtvj4k3X86aSx2xfgiJMCv5kt0ywWTPT20VPW91Nc5UNF61ITXpG6bA==
+"@masa-finance/masa-contracts-marketplace@^2.1.22":
+  version "2.1.22"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-marketplace/-/masa-contracts-marketplace-2.1.22.tgz#2fdc89a349adda1bd52bb47864dbcb2b6ec16ec0"
+  integrity sha512-1++spkUbJ5DVetHjE4YdjJblNS+0HM/l8GMhOgPLG5qtv1REG0k2wijMZalrWpEH2XeYKIFreWAlV9xUp/+V1g==
   dependencies:
     ethers "~5.7.2"
 
@@ -466,30 +466,30 @@
     ethers "~5.7.2"
 
 "@masa-finance/masa-sdk@^3.30.3":
-  version "3.30.3"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.30.3.tgz#87a5d3631609691e0be50af128ffa7e87e6e1eff"
-  integrity sha512-7mGzeizh5n6LLbhIeEF72qTHcGF2TnzbElgzVVtben9ioC6TX5KFcum2010OqOz8LSMVM/KiRvjvmXgHEgL8Hw==
+  version "3.31.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.31.0.tgz#ba15abaa4d646f635c3751446a336f9ad0c14496"
+  integrity sha512-BnXQHo1ejtE3HCpcrK8RHnMGlvcivlwFTLE9SY0xaj9OuQlM5kNvy5Ah6ymCmP3dhD6y/Kkc30CMtJ5cSQECyA==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/bignumber" "^5.7.0"
     "@ethersproject/providers" "^5.7.2"
-    "@layerzerolabs/lz-definitions" "^2.2.2"
-    "@layerzerolabs/lz-v2-utilities" "^2.2.2"
+    "@layerzerolabs/lz-definitions" "^2.2.4"
+    "@layerzerolabs/lz-v2-utilities" "^2.2.4"
     "@masa-finance/masa-contracts-identity" "^1.15.0"
-    "@masa-finance/masa-contracts-marketplace" "^2.1.20"
-    "@masa-finance/masa-token" "^2.6.1"
+    "@masa-finance/masa-contracts-marketplace" "^2.1.22"
+    "@masa-finance/masa-token" "^2.7.1"
     arweave "1.11.8"
     axios "^1.6.8"
     ethers "~5.7.2"
     grapheme-splitter "^1.0.4"
     typescript "^5.4.5"
 
-"@masa-finance/masa-token@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-token/-/masa-token-2.6.1.tgz#7b28ba29b496daa8e3a6252431afcc69834bab0c"
-  integrity sha512-pO4WY5hf0fUW+r6MR1f1L5hIYptLKj0lpwIlusaO2KO9mOY909nKae7xEpaNSjM2dgPTqNRVmB7XUxMKx/c8vA==
+"@masa-finance/masa-token@^2.7.1":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-token/-/masa-token-2.7.1.tgz#0ed1835bfbb551add0637baf7ec457b1c1d971fd"
+  integrity sha512-2/ElTvpNqFM+JYxcLx6wRljmWM3Y3wGpq6/BkV7BwT3GEMJlSmLHT6fgTDOyy1h0aBgcnz7ZDnRvGbqgjygLng==
 
 "@noble/curves@^1.2.0":
   version "1.3.0"
