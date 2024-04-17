@@ -1,6 +1,6 @@
 {
   "name": "@masa-finance/masa-cli",
-  "version": "2.17.0",
+  "version": "2.17.1",
   "description": "The Masa CLI",
   "main": "./dist/src/index.js",
   "author": "Sebastian Gerske <13647606+H34D@users.noreply.github.com>",
