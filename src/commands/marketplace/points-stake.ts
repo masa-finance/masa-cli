@@ -2,7 +2,17 @@ import { masa } from "../../helpers";
 import { DataStakingDynamicNative__factory } from "@masa-finance/masa-contracts-marketplace";
 import { BigNumber } from "ethers";
 
-export const pointsStake = async (contractAddress: string) => {
+export const pointsStake = async (
+  contractAddress: string,
+  threshold: string = "10",
+) => {
+  if (!masa.marketplace.isContractAvailable) {
+    console.error(`Marketplace is not available on ${masa.config.networkName}`);
+    return;
+  }
+
+  console.log(`Threshold: ${threshold}`);
+
   const { getEligibleStakingAmounts, stakeAll } =
     DataStakingDynamicNative__factory.connect(
       contractAddress,
@@ -19,10 +29,14 @@ export const pointsStake = async (contractAddress: string) => {
     total = total.add(stake.amount);
   }
 
-  if (total.gte(BigNumber.from(10))) {
-    console.log("staking points");
+  const t = BigNumber.from(threshold);
+
+  if (total.gte(t)) {
+    console.log("Staking points");
     await stakeAll();
   } else {
-    console.log("skipping not enough points", total.toString());
+    console.log(
+      `Skipping, not enough points ${total.toString()}/${t.toString()}`,
+    );
   }
 };

@@ -609,7 +609,13 @@ program
   points
     .command("stake")
     .argument("<address>", "Pool address")
-    .action((address) => marketplacePointsStake(address));
+    .option(
+      "-t, --threshold <threshold>",
+      "Number of points to skip before staking",
+    )
+    .action((address, { threshold }) =>
+      marketplacePointsStake(address, threshold),
+    );
 }
 
 {
