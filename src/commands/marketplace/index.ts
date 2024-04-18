@@ -1,1 +1,2 @@
-export { stakeShow as marketplaceStakeShow } from "./stake-show";
+export { pointsShow as marketplacePointsShow } from "./points-show";
+export { pointsStake as marketplacePointsStake } from "./points-stake";

@@ -27,7 +27,8 @@ import {
   identityShow,
   login,
   logout,
-  marketplaceStakeShow,
+  marketplacePointsShow,
+  marketplacePointsStake,
   oracleStake,
   oracleWithdraw,
   sbtBurn,
@@ -598,17 +599,17 @@ program
     .command("marketplace")
     .description("Marketplace commands");
 
-  const stake = marketplace
-    .command("stake")
-    .argument("<amount>", "Amount to stake");
+  const points = marketplace.command("points");
 
-  stake
+  points
     .command("show")
-    .argument("<token-id>", "Token ID")
     .option("-a, --address <address>", "Address override")
-    .action((tokenId: string, { address }) =>
-      marketplaceStakeShow(tokenId, address),
-    );
+    .action(({ address }) => marketplacePointsShow(address));
+
+  points
+    .command("stake")
+    .argument("<address>", "Pool address")
+    .action((address) => marketplacePointsStake(address));
 }
 
 {
