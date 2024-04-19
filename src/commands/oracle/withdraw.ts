@@ -1,11 +1,13 @@
 import addressesRaw from "@masa-finance/masa-contracts-oracle/addresses.json";
 import { masa } from "../../helpers";
-import { NetworkName } from "@masa-finance/masa-sdk";
+import { Messages, NetworkName } from "@masa-finance/masa-sdk";
 import {
   OracleNodeStaking,
   OracleNodeStaking__factory,
+  StakedMasaToken__factory,
 } from "@masa-finance/masa-contracts-oracle";
 import { BigNumber } from "ethers";
+import { MasaToken__factory } from "@masa-finance/masa-token"; // todo moe this to the masa sdk
 
 // todo moe this to the masa sdk
 const addresses = addressesRaw as Partial<{
@@ -14,6 +16,7 @@ const addresses = addressesRaw as Partial<{
 
 export const withdraw = async (amount: string | BigNumber) => {
   amount = BigNumber.from(amount);
+  const address = await masa.config.signer.getAddress();
 
   const networkAddresses = addresses[masa.config.networkName];
 
@@ -25,7 +28,83 @@ export const withdraw = async (amount: string | BigNumber) => {
       );
 
     try {
-      const { wait } = await oracleNodeStaking.withdraw(amount);
+      {
+        const tokenAddress = await oracleNodeStaking.masaToken();
+        // console.log({ tokenAddress });
+
+        const { allowance, increaseAllowance } = MasaToken__factory.connect(
+          tokenAddress,
+          masa.config.signer,
+        );
+
+        const currentAllowance = await allowance(
+          address,
+          oracleNodeStaking.address,
+        );
+
+        const requiredAllowance = amount.sub(currentAllowance);
+
+        if (requiredAllowance.gt(BigNumber.from(0))) {
+          console.log("increasing allowance masa token");
+
+          const { wait, hash } = await increaseAllowance(
+            oracleNodeStaking.address,
+            requiredAllowance,
+          );
+
+          console.log(
+            Messages.WaitingToFinalize(
+              hash,
+              masa.config.network?.blockExplorerUrls?.[0],
+            ),
+          );
+
+          await wait();
+        }
+      }
+
+      {
+        const { allowance, increaseAllowance } =
+          StakedMasaToken__factory.connect(
+            networkAddresses.StakedMasaToken,
+            masa.config.signer,
+          );
+
+        const currentAllowance = await allowance(
+          address,
+          oracleNodeStaking.address,
+        );
+
+        const requiredAllowance = amount.sub(currentAllowance);
+
+        if (requiredAllowance.gt(BigNumber.from(0))) {
+          console.log("increasing allowance on staked masa token");
+
+          const { wait, hash } = await increaseAllowance(
+            oracleNodeStaking.address,
+            requiredAllowance,
+          );
+
+          console.log(
+            Messages.WaitingToFinalize(
+              hash,
+              masa.config.network?.blockExplorerUrls?.[0],
+            ),
+          );
+
+          await wait();
+        }
+      }
+
+      const { wait, hash } = await oracleNodeStaking.withdraw(amount);
+
+      console.log(
+        Messages.WaitingToFinalize(
+          hash,
+          masa.config.network?.blockExplorerUrls?.[0],
+        ),
+      );
+
       await wait();
 
       console.log(`Withdrawn ${amount}.`);

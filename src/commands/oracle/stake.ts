@@ -1,13 +1,12 @@
 import addressesRaw from "@masa-finance/masa-contracts-oracle/addresses.json";
 import { masa } from "../../helpers";
-import { NetworkName } from "@masa-finance/masa-sdk";
+import { Messages, NetworkName } from "@masa-finance/masa-sdk";
+import { MasaToken, MasaToken__factory } from "@masa-finance/masa-token";
 import {
-  MasaToken,
-  MasaToken__factory,
   OracleNodeStaking,
   OracleNodeStaking__factory,
 } from "@masa-finance/masa-contracts-oracle";
-import { BigNumber } from "ethers";
+import { BigNumber } from "ethers"; // todo moe this to the masa sdk
 
 // todo moe this to the masa sdk
 const addresses = addressesRaw as Partial<{
@@ -40,8 +39,10 @@ export const stake = async (amount: string | BigNumber) => {
 
       // console.log("currentBalance", currentBalance.toString());
 
-      if (amount.lt(currentBalance)) {
-        console.error("Not enough balance.");
+      if (amount.gt(currentBalance)) {
+        console.error(
+          `Not enough balance. ${amount.toString()} / ${currentBalance.toString()} on ${tokenAddress}`,
+        );
       } else {
         const allowance = await masaToken.allowance(
           address,
@@ -53,14 +54,32 @@ export const stake = async (amount: string | BigNumber) => {
         // console.log("requiredAllowance", requiredAllowance.toString());
 
         if (requiredAllowance.gt(BigNumber.from(0))) {
-          const { wait } = await masaToken.increaseAllowance(
+          console.log("increasing allowance");
+
+          const { wait, hash } = await masaToken.increaseAllowance(
             oracleNodeStaking.address,
             requiredAllowance,
           );
+
+          console.log(
+            Messages.WaitingToFinalize(
+              hash,
+              masa.config.network?.blockExplorerUrls?.[0],
+            ),
+          );
+
           await wait();
         }
 
-        const { wait } = await oracleNodeStaking.stake(amount);
+        const { wait, hash } = await oracleNodeStaking.stake(amount);
+
+        console.log(
+          Messages.WaitingToFinalize(
+            hash,
+            masa.config.network?.blockExplorerUrls?.[0],
+          ),
+        );
+
         await wait();
 
         console.log(`Staked ${amount}.`);
