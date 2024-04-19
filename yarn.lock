@@ -407,32 +407,32 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
-"@layerzerolabs/evm-sdks-core@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.2.5.tgz#f828c344cc3c028fd9fa1268b9552757ae7ee50e"
-  integrity sha512-J7VWUlQJema5mdM1ZwQFypEqCv39Bxwncy1/dLN1IGQbbX78QfwUFTpehxUY1l494cXqfr6OGCxiy5hM5+8P1g==
+"@layerzerolabs/evm-sdks-core@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.3.1.tgz#f60a2855427096f7e888fa9567eff7ef33e6ac1e"
+  integrity sha512-STltdGEM0Wt1L5YTzxItboE1pTx5R+pThW+JxVO7gHdkla09WCe6kkY5SqMWhlIsWZ4X40/C+V8lz0Vy7fDT4A==
   dependencies:
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-definitions@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.2.5.tgz#a50314ff2473c1d4bb4dc5e74f62b2676e69b921"
-  integrity sha512-F3MW2UO49BmRWHacF/wDL1gaMQ4tkO1D5T1F8zkjkXXlxAzPd6IjOYbDCByOgaeZU0Nuks41TjJWD5pKRsxwSw==
+"@layerzerolabs/lz-definitions@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.3.1.tgz#1db78f16f2b701a0d76d6d1ac23f919d07e8e004"
+  integrity sha512-vvvQX1hzBnZl2ZphDUKVg/WJ5w4BWFf77AKn2aNFDY4j2v9RrUKNTbYDnR4rJTussi6oQIK/UPdZEziMXVxUvA==
   dependencies:
     tiny-invariant "^1.3.1"
 
-"@layerzerolabs/lz-evm-sdk-v2@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.2.5.tgz#9298fafaf4af92105babb68aac5c0a6eaf88a0f5"
-  integrity sha512-sygoloV48bBTIx606OBVS8XQ3dUrZQX0c8tuqQ7ioJ0rDAEwOGuI36hMPVqRHE5XRH/VeMJOOiSnarolJ66CkA==
+"@layerzerolabs/lz-evm-sdk-v2@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.3.1.tgz#270ce671ad951a2ef2474171e3d3db4adcca52ea"
+  integrity sha512-YaYJ2dapFbp2stKXdiDA5VwKnyr1ULjZGzRnfNC2h19NYmFxjEkq5p+KzVcewnaIB/Wic1+HwYL7HK32lsRbCA==
   dependencies:
-    "@layerzerolabs/evm-sdks-core" "^2.2.5"
+    "@layerzerolabs/evm-sdks-core" "^2.3.1"
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-v2-utilities@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.2.5.tgz#e2805b3050103d334bea48bea989b277d3ce2262"
-  integrity sha512-Zu/BikHffiFv/uBfiwcAaOP0zCTHhDHFDtEDFVNuC95yBLrMjgNCwGLL6McAHEbXtvDFfvGzTRyWE/sTG+5yxg==
+"@layerzerolabs/lz-v2-utilities@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.3.1.tgz#ea94f9e857be4591014cfb957b0d850b849733ba"
+  integrity sha512-lgqiF5S/JcWoBsCq+uK50XR/K90G5FKqhtnw7DYj1xUBHmVuwT6WUuws7Me25kc+h3C76DTv0JARLixntIlYFg==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -440,8 +440,8 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/solidity" "^5.7.0"
-    "@layerzerolabs/lz-evm-sdk-v2" "^2.2.5"
-    "@solana/web3.js" "^1.87.6"
+    "@layerzerolabs/lz-evm-sdk-v2" "^2.3.1"
+    "@solana/web3.js" "^1.91.4"
     tiny-invariant "^1.3.1"
 
 "@masa-finance/masa-contracts-identity@^1.15.0":
@@ -465,18 +465,18 @@
   dependencies:
     ethers "~5.7.2"
 
-"@masa-finance/masa-sdk@^3.31.6":
-  version "3.31.6"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.31.6.tgz#c70dee40f89841bb739f09bb231e406f882ecefc"
-  integrity sha512-JbVp94qhcufrsgL6rTtb3D86iRKX7nRwEE+TykW5waDS/uj054gVeE7nXUgDBuJt1uwekZt/uvKRn3hZ3y9U4Q==
+"@masa-finance/masa-sdk@^3.32.0":
+  version "3.32.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.32.0.tgz#99cc634442a5e6f669666c5c65905798626e7c5f"
+  integrity sha512-yYDLv4ZJbC3A84NJq2SmNoWNiu2G9HDXvKj0ydsQaS5marx+uCvtkGJlvOWSfSG6FJYnNCDXpPV2fArwflX97g==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/bignumber" "^5.7.0"
     "@ethersproject/providers" "^5.7.2"
-    "@layerzerolabs/lz-definitions" "^2.2.5"
-    "@layerzerolabs/lz-v2-utilities" "^2.2.5"
+    "@layerzerolabs/lz-definitions" "^2.3.1"
+    "@layerzerolabs/lz-v2-utilities" "^2.3.1"
     "@masa-finance/masa-contracts-identity" "^1.15.0"
     "@masa-finance/masa-contracts-marketplace" "^2.1.25"
     "@masa-finance/masa-token" "^2.7.1"
@@ -491,19 +491,14 @@
   resolved "https://registry.yarnpkg.com/@masa-finance/masa-token/-/masa-token-2.7.1.tgz#0ed1835bfbb551add0637baf7ec457b1c1d971fd"
   integrity sha512-2/ElTvpNqFM+JYxcLx6wRljmWM3Y3wGpq6/BkV7BwT3GEMJlSmLHT6fgTDOyy1h0aBgcnz7ZDnRvGbqgjygLng==
 
-"@noble/curves@^1.2.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.3.0.tgz#01be46da4fd195822dab821e72f71bf4aeec635e"
-  integrity sha512-t01iSXPuN+Eqzb4eBX0S5oubSqXbK/xXa1Ne18Hj8f9pStxztHCE2gfboSp/dZRLSqfuLpRK2nDXDK+W9puocA==
+"@noble/curves@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.4.0.tgz#f05771ef64da724997f69ee1261b2417a49522d6"
+  integrity sha512-p+4cb332SFCrReJkCYe8Xzm0OWi4Jji5jVdIZRL/PmacmDkFNw6MrrV+gGpiPxLHbV+zKFRywUWbaseT+tZRXg==
   dependencies:
-    "@noble/hashes" "1.3.3"
+    "@noble/hashes" "1.4.0"
 
-"@noble/hashes@1.3.3":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.3.tgz#39908da56a4adc270147bb07968bf3b16cfe1699"
-  integrity sha512-V7/fPHgl+jsVPXqqeOzT8egNj2iBIVt+ECeMMG8TdcnTikP3oaBtUVqpT/gYCR68aEBJSF+XbYUxStjbFMqIIA==
-
-"@noble/hashes@^1.3.3":
+"@noble/hashes@1.4.0", "@noble/hashes@^1.3.3":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.4.0.tgz#45814aa329f30e4fe0ba49426f49dfccdd066426"
   integrity sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==
@@ -536,13 +531,13 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/web3.js@^1.87.6":
-  version "1.91.6"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.91.6.tgz#c090661c344cbc61e6cdeb0da67d3ea80d5848e1"
-  integrity sha512-dm20nN6HQvXToo+kM51nxHdtaa2wMSRdeK37p+WIWESfeiVHqV8XbV4XnWupq6ngt5vIckhGFG7ZnTBxUgLzDA==
+"@solana/web3.js@^1.91.4":
+  version "1.91.7"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.91.7.tgz#1d639f8f3cc772fd6d88b982e8fdb17dc192b9e1"
+  integrity sha512-HqljZKDwk6Z4TajKRGhGLlRsbGK4S8EY27DA7v1z6yakewiUY3J7ZKDZRxcqz2MYV/ZXRrJ6wnnpiHFkPdv0WA==
   dependencies:
     "@babel/runtime" "^7.23.4"
-    "@noble/curves" "^1.2.0"
+    "@noble/curves" "^1.4.0"
     "@noble/hashes" "^1.3.3"
     "@solana/buffer-layout" "^4.0.1"
     agentkeepalive "^4.5.0"
