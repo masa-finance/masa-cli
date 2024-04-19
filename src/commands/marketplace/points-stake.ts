@@ -1,6 +1,7 @@
 import { masa } from "../../helpers";
 import { DataStakingDynamicNative__factory } from "@masa-finance/masa-contracts-marketplace";
 import { BigNumber } from "ethers";
+import { Messages } from "@masa-finance/masa-sdk";
 
 export const pointsStake = async (
   contractAddress: string,
@@ -33,7 +34,17 @@ export const pointsStake = async (
 
   if (total.gte(t)) {
     console.log("Staking points");
-    await stakeAll();
+
+    const { wait, hash } = await stakeAll();
+
+    console.log(
+      Messages.WaitingToFinalize(
+        hash,
+        masa.config.network?.blockExplorerUrls?.[0],
+      ),
+    );
+
+    await wait();
   } else {
     console.log(
       `Skipping, not enough points ${total.toString()}/${t.toString()}`,
