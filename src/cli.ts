@@ -27,6 +27,7 @@ import {
   identityShow,
   login,
   logout,
+  marketplacePointsInfo,
   marketplacePointsShow,
   marketplacePointsStake,
   oracleStake,
@@ -605,6 +606,11 @@ program
     .command("show")
     .option("-a, --address <address>", "Address override")
     .action(({ address }) => marketplacePointsShow(address));
+
+  points
+    .command("info")
+    .description("Shows information about the points")
+    .action(() => marketplacePointsInfo());
 
   points
     .command("stake")
