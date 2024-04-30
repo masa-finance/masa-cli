@@ -4,7 +4,6 @@ import { Messages, NetworkName } from "@masa-finance/masa-sdk";
 import {
   OracleNodeStaking,
   OracleNodeStaking__factory,
-  StakedMasaToken__factory,
 } from "@masa-finance/masa-contracts-oracle";
 import { BigNumber } from "ethers";
 import { MasaToken__factory } from "@masa-finance/masa-token"; // todo moe this to the masa sdk
@@ -64,11 +63,10 @@ export const withdraw = async (amount: string | BigNumber) => {
       }
 
       {
-        const { allowance, increaseAllowance } =
-          StakedMasaToken__factory.connect(
-            networkAddresses.StakedMasaToken,
-            masa.config.signer,
-          );
+        const { allowance, increaseAllowance } = MasaToken__factory.connect(
+          networkAddresses.StakedMasaToken,
+          masa.config.signer,
+        );
 
         const currentAllowance = await allowance(
           address,

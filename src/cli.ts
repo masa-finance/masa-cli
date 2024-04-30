@@ -57,8 +57,11 @@ import {
   sssbtSign,
   tokenDeposit,
   tokenMesh,
+  tokenShow,
+  tokenStake,
   tokenSwap,
   tokenTimelock,
+  tokenUnstake,
   tokenWithdraw,
   version,
 } from "./commands";
@@ -655,6 +658,22 @@ program
     .command("timelock")
     .option("-t, --testnets", "Show testnets")
     .action(({ testnets }) => tokenTimelock(testnets, overrides.verbose));
+
+  token
+    .command("stake")
+    .argument("<amount>", "Amount to stake")
+    .argument("<duration>", "Duration to stake")
+    .action((amount: string, duration: number) => tokenStake(amount, duration));
+
+  token
+    .command("unstake")
+    .argument("<index>", "Index to unstake")
+    .action((index: number) => tokenUnstake(index));
+
+  token
+    .command("show")
+    .option("-a, --address", "Address to show")
+    .action(({ address }) => tokenShow(address));
 }
 
 {

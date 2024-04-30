@@ -1,4 +1,4 @@
-import { masa } from "../../helpers";
+import { masa } from "../../../helpers";
 import { NetworkName } from "@masa-finance/masa-sdk";
 
 export const swap = async (

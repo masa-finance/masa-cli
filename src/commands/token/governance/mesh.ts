@@ -1,9 +1,4 @@
-import {
-  loadOFTContract,
-  Masa,
-  Network,
-  SupportedNetworks,
-} from "@masa-finance/masa-sdk";
+import { Masa, Network, SupportedNetworks } from "@masa-finance/masa-sdk";
 import { constants, providers, utils, VoidSigner } from "ethers";
 import chalk from "chalk";
 
@@ -30,7 +25,7 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
       ),
     });
 
-    const networkOFT = loadOFTContract(networkMasa);
+    const { MasaToken: networkOFT } = networkMasa.contracts.instances;
 
     if (!networkOFT) {
       console.error("Loading network OFT failed!");
@@ -50,7 +45,7 @@ export const mesh = async (testnets: boolean = false, verbose?: boolean) => {
         ),
       });
 
-      const peerOFT = loadOFTContract(peerMasa);
+      const { MasaToken: peerOFT } = peerMasa.contracts.instances;
 
       if (!peerOFT) {
         console.error("Loading peer OFT failed!");
