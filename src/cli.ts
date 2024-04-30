@@ -31,7 +31,7 @@ import {
   marketplacePointsShow,
   marketplacePointsStake,
   oracleStake,
-  oracleWithdraw,
+  oracleUnstake,
   sbtBurn,
   sbtInfo,
   sbtList,
@@ -593,9 +593,9 @@ program
     .action((amount: string) => oracleStake(amount));
 
   oracle
-    .command("withdraw")
-    .argument("<amount>", "Amount to withdraw")
-    .action((amount: string) => oracleWithdraw(amount));
+    .command("unstake")
+    .argument("<amount>", "Amount to unstake")
+    .action((amount: string) => oracleUnstake(amount));
 }
 
 {

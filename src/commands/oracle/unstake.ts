@@ -13,7 +13,7 @@ const addresses = addressesRaw as Partial<{
   [key in NetworkName]: { [key: string]: string };
 }>;
 
-export const withdraw = async (amount: string | BigNumber) => {
+export const unstake = async (amount: string | BigNumber) => {
   amount = BigNumber.from(amount);
   const address = await masa.config.signer.getAddress();
 
