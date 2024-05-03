@@ -1,5 +1,5 @@
 import { masa } from "../../../helpers";
 
-export const unstake = async (index: number) => {
-  await masa.token.unstake(index);
+export const unstake = async (position: number) => {
+  await masa.token.staking.unstake(position);
 };

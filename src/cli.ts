@@ -55,14 +55,14 @@ import {
   sssbtDeploy,
   sssbtMint,
   sssbtSign,
-  tokenDeposit,
-  tokenMesh,
-  tokenShow,
-  tokenStake,
-  tokenSwap,
-  tokenTimelock,
-  tokenUnstake,
-  tokenWithdraw,
+  tokenBridgeSend,
+  tokenGovernanceMesh,
+  tokenGovernanceTimelock,
+  tokenStakingShow,
+  tokenStakingStake,
+  tokenStakingUnstake,
+  tokenWrapDeposit,
+  tokenWrapWithdraw,
   version,
 } from "./commands";
 import { loadMasa, masa } from "./helpers";
@@ -630,50 +630,74 @@ program
 {
   const token = program.command("token").description("Token commands");
 
-  token
-    .command("swap")
-    .argument("<to>", "To network")
-    .argument("<amount>", "Amount to swap")
-    .option("-s, --slippage <slippage>", "Slippage")
-    .action((to: NetworkName, amount: string, { slippage }) =>
-      tokenSwap(to, amount, slippage),
-    );
+  {
+    const bridge = token.command("bridge").description("Bridge commands");
 
-  token
-    .command("deposit")
-    .argument("<amount>", "Amount to deposit")
-    .action((amount: string) => tokenDeposit(amount));
+    bridge
+      .command("send")
+      .argument("<to>", "To network")
+      .argument("<amount>", "Amount to send")
+      .option("-s, --slippage <slippage>", "Slippage")
+      .action((to: NetworkName, amount: string, { slippage }) =>
+        tokenBridgeSend(to, amount, slippage),
+      );
+  }
 
-  token
-    .command("withdraw")
-    .argument("<amount>", "Amount to withdraw")
-    .action((amount: string) => tokenWithdraw(amount));
+  {
+    const wrap = token.command("wrap").description("Wrapping commands");
 
-  token
-    .command("mesh")
-    .option("-t, --testnets", "Show testnets")
-    .action(({ testnets }) => tokenMesh(testnets, overrides.verbose));
+    wrap
+      .command("deposit")
+      .argument("<amount>", "Amount to deposit")
+      .action((amount: string) => tokenWrapDeposit(amount));
 
-  token
-    .command("timelock")
-    .option("-t, --testnets", "Show testnets")
-    .action(({ testnets }) => tokenTimelock(testnets, overrides.verbose));
+    wrap
+      .command("withdraw")
+      .argument("<amount>", "Amount to withdraw")
+      .action((amount: string) => tokenWrapWithdraw(amount));
+  }
 
-  token
-    .command("stake")
-    .argument("<amount>", "Amount to stake")
-    .argument("<duration>", "Duration to stake")
-    .action((amount: string, duration: number) => tokenStake(amount, duration));
+  {
+    const governance = token
+      .command("governance")
+      .description("Governance commands");
 
-  token
-    .command("unstake")
-    .argument("<index>", "Index to unstake")
-    .action((index: number) => tokenUnstake(index));
+    governance
+      .command("mesh")
+      .option("-t, --testnets", "Show testnets")
+      .action(({ testnets }) =>
+        tokenGovernanceMesh(testnets, overrides.verbose),
+      );
 
-  token
-    .command("show")
-    .option("-a, --address", "Address to show")
-    .action(({ address }) => tokenShow(address));
+    governance
+      .command("timelock")
+      .option("-t, --testnets", "Show testnets")
+      .action(({ testnets }) =>
+        tokenGovernanceTimelock(testnets, overrides.verbose),
+      );
+  }
+
+  {
+    const staking = token.command("staking").description("Staking commands");
+
+    staking
+      .command("stake")
+      .argument("<amount>", "Amount to stake")
+      .argument("<duration>", "Duration to stake")
+      .action((amount: string, duration: number) =>
+        tokenStakingStake(amount, duration),
+      );
+
+    staking
+      .command("unstake")
+      .argument("<position>", "Index to unstake")
+      .action((position: number) => tokenStakingUnstake(position));
+
+    staking
+      .command("show")
+      .option("-a, --address", "Address to show")
+      .action(({ address }) => tokenStakingShow(address));
+  }
 }
 
 {
