@@ -466,9 +466,9 @@
   integrity sha512-2Ll64MvvDAOIWtV3rx/ws0YTgBk1JNd9iRiPgieybhi8OYgaooDTewrzuZ/QMsbh3NA9dXMX51ycl3TT0xk3Ig==
 
 "@masa-finance/masa-sdk@^3.36.0":
-  version "3.36.0"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.36.0.tgz#0a2b1fe8fd0a1d579d69de2db79389b180223dba"
-  integrity sha512-ruN5obQ5SGW9EYUD97TM+bg8jOtVRAjuhSlosUnDUknQIoNNKXtm4DW+8WAY/gMi6N6VoUydv2j7OHoPT/6E7g==
+  version "3.36.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.36.1.tgz#1b88f61141fb74d8454b1bd3ef73aff83f117884"
+  integrity sha512-SLeKzpf62z7Sej6cu5R4eHnRu3je6TkxdQBQuXZ2um/gVZCNDe0K4ajfhKwspnlf9y/+d84Tc9MVVBk8uKPH0Q==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
