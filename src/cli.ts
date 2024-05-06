@@ -58,6 +58,7 @@ import {
   tokenBridgeSend,
   tokenGovernanceMesh,
   tokenGovernanceTimelock,
+  tokenStakingInfo,
   tokenStakingShow,
   tokenStakingStake,
   tokenStakingUnstake,
@@ -697,6 +698,8 @@ program
       .command("show")
       .option("-a, --address", "Address to show")
       .action(({ address }) => tokenStakingShow(address));
+
+    staking.command("info").action(() => tokenStakingInfo());
   }
 }
 

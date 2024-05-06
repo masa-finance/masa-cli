@@ -6,3 +6,4 @@ export { timelock as tokenGovernanceTimelock } from "./governance/timelock";
 export { stake as tokenStakingStake } from "./staking/stake";
 export { unstake as tokenStakingUnstake } from "./staking/unstake";
 export { show as tokenStakingShow } from "./staking/show";
+export { info as tokenStakingInfo } from "./staking/info";
