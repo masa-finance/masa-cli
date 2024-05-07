@@ -58,10 +58,11 @@ import {
   tokenBridgeSend,
   tokenGovernanceMesh,
   tokenGovernanceTimelock,
+  tokenStakingClaim,
   tokenStakingInfo,
-  tokenStakingShow,
+  tokenStakingList,
   tokenStakingStake,
-  tokenStakingUnstake,
+  tokenStakingUnlock,
   tokenWrapDeposit,
   tokenWrapWithdraw,
   version,
@@ -690,14 +691,19 @@ program
       );
 
     staking
-      .command("unstake")
-      .argument("<position>", "Index to unstake")
-      .action((position: number) => tokenStakingUnstake(position));
+      .command("unlock")
+      .argument("<position>", "Index to unlock")
+      .action((position: number) => tokenStakingUnlock(position));
 
     staking
-      .command("show")
-      .option("-a, --address", "Address to show")
-      .action(({ address }) => tokenStakingShow(address));
+      .command("claim")
+      .argument("<position>", "Index to claim")
+      .action((position: number) => tokenStakingClaim(position));
+
+    staking
+      .command("list")
+      .option("-a, --address", "Address to list")
+      .action(({ address }) => tokenStakingList(address));
 
     staking.command("info").action(() => tokenStakingInfo());
   }

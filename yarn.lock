@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.17.2", "@babel/runtime@^7.23.4":
+"@babel/runtime@^7.24.5":
   version "7.24.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.5.tgz#230946857c053a36ccc66e1dd03b17dd0c4ed02c"
   integrity sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==
@@ -402,32 +402,32 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@layerzerolabs/evm-sdks-core@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.3.5.tgz#0638fef12e587e0085a8108aaa0990c2d04efa62"
-  integrity sha512-89y7bX/Vu4Eprr8hxWqwJN8xrlaPoY5vvv8IiUoJXZOScAalrZEPPsUs7W7WDOQ5oVF/GDYmSQtiCJ3HTuLTPg==
+"@layerzerolabs/evm-sdks-core@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/evm-sdks-core/-/evm-sdks-core-2.3.6.tgz#7e9182828e9db72c8acc666f2bc5566bff903f14"
+  integrity sha512-fCjEN1YF/ovmPbDwi9C8BZ/fO5+r8fMWBVHslAP8RNwmMQglCaVt4rZk4KNgMdF/uFy2cDR3q0cOYBByesGOew==
   dependencies:
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-definitions@^2.3.2":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.3.5.tgz#c6ff5000f6f522e6eb47f37eda152a7bb4cc772d"
-  integrity sha512-ZxXJogVxpdQD1mxd+uxodcb/khhGKRDG8u+qaaTaCNkiL8AWbTQ/sSeG2SWPN46wVUWWFFCxxDSaz3erUGaTfw==
+"@layerzerolabs/lz-definitions@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-definitions/-/lz-definitions-2.3.6.tgz#a5a0c3a3100b94e1867417dc90e81756875e3e7f"
+  integrity sha512-koYblq06gEs2ERopoTuRNftlIbKEPqHW4UK1wdXjiauQAZcMERkU4hX78oCQAhRl+6QO5b40JC/czvWIlUi32w==
   dependencies:
     tiny-invariant "^1.3.1"
 
-"@layerzerolabs/lz-evm-sdk-v2@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.3.5.tgz#89f94cd02adb0c3ae55f689cde264335835f058b"
-  integrity sha512-qLcgz7UvgwRSbBUqRziolZ1Af5veP0TKn6Nmnz/BxJKhaCrMP9ITe3Fc6nBQFWkuA9LJhcp61Z76PFoslJyKPA==
+"@layerzerolabs/lz-evm-sdk-v2@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-evm-sdk-v2/-/lz-evm-sdk-v2-2.3.6.tgz#e79a75fed6f56d8c320cb10450455a0ce090ade6"
+  integrity sha512-/aFD6eRoFYj9M86GtzgHpXUuY3sIE+dWzYU3ObkQmblTtV25qihzjjUO2dhtZM6S8u9vf+tSz6jF/PaN0QDYaA==
   dependencies:
-    "@layerzerolabs/evm-sdks-core" "^2.3.5"
+    "@layerzerolabs/evm-sdks-core" "^2.3.6"
     ethers "^5.7.2"
 
-"@layerzerolabs/lz-v2-utilities@^2.3.2":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.3.5.tgz#7e04f5ad9e33779cc82c4bd3626999b73f023614"
-  integrity sha512-6adovcyHS0DDqlN3GymdHpJA+PyDgbqnAr/EYN8h9ZrnL4Hw11X5rRprOVfxVjvL3vJw5MCgqoTlVIFe6CSrhA==
+"@layerzerolabs/lz-v2-utilities@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@layerzerolabs/lz-v2-utilities/-/lz-v2-utilities-2.3.6.tgz#2f454cde4d085ac8e88394adc451b311eaf4b169"
+  integrity sha512-vDdo9d/DKP4UZ8my7CxxDaMbw0iNJN2dFSsII6t0zCjzIvcLa+PsebFDxcVOAhlDIKdXh2CkZ4eaHOM2e3nwzw==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/address" "^5.7.0"
@@ -435,8 +435,8 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/keccak256" "^5.7.0"
     "@ethersproject/solidity" "^5.7.0"
-    "@layerzerolabs/lz-evm-sdk-v2" "^2.3.5"
-    "@solana/web3.js" "^1.91.4"
+    "@layerzerolabs/lz-evm-sdk-v2" "^2.3.6"
+    "@solana/web3.js" "^1.91.8"
     tiny-invariant "^1.3.1"
 
 "@masa-finance/masa-contracts-identity@^1.15.0":
@@ -460,26 +460,26 @@
   dependencies:
     ethers "~5.7.2"
 
-"@masa-finance/masa-contracts-staking@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-staking/-/masa-contracts-staking-0.1.6.tgz#1a788d264976997fe1212f8de700eca7cbecb64c"
-  integrity sha512-2Ll64MvvDAOIWtV3rx/ws0YTgBk1JNd9iRiPgieybhi8OYgaooDTewrzuZ/QMsbh3NA9dXMX51ycl3TT0xk3Ig==
+"@masa-finance/masa-contracts-staking@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-staking/-/masa-contracts-staking-0.3.1.tgz#fb4e7d9da7c49f41da134380900faae4a483d975"
+  integrity sha512-UVM/M+NdLXQgIEXg87nLjFiijjhgqpVJxHSJw0qC+4qK51i5GKAbVivtSDHjXPXW/w8s9JA4pSpjtBNt0V9D8Q==
 
-"@masa-finance/masa-sdk@^3.37.0":
-  version "3.37.0"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.37.0.tgz#e768ddc410fc7e7fb59847be6d6255f2f2c165e9"
-  integrity sha512-uQML8KUgDVwaME3+JZT+KrdgzrmNtvrEZZM9Kc+HH2e/W7Y5LAFH1l64HvUaO2bWzz16skyCC9HnmwHe1+80Kw==
+"@masa-finance/masa-sdk@^3.38.0":
+  version "3.38.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.38.0.tgz#ee026a4b0ee6b6e48a2c02a0ffdc300969315cf8"
+  integrity sha512-geMVm/Ga+jDuQAyC07bUFD/qXic6XnVzp42HQygsZ49FaHO4SHF/2ArVwVmvqJfBz370enM1O428ofRYJ7sAgg==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/bignumber" "^5.7.0"
     "@ethersproject/providers" "^5.7.2"
-    "@layerzerolabs/lz-definitions" "^2.3.2"
-    "@layerzerolabs/lz-v2-utilities" "^2.3.2"
+    "@layerzerolabs/lz-definitions" "^2.3.6"
+    "@layerzerolabs/lz-v2-utilities" "^2.3.6"
     "@masa-finance/masa-contracts-identity" "^1.15.0"
     "@masa-finance/masa-contracts-marketplace" "^2.1.26"
-    "@masa-finance/masa-contracts-staking" "^0.1.6"
+    "@masa-finance/masa-contracts-staking" "^0.3.1"
     "@masa-finance/masa-token" "^2.9.2"
     arweave "1.11.8"
     axios "^1.6.8"
@@ -499,7 +499,7 @@
   dependencies:
     "@noble/hashes" "1.4.0"
 
-"@noble/hashes@1.4.0", "@noble/hashes@^1.3.3":
+"@noble/hashes@1.4.0", "@noble/hashes@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.4.0.tgz#45814aa329f30e4fe0ba49426f49dfccdd066426"
   integrity sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==
@@ -532,14 +532,14 @@
   dependencies:
     buffer "~6.0.3"
 
-"@solana/web3.js@^1.91.4":
-  version "1.91.7"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.91.7.tgz#1d639f8f3cc772fd6d88b982e8fdb17dc192b9e1"
-  integrity sha512-HqljZKDwk6Z4TajKRGhGLlRsbGK4S8EY27DA7v1z6yakewiUY3J7ZKDZRxcqz2MYV/ZXRrJ6wnnpiHFkPdv0WA==
+"@solana/web3.js@^1.91.8":
+  version "1.91.8"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.91.8.tgz#0d5eb69626a92c391b53e15bfbb0bad3f6858e51"
+  integrity sha512-USa6OS1jbh8zOapRJ/CBZImZ8Xb7AJjROZl5adql9TpOoBN9BUzyyouS5oPuZHft7S7eB8uJPuXWYjMi6BHgOw==
   dependencies:
-    "@babel/runtime" "^7.23.4"
+    "@babel/runtime" "^7.24.5"
     "@noble/curves" "^1.4.0"
-    "@noble/hashes" "^1.3.3"
+    "@noble/hashes" "^1.4.0"
     "@solana/buffer-layout" "^4.0.1"
     agentkeepalive "^4.5.0"
     bigint-buffer "^1.1.5"
@@ -550,7 +550,7 @@
     fast-stable-stringify "^1.0.0"
     jayson "^4.1.0"
     node-fetch "^2.7.0"
-    rpc-websockets "^7.5.1"
+    rpc-websockets "^7.11.0"
     superstruct "^0.14.2"
 
 "@types/clear@^0.1.4":
@@ -587,10 +587,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
   integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
 
-"@types/node@^20.12.9":
-  version "20.12.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.9.tgz#d7234f2e7839b55fcab5048404aef0195684adff"
-  integrity sha512-o93r47yu04MHumPBCFg0bMPBMNgtMg3jzbhl7e68z50+BMHmRMGDJv13eBlUgOdc9i/uoJXGMGYLtJV4ReTXEg==
+"@types/node@^20.12.10":
+  version "20.12.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.10.tgz#8f0c3f12b0f075eee1fe20c1afb417e9765bef76"
+  integrity sha512-Eem5pH9pmWBHoGAT8Dr5fdc5rYA+4NAovdM4EktRPVAAiJhmWWfQrA0cFhAbOsQdSfIHjAud6YdkbL69+zSKjw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2026,12 +2026,11 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-rpc-websockets@^7.5.1:
-  version "7.10.0"
-  resolved "https://registry.yarnpkg.com/rpc-websockets/-/rpc-websockets-7.10.0.tgz#8ffaf6aaab3eb18e603c7549988cf49feeddcd29"
-  integrity sha512-cemZ6RiDtYZpPiBzYijdOrkQQzmBCmug0E9SdRH2gIUNT15ql4mwCYWIp0VnSZq6Qrw/JkGUygp4PrK1y9KfwQ==
+rpc-websockets@^7.11.0:
+  version "7.11.0"
+  resolved "https://registry.yarnpkg.com/rpc-websockets/-/rpc-websockets-7.11.0.tgz#05451975963a7d1a4cf36d54e200bfc4402a56d7"
+  integrity sha512-IkLYjayPv6Io8C/TdCL5gwgzd1hFz2vmBZrjMw/SPEXo51ETOhnzgS4Qy5GWi2JQN7HKHa66J3+2mv0fgNh/7w==
   dependencies:
-    "@babel/runtime" "^7.17.2"
     eventemitter3 "^4.0.7"
     uuid "^8.3.2"
     ws "^8.5.0"

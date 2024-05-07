@@ -86,8 +86,10 @@
         - [`masa token governance timelock`](#masa-token-governance-timelock)
       - [`masa token staking`](#masa-token-staking)
         - [`masa token staking stake <amount> <duration>`](#masa-token-staking-stake-amount-duration)
-        - [`masa token staking unstake <position>`](#masa-token-staking-unstake-position)
-        - [`masa token staking show`](#masa-token-staking-show)
+        - [`masa token staking unlock <position>`](#masa-token-staking-unlock-position)
+        - [`masa token staking claim <position>`](#masa-token-staking-claim-position)
+        - [`masa token staking list`](#masa-token-staking-list)
+        - [`masa token staking info`](#masa-token-staking-info)
     - [`masa settings`](#masa-settings)
       - [`masa settings set <key> <value>`](#masa-settings-set-key-value)
       - [`masa settings preset <environment>`](#masa-settings-preset-environment)
@@ -196,8 +198,10 @@ Commands:
   token governance timelock [options]
   token staking                                                                                                      Staking commands
   token staking stake <amount> <duration>
-  token staking unstake <index>
-  token staking show [options]
+  token staking unlock <position>
+  token staking claim <position>
+  token staking list [options]
+  token staking info
   settings                                                                                                           Set config settings
   settings set <key> <value>                                                                                         Changes setting <key> to <value>
   settings preset <environment>                                                                                      Changes setting <environment> presets
@@ -713,16 +717,22 @@ Staking commands
 - `<amount> Amount to stake`
 - `<duration> Duration to stake`
 
-##### `masa token staking unstake <position>`
+##### `masa token staking unlock <position>`
 
-- `<position> Index to unstake`
+- `<position> Index to unlock`
 
-##### `masa token staking show`
+##### `masa token staking claim <position>`
+
+- `<position> Index to claim`
+
+##### `masa token staking list`
 
 Options:
 
 - `-a, --address`
-  Address to show
+  Address to list
+
+##### `masa token staking info`
 
 ### `masa settings`
 
