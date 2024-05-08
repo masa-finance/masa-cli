@@ -702,7 +702,7 @@ program
 
     staking
       .command("list")
-      .option("-a, --address", "Address to list")
+      .option("-a, --address <address>", "Address to list")
       .action(({ address }) => tokenStakingList(address));
 
     staking.command("info").action(() => tokenStakingInfo());
