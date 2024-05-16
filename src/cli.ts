@@ -10,14 +10,12 @@ import {
   asbtMintBulk,
   asbtMintFromSoulname,
   creditScoreBurn,
-  creditScoreCreate,
   creditScoreInfo,
   creditScoreList,
   creditScoreLoad,
   dynamicSSSBTMint,
   dynamicSSSBTSetState,
   greenBurn,
-  greenCreate,
   greenInfo,
   greenList,
   identityBurn,
@@ -293,11 +291,6 @@ program
     .action(({ address }) => creditScoreList(address));
 
   creditScore
-    .command("create")
-    .description("Creates a Credit Score")
-    .action(() => creditScoreCreate("ETH"));
-
-  creditScore
     .command("burn")
     .argument("<credit-score-id>", "ID of the Credit Score to burn")
     .description("Burns a Credit Score")
@@ -390,12 +383,6 @@ program
     .description("Lists your Greens")
     .option("-a, --address <address>", "Address override")
     .action(({ address }) => greenList(address));
-
-  green
-    .command("create")
-    .argument("<phone-number>", "The phone number to verify")
-    .description("Creates a Green Token")
-    .action((phoneNumber: string) => greenCreate("ETH", phoneNumber));
 
   green
     .command("burn")
