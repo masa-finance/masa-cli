@@ -33,7 +33,6 @@
     - [`masa credit-score`](#masa-credit-score)
       - [`masa credit-score info`](#masa-credit-score-info)
       - [`masa credit-score list`](#masa-credit-score-list)
-      - [`masa credit-score create`](#masa-credit-score-create)
       - [`masa credit-score burn <credit-score-id>`](#masa-credit-score-burn-credit-score-id)
       - [`masa credit-score load <credit-score-id>`](#masa-credit-score-load-credit-score-id)
       - [`masa credit-score link`](#masa-credit-score-link)
@@ -46,7 +45,6 @@
     - [`masa green`](#masa-green)
       - [`masa green info`](#masa-green-info)
       - [`masa green list`](#masa-green-list)
-      - [`masa green create <phone-number>`](#masa-green-create-phone-number)
       - [`masa green burn <green-id>`](#masa-green-burn-green-id)
     - [`masa sbt`](#masa-sbt)
       - [`masa sbt info <contract-address>`](#masa-sbt-info-contract-address)
@@ -146,7 +144,6 @@ Commands:
   credit-score                                                                                                       Credit Score Commands
   credit-score info                                                                                                  Shows info about all Credit Scores
   credit-score list [options]                                                                                        Lists your Credit Scores
-  credit-score create                                                                                                Creates a Credit Score
   credit-score burn <credit-score-id>                                                                                Burns a Credit Score
   credit-score load <credit-score-id>                                                                                Loads a Credit Score
   credit-score link                                                                                                  Credit Score Soul Linker Commands
@@ -159,7 +156,6 @@ Commands:
   green                                                                                                              Green Commands
   green info                                                                                                         Shows info about Masa Green
   green list [options]                                                                                               Lists your Greens
-  green create <phone-number>                                                                                        Creates a Green Token
   green burn <green-id>                                                                                              Burns a green
   sbt                                                                                                                SBT Commands
   sbt info <contract-address>                                                                                        Shows info about an SBT
@@ -403,10 +399,6 @@ Options:
 - `-a, --address <address>`
   Address override
 
-#### `masa credit-score create`
-
-Creates a Credit Score
-
 #### `masa credit-score burn <credit-score-id>`
 
 Burns a Credit Score
@@ -480,12 +472,6 @@ Options:
 
 - `-a, --address <address>`
   Address override
-
-#### `masa green create <phone-number>`
-
-Creates a Green Token
-
-- `<phone-number> The phone number to verify`
 
 #### `masa green burn <green-id>`
 
@@ -729,7 +715,7 @@ Staking commands
 
 Options:
 
-- `-a, --address`
+- `-a, --address <address>`
   Address to list
 
 ##### `masa token staking info`
