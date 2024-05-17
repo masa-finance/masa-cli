@@ -465,10 +465,10 @@
   resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-staking/-/masa-contracts-staking-0.3.3.tgz#5135a34b379d06fb39ba5b86f65ffdbbc785aba9"
   integrity sha512-GJHYEwj2C6pec90Wg/mgmeOha2DYu71mdtQgkfyXtVu05T6RC1TXcuW4y6+6aZnKvst1z5qu0sHEtpZJylEBVQ==
 
-"@masa-finance/masa-sdk@^3.38.5":
-  version "3.39.0"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.39.0.tgz#8e03592d5402edb93b7e93629324e606fe3d4c50"
-  integrity sha512-VWuaNCayIZzvUUNEhB6z/7SxyVa4SYnebonPi1GCtOkZy9+MLjUIvGA32TE5mafbk2edR6ohHmZ9AHKJdKUGQQ==
+"@masa-finance/masa-sdk@^3.40.0-alpha.0":
+  version "3.40.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-sdk/-/masa-sdk-3.40.0-alpha.0.tgz#e9892e18dff38485b7d0695f1bbfd0b3d9c4045e"
+  integrity sha512-b62hvyRG1BehnZZv9yX9ruUTrMMhI+uAoJz6vCiljW7Mh4Ml0F+XFzJ8p7vRsOS7KWIlN4TRHfY/rl1F6WMeoA==
   dependencies:
     "@ethersproject/abi" "^5.7.0"
     "@ethersproject/abstract-provider" "^5.7.0"
