@@ -1,6 +1,6 @@
 {
   "name": "@masa-finance/masa-cli",
-  "version": "2.29.0",
+  "version": "2.30.0",
   "description": "The Masa CLI",
   "main": "./dist/src/index.js",
   "author": "Sebastian Gerske <13647606+H34D@users.noreply.github.com>",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@masa-finance/masa-contracts-oracle": "^0.3.2",
-    "@masa-finance/masa-sdk": "^3.38.5",
+    "@masa-finance/masa-sdk": "^3.40.0",
     "@types/clear": "^0.1.4",
     "@types/figlet": "^1.5.8",
     "chalk": "~4.1.2",
