@@ -16,7 +16,7 @@
     "doc": "ts-node ./src/doc.ts"
   },
   "dependencies": {
-    "@masa-finance/masa-contracts-oracle": "^0.3.2",
+    "@masa-finance/masa-contracts-oracle": "^0.4.5",
     "@masa-finance/masa-sdk": "^3.40.0",
     "@types/clear": "^0.1.4",
     "@types/figlet": "^1.5.8",

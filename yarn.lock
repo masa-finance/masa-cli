@@ -453,12 +453,10 @@
   dependencies:
     ethers "~5.7.2"
 
-"@masa-finance/masa-contracts-oracle@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-oracle/-/masa-contracts-oracle-0.3.2.tgz#916b141bf5e5e4b5d29dac523b4497b245fe2bda"
-  integrity sha512-QnYdXIJELR3AzzCqHrKPg6dP5jDyXlA4NhbJOiOLOxhsXbO9jxOrYHTlP+SvJsegtpDrSlroOadWSPBNmClycA==
-  dependencies:
-    ethers "~5.7.2"
+"@masa-finance/masa-contracts-oracle@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@masa-finance/masa-contracts-oracle/-/masa-contracts-oracle-0.4.5.tgz#a9fb197b5585f9c476660c45d134842494795190"
+  integrity sha512-3SeWpNQ4odLu9dIXNVjDliBSVvEliAy4ULWgQYzsX6hYfYAXhboIUd3+PvJGzGwyEib/3ATwqV7v4v0wBO2kzg==
 
 "@masa-finance/masa-contracts-staking@^0.3.3":
   version "0.3.3"
