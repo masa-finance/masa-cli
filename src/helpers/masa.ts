@@ -17,17 +17,22 @@ const loadWallet = ({
   rpcUrl,
   privateKey,
   mnemonic,
+  networkName,
+  verbose,
 }: {
   rpcUrl?: string;
   privateKey?: string;
   mnemonic?: string;
+  networkName?: NetworkName;
+  verbose?: boolean;
 } = {}):
   | Signer
   | {
       keypair: Keypair;
       connection: Connection;
     } => {
-  const n = SupportedNetworks[config.get("network") as NetworkName];
+  const network =
+    SupportedNetworks[networkName ?? (config.get("network") as NetworkName)];
 
   const m = mnemonic || (config.get("mnemonic") as string);
   const provider = new providers.JsonRpcProvider(
@@ -35,9 +40,11 @@ const loadWallet = ({
   );
 
   if (m) {
-    if (n?.type === "evm") {
+    if (network?.type === "evm") {
+      // load evm style
       return Wallet.fromMnemonic(m).connect(provider);
     } else {
+      // load solana style
       const seed = mnemonicToSeedSync(m, "");
 
       const index = 0;
@@ -47,10 +54,12 @@ const loadWallet = ({
         derivePath(path, seed.toString("hex")).key,
       );
 
-      console.log(`${path} => ${keypair.publicKey.toBase58()}`);
+      if (verbose) {
+        console.log(`${path} => ${keypair.publicKey.toBase58()}`);
+      }
 
       return {
-        connection: new Connection(n?.rpcUrls[0] || ""),
+        connection: new Connection(network?.rpcUrls[0] || ""),
         keypair,
       };
     }
@@ -92,6 +101,8 @@ export const loadMasa = (
         signer: loadWallet({
           rpcUrl: overrideConfig.rpcUrl || network.rpcUrls[0],
           privateKey: overrideConfig.privateKey,
+          networkName: overrideConfig.networkName,
+          verbose: overrideConfig.verbose,
         }),
       };
     } else {
@@ -113,6 +124,8 @@ export const loadMasa = (
       signer: loadWallet({
         rpcUrl: overrideConfig.rpcUrl,
         privateKey: overrideConfig.privateKey,
+        networkName: overrideConfig.networkName,
+        verbose: overrideConfig.verbose,
       }),
     };
   }
@@ -124,20 +137,28 @@ export const loadMasa = (
       signer: loadWallet({
         rpcUrl: overrideConfig.rpcUrl,
         privateKey: overrideConfig.privateKey,
+        networkName: overrideConfig.networkName,
+        verbose: overrideConfig.verbose,
       }),
     };
   }
 
-  const s = overrideConfig?.signer || masa.config.signer;
-
+  const signer =
+    overrideConfig?.signer ||
+    loadWallet({
+      rpcUrl: overrideConfig.rpcUrl,
+      privateKey: overrideConfig.privateKey,
+      networkName: overrideConfig.networkName,
+      verbose: overrideConfig.verbose,
+    });
   // override soul name contract
-  if (overrideConfig.soulNameContractAddress && isSigner(s)) {
+  if (overrideConfig.soulNameContractAddress && isSigner(signer)) {
     overrideConfig = {
       ...overrideConfig,
       contractOverrides: {
         SoulNameContract: SoulName__factory.connect(
           overrideConfig.soulNameContractAddress,
-          s,
+          signer,
         ),
       },
     };

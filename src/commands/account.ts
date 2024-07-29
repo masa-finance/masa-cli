@@ -2,11 +2,14 @@ import { masa } from "../helpers";
 import { isSigner } from "@masa-finance/masa-sdk";
 
 export const account = async (address?: string) => {
-  if (!isSigner(masa.config.signer)) {
-    return;
-  }
+  console.log(`Network: '${masa.config.network?.chainName}'`);
 
-  address = address || (await masa.config.signer.getAddress());
+  address =
+    address ||
+    (isSigner(masa.config.signer)
+      ? await masa.config.signer.getAddress()
+      : masa.config.signer.keypair.publicKey.toBase58());
+
   console.log(`Address: '${address}'\n`);
 
   // login status
