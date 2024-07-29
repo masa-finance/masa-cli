@@ -34,18 +34,18 @@ const loadWallet = ({
   const network =
     SupportedNetworks[networkName ?? (config.get("network") as NetworkName)];
 
-  const m = mnemonic || (config.get("mnemonic") as string);
+  mnemonic = mnemonic || (config.get("mnemonic") as string);
   const provider = new providers.JsonRpcProvider(
     rpcUrl || (config.get("rpc-url") as string),
   );
 
-  if (m) {
+  if (mnemonic) {
     if (network?.type === "evm") {
       // load evm style
-      return Wallet.fromMnemonic(m).connect(provider);
+      return Wallet.fromMnemonic(mnemonic).connect(provider);
     } else {
       // load solana style
-      const seed = mnemonicToSeedSync(m, "");
+      const seed = mnemonicToSeedSync(mnemonic, "");
 
       const index = 0;
       // solana deviation path
