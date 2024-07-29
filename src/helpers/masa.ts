@@ -1,24 +1,65 @@
-import type {
+import {
   EnvironmentName,
+  isSigner,
+  Masa,
   MasaArgs,
   NetworkName,
+  SupportedNetworks,
 } from "@masa-finance/masa-sdk";
-import { Masa, SupportedNetworks } from "@masa-finance/masa-sdk";
 import { config } from "../utils/config";
-import { providers, Wallet } from "ethers";
+import { providers, Signer, Wallet } from "ethers";
 import { SoulName__factory } from "@masa-finance/masa-contracts-identity";
+import { Connection, Keypair } from "@solana/web3.js";
+import { mnemonicToSeedSync } from "bip39";
+import { derivePath } from "ed25519-hd-key";
 
 const loadWallet = ({
   rpcUrl,
   privateKey,
+  mnemonic,
 }: {
   rpcUrl?: string;
   privateKey?: string;
-} = {}) =>
-  new Wallet(
-    privateKey || (config.get("private-key") as string),
-    new providers.JsonRpcProvider(rpcUrl || (config.get("rpc-url") as string)),
+  mnemonic?: string;
+} = {}):
+  | Signer
+  | {
+      keypair: Keypair;
+      connection: Connection;
+    } => {
+  const n = SupportedNetworks[config.get("network") as NetworkName];
+
+  const m = mnemonic || (config.get("mnemonic") as string);
+  const provider = new providers.JsonRpcProvider(
+    rpcUrl || (config.get("rpc-url") as string),
   );
+
+  if (m) {
+    if (n?.type === "evm") {
+      return Wallet.fromMnemonic(m).connect(provider);
+    } else {
+      const seed = mnemonicToSeedSync(m, "");
+
+      const index = 0;
+      // solana deviation path
+      const path = `m/44'/501'/${index}'/0'`;
+      const keypair: Keypair = Keypair.fromSeed(
+        derivePath(path, seed.toString("hex")).key,
+      );
+
+      console.log(`${path} => ${keypair.publicKey.toBase58()}`);
+
+      return {
+        connection: new Connection(n?.rpcUrls[0] || ""),
+        keypair,
+      };
+    }
+  }
+
+  const pk = privateKey || (config.get("private-key") as string);
+
+  return new Wallet(pk, provider);
+};
 
 const masaArgs: MasaArgs = {
   cookie: config.get("cookie") as string,
@@ -87,14 +128,16 @@ export const loadMasa = (
     };
   }
 
+  const s = overrideConfig?.signer || masa.config.signer;
+
   // override soul name contract
-  if (overrideConfig.soulNameContractAddress) {
+  if (overrideConfig.soulNameContractAddress && isSigner(s)) {
     overrideConfig = {
       ...overrideConfig,
       contractOverrides: {
         SoulNameContract: SoulName__factory.connect(
           overrideConfig.soulNameContractAddress,
-          overrideConfig?.signer || masa.config.signer,
+          s,
         ),
       },
     };

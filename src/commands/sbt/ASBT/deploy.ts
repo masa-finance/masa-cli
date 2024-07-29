@@ -1,11 +1,17 @@
 import { masa, readLine, verifyContract } from "../../../helpers";
 import fs from "fs";
+import { isSigner } from "@masa-finance/masa-sdk";
 
 const ReferenceSBTAuthorityPath = require.resolve(
   "@masa-finance/masa-contracts-identity/contracts/reference/ReferenceSBTAuthorityFlattened.sol",
 );
 
 export const deployASBT = async (etherscanKey?: string) => {
+  if (!isSigner(masa.config.signer)) {
+    console.error(`Unable to deploy to ${masa.config.networkName}!`);
+    return;
+  }
+
   console.log("Deploying ASBT contract\n");
 
   const name = await readLine("Enter the name of the SBT: ");
