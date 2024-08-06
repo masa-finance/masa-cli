@@ -19,9 +19,7 @@ import {
   greenInfo,
   greenList,
   identityBurn,
-  identityCreate,
   identityInfo,
-  identityRegister,
   identityShow,
   login,
   logout,
@@ -39,7 +37,6 @@ import {
   settingsShow,
   signSetStateDynamicSSSBT,
   soulNameBurn,
-  soulNameCreate,
   soulNameInfo,
   soulNameList,
   soulNameRenew,
@@ -161,20 +158,6 @@ program
     .action(() => identityInfo());
 
   identity
-    .command("create")
-    .argument("<soulname>", "Soul Name to register")
-    .argument("<duration>", "Period of registration")
-    .description("Creates a masa identity with soul name")
-    .action((soulName: string, duration: number) =>
-      identityCreate("ETH", soulName, duration),
-    );
-
-  identity
-    .command("register")
-    .description("Creates a masa identity without soul name")
-    .action(() => identityRegister());
-
-  identity
     .command("show")
     .option("-a, --address <address>", "Address override")
     .description("Shows detail about your masa identity")
@@ -227,15 +210,6 @@ program
     .description("Resolves an address to soul names")
     .argument("<soulname>", "Address to resolve")
     .action((address: string) => soulNameResolveReverse(address));
-
-  soulName
-    .command("create")
-    .argument("<soulname>", "soulname to register")
-    .argument("<duration>", "period of registration")
-    .description("Creates a new soul name")
-    .action((soulName: string, duration: number) =>
-      soulNameCreate("ETH", soulName, duration),
-    );
 
   soulName
     .command("burn")

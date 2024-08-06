@@ -14,8 +14,6 @@
     - [`masa account`](#masa-account)
     - [`masa identity`](#masa-identity)
       - [`masa identity info`](#masa-identity-info)
-      - [`masa identity create <soulname> <duration>`](#masa-identity-create-soulname-duration)
-      - [`masa identity register`](#masa-identity-register)
       - [`masa identity show`](#masa-identity-show)
       - [`masa identity burn`](#masa-identity-burn)
     - [`masa soul-name`](#masa-soul-name)
@@ -24,7 +22,6 @@
       - [`masa soul-name tail`](#masa-soul-name-tail)
       - [`masa soul-name resolve <soulname>`](#masa-soul-name-resolve-soulname)
       - [`masa soul-name resolve-reverse <soulname>`](#masa-soul-name-resolve-reverse-soulname)
-      - [`masa soul-name create <soulname> <duration>`](#masa-soul-name-create-soulname-duration)
       - [`masa soul-name burn <soulname>`](#masa-soul-name-burn-soulname)
       - [`masa soul-name renew <soulname> <years>`](#masa-soul-name-renew-soulname-years)
       - [`masa soul-name send <soulname> <receiver>`](#masa-soul-name-send-soulname-receiver)
@@ -125,17 +122,14 @@ Commands:
   account                                                                                                            Shows information about your account
   identity                                                                                                           Identity commands
   identity info                                                                                                      Shows info about all Identities
-  identity create <soulname> <duration>                                                                              Creates a masa identity with soul name
-  identity register                                                                                                  Creates a masa identity without soul name
   identity show [options]                                                                                            Shows detail about your masa identity
   identity burn                                                                                                      Burns your masa identity
   soul-name                                                                                                          Soul Name Commands
   soul-name info                                                                                                     Shows info about all Soul Names
   soul-name list [options]                                                                                           Lists your soul names
-  soul-name tailoptions]                                                                                             Tails your soul names
+  soul-name tail [options]                                                                                             Tails your soul names
   soul-name resolve <soulname>                                                                                       Resolves a soul name to the address
   soul-name resolve-reverse <soulname>                                                                               Resolves an address to soul names
-  soul-name create <soulname> <duration>                                                                             Creates a new soul name
   soul-name burn <soulname>                                                                                          Burns soul name that you own
   soul-name renew <soulname> <years>                                                                                 Renews a soul name that you own
   soul-name send <soulname> <receiver>                                                                               Sends a soul name to that you own to a receiver
@@ -278,17 +272,6 @@ Identity commands
 
 Shows info about all Identities
 
-#### `masa identity create <soulname> <duration>`
-
-Creates a masa identity with soul name
-
-- `<soulname> Soul Name to register`
-- `<duration> Period of registration`
-
-#### `masa identity register`
-
-Creates a masa identity without soul name
-
 #### `masa identity show`
 
 Shows detail about your masa identity
@@ -342,13 +325,6 @@ Resolves a soul name to the address
 Resolves an address to soul names
 
 - `<soulname> Address to resolve`
-
-#### `masa soul-name create <soulname> <duration>`
-
-Creates a new soul name
-
-- `<soulname> soulname to register`
-- `<duration> period of registration`
 
 #### `masa soul-name burn <soulname>`
 
