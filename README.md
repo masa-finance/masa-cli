@@ -47,21 +47,10 @@
       - [`masa sbt info <contract-address>`](#masa-sbt-info-contract-address)
       - [`masa sbt list <contract-address>`](#masa-sbt-list-contract-address)
       - [`masa sbt burn <contract-address> <sbt-id>`](#masa-sbt-burn-contract-address-sbt-id)
-    - [`masa asbt`](#masa-asbt)
-      - [`masa asbt deploy`](#masa-asbt-deploy)
-      - [`masa asbt mint <contract-address> <receiver>`](#masa-asbt-mint-contract-address-receiver)
-      - [`masa asbt bulk-mint <contract-address> <csv>`](#masa-asbt-bulk-mint-contract-address-csv)
-      - [`masa asbt mint-to-soulname <contract-address> <soulname>`](#masa-asbt-mint-to-soulname-contract-address-soulname)
     - [`masa sssbt`](#masa-sssbt)
-      - [`masa sssbt deploy`](#masa-sssbt-deploy)
       - [`masa sssbt add-authority <contract-address> <authority-address>`](#masa-sssbt-add-authority-contract-address-authority-address)
-      - [`masa sssbt sign <contract-address> <receiver>`](#masa-sssbt-sign-contract-address-receiver)
-      - [`masa sssbt mint <contract-address> <authority-address> <signature-date> <signature>`](#masa-sssbt-mint-contract-address-authority-address-signature-date-signature)
     - [`masa dynamic-sssbt`](#masa-dynamic-sssbt)
       - [`masa dynamic-sssbt add-authority <contract-address> <authority-address>`](#masa-dynamic-sssbt-add-authority-contract-address-authority-address)
-      - [`masa dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>`](#masa-dynamic-sssbt-set-state-contract-address-state-state-value-authority-address-signature-date-signature)
-      - [`masa dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>`](#masa-dynamic-sssbt-sign-set-state-contract-address-receiver-state-state-value)
-      - [`masa dynamic-sssbt mint <contract-address>`](#masa-dynamic-sssbt-mint-contract-address)
     - [`masa oracle`](#masa-oracle)
       - [`masa oracle stake <amount>`](#masa-oracle-stake-amount)
       - [`masa oracle unstake <amount>`](#masa-oracle-unstake-amount)
@@ -155,21 +144,10 @@ Commands:
   sbt info <contract-address>                                                                                        Shows info about an SBT
   sbt list [options] <contract-address>                                                                              Lists your SBTs
   sbt burn <contract-address> <sbt-id>                                                                               Burns an SBT
-  asbt                                                                                                               ASBT Commands
-  asbt deploy [options]                                                                                              Deploys ASBTs
-  asbt mint <contract-address> <receiver>                                                                            Mints ASBTs
-  asbt bulk-mint <contract-address> <csv>                                                                            Mints ASBTs from CSV files
-  asbt mint-to-soulname <contract-address> <soulname>                                                                Mints ASBTs from soulname
   sssbt                                                                                                              SSSBT Commands
-  sssbt deploy [options]                                                                                             Deploys SSSBTs
   sssbt add-authority <contract-address> <authority-address>                                                         Adds an Authority to the SSSBT
-  sssbt sign <contract-address> <receiver>                                                                           Signs SSSBTs
-  sssbt mint <contract-address> <authority-address> <signature-date> <signature>                                     Mints SSSBTs
   dynamic-sssbt                                                                                                      Dynamic SSSBT Commands
   dynamic-sssbt add-authority <contract-address> <authority-address>                                                 Adds an Authority to the SSSBT
-  dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>  Sets a state on a dynamic SSSBTs
-  dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>                                   Signs a Set State operation on a Dynamic SSSBTs
-  dynamic-sssbt mint <contract-address>                                                                              Mints Dynamic SSSBTs
   oracle                                                                                                             Oracle commands
   oracle stake <amount>
   oracle unstake <amount>
@@ -481,52 +459,9 @@ Burns an SBT
 - `<contract-address> Address of the SBT to sign`
 - `<sbt-id> ID of the SBT to burn`
 
-### `masa asbt`
-
-ASBT Commands
-
-#### `masa asbt deploy`
-
-Deploys ASBTs
-
-Options:
-
-- `-e, --etherscan-key <etherscan-key>`
-  Etherscan API Key
-
-#### `masa asbt mint <contract-address> <receiver>`
-
-Mints ASBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-
-#### `masa asbt bulk-mint <contract-address> <csv>`
-
-Mints ASBTs from CSV files
-
-- `<contract-address> Address of the SBT to mint on`
-- `<csv> Address of the SBT receiver`
-
-#### `masa asbt mint-to-soulname <contract-address> <soulname>`
-
-Mints ASBTs from soulname
-
-- `<contract-address> Address of the SBT to mint on`
-- `<soulname> Address of the SBT receiver`
-
 ### `masa sssbt`
 
 SSSBT Commands
-
-#### `masa sssbt deploy`
-
-Deploys SSSBTs
-
-Options:
-
-- `-e, --etherscan-key <etherscan-key>`
-  Etherscan API Key
 
 #### `masa sssbt add-authority <contract-address> <authority-address>`
 
@@ -534,22 +469,6 @@ Adds an Authority to the SSSBT
 
 - `<contract-address> Address of the SBT to add the authority to`
 - `<authority-address> Address of the Authority`
-
-#### `masa sssbt sign <contract-address> <receiver>`
-
-Signs SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-
-#### `masa sssbt mint <contract-address> <authority-address> <signature-date> <signature>`
-
-Mints SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<authority-address> Address of the Authority`
-- `<signature-date> Signature date`
-- `<signature> Signature`
 
 ### `masa dynamic-sssbt`
 
@@ -561,32 +480,6 @@ Adds an Authority to the SSSBT
 
 - `<contract-address> Address of the SBT to add the authority to`
 - `<authority-address> Address of the Authority`
-
-#### `masa dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>`
-
-Sets a state on a dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<state> State`
-- `<state-value> State value`
-- `<authority-address> Address of the Authority`
-- `<signature-date> Signature date`
-- `<signature> Signature`
-
-#### `masa dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>`
-
-Signs a Set State operation on a Dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-- `<state> State`
-- `<state-value> State value`
-
-#### `masa dynamic-sssbt mint <contract-address>`
-
-Mints Dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
 
 ### `masa oracle`
 

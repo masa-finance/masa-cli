@@ -5,16 +5,10 @@ import { program } from "commander";
 import { version as cliVersion } from "../package.json";
 import {
   account,
-  asbtDeploy,
-  asbtMint,
-  asbtMintBulk,
-  asbtMintFromSoulname,
   creditScoreBurn,
   creditScoreInfo,
   creditScoreList,
   creditScoreLoad,
-  dynamicSSSBTMint,
-  dynamicSSSBTSetState,
   greenBurn,
   greenInfo,
   greenList,
@@ -35,7 +29,6 @@ import {
   settingsPresetNetwork,
   settingsSet,
   settingsShow,
-  signSetStateDynamicSSSBT,
   soulNameBurn,
   soulNameInfo,
   soulNameList,
@@ -47,9 +40,6 @@ import {
   soulNameTail,
   soulNameVerify,
   sssbtAddAuthority,
-  sssbtDeploy,
-  sssbtMint,
-  sssbtSign,
   tokenBridgeSend,
   tokenGovernanceMesh,
   tokenGovernanceTimelock,
@@ -394,45 +384,7 @@ program
 }
 
 {
-  const asbt = program.command("asbt").description("ASBT Commands");
-
-  asbt
-    .command("deploy")
-    .description("Deploys ASBTs")
-    .option("-e, --etherscan-key <etherscan-key>", "Etherscan API Key")
-    .action(({ etherscanKey }) => asbtDeploy(etherscanKey));
-
-  asbt
-    .command("mint")
-    .description("Mints ASBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<receiver>", "Address of the SBT receiver")
-    .action((contractAddress, receiver) => asbtMint(contractAddress, receiver));
-  asbt
-    .command("bulk-mint")
-    .description("Mints ASBTs from CSV files")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<csv>", "Address of the SBT receiver")
-    .action((contractAddress, csv) => asbtMintBulk(contractAddress, csv));
-
-  asbt
-    .command("mint-to-soulname")
-    .description("Mints ASBTs from soulname")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<soulname>", "Address of the SBT receiver")
-    .action((contractAddress, soulname) =>
-      asbtMintFromSoulname(contractAddress, soulname),
-    );
-}
-
-{
   const sssbt = program.command("sssbt").description("SSSBT Commands");
-
-  sssbt
-    .command("deploy")
-    .description("Deploys SSSBTs")
-    .option("-e, --etherscan-key <etherscan-key>", "Etherscan API Key")
-    .action(({ etherscanKey }) => sssbtDeploy(etherscanKey));
 
   sssbt
     .command("add-authority")
@@ -444,32 +396,6 @@ program
     .argument("<authority-address>", "Address of the Authority")
     .action((contractAddress: string, authorityAddress: string) =>
       sssbtAddAuthority(contractAddress, authorityAddress),
-    );
-
-  sssbt
-    .command("sign")
-    .description("Signs SSSBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<receiver>", "Address of the SBT receiver")
-    .action((contractAddress: string, receiver: string) =>
-      sssbtSign(contractAddress, receiver),
-    );
-
-  sssbt
-    .command("mint")
-    .description("Mints SSSBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<authority-address>", "Address of the Authority")
-    .argument("<signature-date>", "Signature date")
-    .argument("<signature>", "Signature")
-    .action(
-      (
-        contractAddress: string,
-        authorityAddress: string,
-        signatureDate: number,
-        signature: string,
-      ) =>
-        sssbtMint(contractAddress, authorityAddress, signatureDate, signature),
     );
 }
 
@@ -489,62 +415,6 @@ program
     .action((contractAddress: string, authorityAddress: string) =>
       sssbtAddAuthority(contractAddress, authorityAddress),
     );
-
-  dynamicSSSBT
-    .command("set-state")
-    .description("Sets a state on a dynamic SSSBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<state>", "State")
-    .argument("<state-value>", "State value")
-    .argument("<authority-address>", "Address of the Authority")
-    .argument("<signature-date>", "Signature date")
-    .argument("<signature>", "Signature")
-    .action(
-      (
-        contractAddress: string,
-        state: string,
-        stateValue: boolean,
-        authorityAddress: string,
-        signatureDate: number,
-        signature: string,
-      ) =>
-        dynamicSSSBTSetState(
-          contractAddress,
-          state,
-          Boolean(stateValue),
-          authorityAddress,
-          signatureDate,
-          signature,
-        ),
-    );
-
-  dynamicSSSBT
-    .command("sign-set-state")
-    .description("Signs a Set State operation on a Dynamic SSSBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .argument("<receiver>", "Address of the SBT receiver")
-    .argument("<state>", "State")
-    .argument("<state-value>", "State value")
-    .action(
-      (
-        contractAddress: string,
-        receiver: string,
-        state: string,
-        stateValue: boolean,
-      ) =>
-        signSetStateDynamicSSSBT(
-          contractAddress,
-          receiver,
-          state,
-          Boolean(stateValue),
-        ),
-    );
-
-  dynamicSSSBT
-    .command("mint")
-    .description("Mints Dynamic SSSBTs")
-    .argument("<contract-address>", "Address of the SBT to mint on")
-    .action((contractAddress: string) => dynamicSSSBTMint(contractAddress));
 }
 
 {

@@ -1,4 +1,3 @@
-export * from "./ASBT";
 export * from "./SSSBT";
 export { burn as sbtBurn } from "./burn";
 export { info as sbtInfo } from "./info";
