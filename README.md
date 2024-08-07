@@ -14,8 +14,6 @@
     - [`masa account`](#masa-account)
     - [`masa identity`](#masa-identity)
       - [`masa identity info`](#masa-identity-info)
-      - [`masa identity create <soulname> <duration>`](#masa-identity-create-soulname-duration)
-      - [`masa identity register`](#masa-identity-register)
       - [`masa identity show`](#masa-identity-show)
       - [`masa identity burn`](#masa-identity-burn)
     - [`masa soul-name`](#masa-soul-name)
@@ -24,7 +22,6 @@
       - [`masa soul-name tail`](#masa-soul-name-tail)
       - [`masa soul-name resolve <soulname>`](#masa-soul-name-resolve-soulname)
       - [`masa soul-name resolve-reverse <soulname>`](#masa-soul-name-resolve-reverse-soulname)
-      - [`masa soul-name create <soulname> <duration>`](#masa-soul-name-create-soulname-duration)
       - [`masa soul-name burn <soulname>`](#masa-soul-name-burn-soulname)
       - [`masa soul-name renew <soulname> <years>`](#masa-soul-name-renew-soulname-years)
       - [`masa soul-name send <soulname> <receiver>`](#masa-soul-name-send-soulname-receiver)
@@ -50,21 +47,10 @@
       - [`masa sbt info <contract-address>`](#masa-sbt-info-contract-address)
       - [`masa sbt list <contract-address>`](#masa-sbt-list-contract-address)
       - [`masa sbt burn <contract-address> <sbt-id>`](#masa-sbt-burn-contract-address-sbt-id)
-    - [`masa asbt`](#masa-asbt)
-      - [`masa asbt deploy`](#masa-asbt-deploy)
-      - [`masa asbt mint <contract-address> <receiver>`](#masa-asbt-mint-contract-address-receiver)
-      - [`masa asbt bulk-mint <contract-address> <csv>`](#masa-asbt-bulk-mint-contract-address-csv)
-      - [`masa asbt mint-to-soulname <contract-address> <soulname>`](#masa-asbt-mint-to-soulname-contract-address-soulname)
     - [`masa sssbt`](#masa-sssbt)
-      - [`masa sssbt deploy`](#masa-sssbt-deploy)
       - [`masa sssbt add-authority <contract-address> <authority-address>`](#masa-sssbt-add-authority-contract-address-authority-address)
-      - [`masa sssbt sign <contract-address> <receiver>`](#masa-sssbt-sign-contract-address-receiver)
-      - [`masa sssbt mint <contract-address> <authority-address> <signature-date> <signature>`](#masa-sssbt-mint-contract-address-authority-address-signature-date-signature)
     - [`masa dynamic-sssbt`](#masa-dynamic-sssbt)
       - [`masa dynamic-sssbt add-authority <contract-address> <authority-address>`](#masa-dynamic-sssbt-add-authority-contract-address-authority-address)
-      - [`masa dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>`](#masa-dynamic-sssbt-set-state-contract-address-state-state-value-authority-address-signature-date-signature)
-      - [`masa dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>`](#masa-dynamic-sssbt-sign-set-state-contract-address-receiver-state-state-value)
-      - [`masa dynamic-sssbt mint <contract-address>`](#masa-dynamic-sssbt-mint-contract-address)
     - [`masa oracle`](#masa-oracle)
       - [`masa oracle stake <amount>`](#masa-oracle-stake-amount)
       - [`masa oracle unstake <amount>`](#masa-oracle-unstake-amount)
@@ -125,17 +111,14 @@ Commands:
   account                                                                                                            Shows information about your account
   identity                                                                                                           Identity commands
   identity info                                                                                                      Shows info about all Identities
-  identity create <soulname> <duration>                                                                              Creates a masa identity with soul name
-  identity register                                                                                                  Creates a masa identity without soul name
   identity show [options]                                                                                            Shows detail about your masa identity
   identity burn                                                                                                      Burns your masa identity
   soul-name                                                                                                          Soul Name Commands
   soul-name info                                                                                                     Shows info about all Soul Names
   soul-name list [options]                                                                                           Lists your soul names
-  soul-name tailoptions]                                                                                             Tails your soul names
+  soul-name tail [options]                                                                                             Tails your soul names
   soul-name resolve <soulname>                                                                                       Resolves a soul name to the address
   soul-name resolve-reverse <soulname>                                                                               Resolves an address to soul names
-  soul-name create <soulname> <duration>                                                                             Creates a new soul name
   soul-name burn <soulname>                                                                                          Burns soul name that you own
   soul-name renew <soulname> <years>                                                                                 Renews a soul name that you own
   soul-name send <soulname> <receiver>                                                                               Sends a soul name to that you own to a receiver
@@ -161,21 +144,10 @@ Commands:
   sbt info <contract-address>                                                                                        Shows info about an SBT
   sbt list [options] <contract-address>                                                                              Lists your SBTs
   sbt burn <contract-address> <sbt-id>                                                                               Burns an SBT
-  asbt                                                                                                               ASBT Commands
-  asbt deploy [options]                                                                                              Deploys ASBTs
-  asbt mint <contract-address> <receiver>                                                                            Mints ASBTs
-  asbt bulk-mint <contract-address> <csv>                                                                            Mints ASBTs from CSV files
-  asbt mint-to-soulname <contract-address> <soulname>                                                                Mints ASBTs from soulname
   sssbt                                                                                                              SSSBT Commands
-  sssbt deploy [options]                                                                                             Deploys SSSBTs
   sssbt add-authority <contract-address> <authority-address>                                                         Adds an Authority to the SSSBT
-  sssbt sign <contract-address> <receiver>                                                                           Signs SSSBTs
-  sssbt mint <contract-address> <authority-address> <signature-date> <signature>                                     Mints SSSBTs
   dynamic-sssbt                                                                                                      Dynamic SSSBT Commands
   dynamic-sssbt add-authority <contract-address> <authority-address>                                                 Adds an Authority to the SSSBT
-  dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>  Sets a state on a dynamic SSSBTs
-  dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>                                   Signs a Set State operation on a Dynamic SSSBTs
-  dynamic-sssbt mint <contract-address>                                                                              Mints Dynamic SSSBTs
   oracle                                                                                                             Oracle commands
   oracle stake <amount>
   oracle unstake <amount>
@@ -278,17 +250,6 @@ Identity commands
 
 Shows info about all Identities
 
-#### `masa identity create <soulname> <duration>`
-
-Creates a masa identity with soul name
-
-- `<soulname> Soul Name to register`
-- `<duration> Period of registration`
-
-#### `masa identity register`
-
-Creates a masa identity without soul name
-
 #### `masa identity show`
 
 Shows detail about your masa identity
@@ -342,13 +303,6 @@ Resolves a soul name to the address
 Resolves an address to soul names
 
 - `<soulname> Address to resolve`
-
-#### `masa soul-name create <soulname> <duration>`
-
-Creates a new soul name
-
-- `<soulname> soulname to register`
-- `<duration> period of registration`
 
 #### `masa soul-name burn <soulname>`
 
@@ -505,52 +459,9 @@ Burns an SBT
 - `<contract-address> Address of the SBT to sign`
 - `<sbt-id> ID of the SBT to burn`
 
-### `masa asbt`
-
-ASBT Commands
-
-#### `masa asbt deploy`
-
-Deploys ASBTs
-
-Options:
-
-- `-e, --etherscan-key <etherscan-key>`
-  Etherscan API Key
-
-#### `masa asbt mint <contract-address> <receiver>`
-
-Mints ASBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-
-#### `masa asbt bulk-mint <contract-address> <csv>`
-
-Mints ASBTs from CSV files
-
-- `<contract-address> Address of the SBT to mint on`
-- `<csv> Address of the SBT receiver`
-
-#### `masa asbt mint-to-soulname <contract-address> <soulname>`
-
-Mints ASBTs from soulname
-
-- `<contract-address> Address of the SBT to mint on`
-- `<soulname> Address of the SBT receiver`
-
 ### `masa sssbt`
 
 SSSBT Commands
-
-#### `masa sssbt deploy`
-
-Deploys SSSBTs
-
-Options:
-
-- `-e, --etherscan-key <etherscan-key>`
-  Etherscan API Key
 
 #### `masa sssbt add-authority <contract-address> <authority-address>`
 
@@ -558,22 +469,6 @@ Adds an Authority to the SSSBT
 
 - `<contract-address> Address of the SBT to add the authority to`
 - `<authority-address> Address of the Authority`
-
-#### `masa sssbt sign <contract-address> <receiver>`
-
-Signs SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-
-#### `masa sssbt mint <contract-address> <authority-address> <signature-date> <signature>`
-
-Mints SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<authority-address> Address of the Authority`
-- `<signature-date> Signature date`
-- `<signature> Signature`
 
 ### `masa dynamic-sssbt`
 
@@ -585,32 +480,6 @@ Adds an Authority to the SSSBT
 
 - `<contract-address> Address of the SBT to add the authority to`
 - `<authority-address> Address of the Authority`
-
-#### `masa dynamic-sssbt set-state <contract-address> <state> <state-value> <authority-address> <signature-date> <signature>`
-
-Sets a state on a dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<state> State`
-- `<state-value> State value`
-- `<authority-address> Address of the Authority`
-- `<signature-date> Signature date`
-- `<signature> Signature`
-
-#### `masa dynamic-sssbt sign-set-state <contract-address> <receiver> <state> <state-value>`
-
-Signs a Set State operation on a Dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
-- `<receiver> Address of the SBT receiver`
-- `<state> State`
-- `<state-value> State value`
-
-#### `masa dynamic-sssbt mint <contract-address>`
-
-Mints Dynamic SSSBTs
-
-- `<contract-address> Address of the SBT to mint on`
 
 ### `masa oracle`
 

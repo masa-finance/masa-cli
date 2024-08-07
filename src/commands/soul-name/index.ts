@@ -1,5 +1,4 @@
 export { burn as soulNameBurn } from "./burn";
-export { create as soulNameCreate } from "./create";
 export { list as soulNameList } from "./list";
 export { tail as soulNameTail } from "./tail";
 export { renew as soulNameRenew } from "./renew";
