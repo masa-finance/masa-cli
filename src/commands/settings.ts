@@ -2,6 +2,7 @@ import { config } from "../utils/config";
 import {
   Environment,
   environments,
+  isSigner,
   Network,
   NetworkName,
   SupportedNetworks,
@@ -70,5 +71,7 @@ export const settingsShow = async () => {
   console.log("rpc-url", config.get("rpc-url"));
   console.log("network", config.get("network"));
   console.log("environment", config.get("environment"));
-  console.log("address", await masa.config.signer.getAddress());
+  if (isSigner(masa.config.signer)) {
+    console.log("address", await masa.config.signer.getAddress());
+  }
 };

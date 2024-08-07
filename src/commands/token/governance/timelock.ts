@@ -1,5 +1,4 @@
 import {
-  Masa,
   Network,
   NetworkName,
   SupportedNetworks,
@@ -35,18 +34,14 @@ export const timelock = async (
           )
         : new providers.JsonRpcProvider(network.rpcUrls[0]);
 
-    const networkMasa = new Masa({
-      networkName: network.networkName,
-      signer: new VoidSigner(constants.AddressZero, provider),
-    });
+    const signer = new VoidSigner(constants.AddressZero, provider);
 
     const timelock: TimeLock = TimeLock__factory.connect(
       TimeLockAddresses[network.networkName].TimeLock,
-      networkMasa.config.signer,
+      signer,
     );
 
-    const lastBlockNumber =
-      await networkMasa.config.signer.provider?.getBlockNumber();
+    const lastBlockNumber = await signer.provider?.getBlockNumber();
 
     const offset = 2_047;
     const maxCount = 30;
