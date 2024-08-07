@@ -18,7 +18,7 @@
   "dependencies": {
     "@masa-finance/masa-contracts-oracle": "^0.3.2",
     "@masa-finance/masa-sdk": "^4.2.0",
-    "@solana/web3.js": "^1.95.1",
+    "@solana/web3.js": "^1.95.2",
     "@types/clear": "^0.1.4",
     "@types/figlet": "^1.5.8",
     "bip39": "^3.1.0",
