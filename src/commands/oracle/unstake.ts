@@ -1,6 +1,6 @@
 import addressesRaw from "@masa-finance/masa-contracts-oracle/addresses.json";
 import { masa } from "../../helpers";
-import { Messages, NetworkName } from "@masa-finance/masa-sdk";
+import { isSigner, Messages, NetworkName } from "@masa-finance/masa-sdk";
 import {
   OracleNodeStaking,
   OracleNodeStaking__factory,
@@ -15,11 +15,12 @@ const addresses = addressesRaw as Partial<{
 
 export const unstake = async (amount: string | BigNumber) => {
   amount = BigNumber.from(amount);
-  const address = await masa.config.signer.getAddress();
 
   const networkAddresses = addresses[masa.config.networkName];
 
-  if (networkAddresses) {
+  if (networkAddresses && isSigner(masa.config.signer)) {
+    const address = await masa.config.signer.getAddress();
+
     const oracleNodeStaking: OracleNodeStaking =
       OracleNodeStaking__factory.connect(
         networkAddresses.OracleNodeStaking,

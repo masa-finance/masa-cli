@@ -1,13 +1,13 @@
 import { masa } from "../../helpers";
 import { DataStakingDynamicNative__factory } from "@masa-finance/masa-contracts-marketplace";
 import { BigNumber } from "ethers";
-import { Messages } from "@masa-finance/masa-sdk";
+import { isSigner, Messages } from "@masa-finance/masa-sdk";
 
 export const pointsStake = async (
   contractAddress: string,
   threshold: string = "10",
 ) => {
-  if (!masa.marketplace.isContractAvailable) {
+  if (!masa.marketplace.isContractAvailable || !isSigner(masa.config.signer)) {
     console.error(`Marketplace is not available on ${masa.config.networkName}`);
     return;
   }

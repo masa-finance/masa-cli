@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { utils } from "ethers";
 import Conf from "conf";
 
 /*
@@ -40,7 +40,10 @@ export const config = new Conf({
     },
     "private-key": {
       type: "string",
-      default: ethers.Wallet.createRandom().privateKey,
+    },
+    mnemonic: {
+      type: "string",
+      default: utils.entropyToMnemonic(utils.randomBytes(32)),
     },
     "arweave-host": {
       type: "string",
